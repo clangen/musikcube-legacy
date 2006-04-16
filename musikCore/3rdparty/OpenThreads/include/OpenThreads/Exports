@@ -1,0 +1,9 @@
+#ifndef _OPENTHREAD_EXPORTS_H_
+#define _OPENTHREAD_EXPORTS_H_
+
+
+#define OPENTHREAD_EXPORT_DIRECTIVE
+
+#endif
+
+

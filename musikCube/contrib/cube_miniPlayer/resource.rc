@@ -1,0 +1,313 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\resource.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "res\\ico1.ico"
+IDI_BTN_STOP            ICON                    "res\\btn_stop.ico"
+IDI_BTN_NEXT            ICON                    "res\\btn_next.ico"
+IDI_BTN_PAUSE           ICON                    "res\\btn_pause.ico"
+IDI_BTN_PLAY            ICON                    "res\\btn_play.ico"
+IDI_BTN_PREV            ICON                    "res\\btn_prev.ico"
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,2,0,0
+ PRODUCTVERSION 0,2,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "dekstop.de"
+            VALUE "FileDescription", "musikCube Plugin"
+            VALUE "FileVersion", "0.2"
+            VALUE "InternalName", "miniPlayer.dll"
+            VALUE "LegalCopyright", "(c) Martin Dittus. All Rights Reserved"
+            VALUE "OriginalFilename", "miniPlayer.dll"
+            VALUE "ProductName", "miniPlayer"
+            VALUE "ProductVersion", "0.2"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 218, 121
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "(caption)"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,84,100,50,14
+    LTEXT           "(name)",IDC_ABOUT_NAME,7,7,204,8
+    LTEXT           "Midow whing plugin yes/no. reen startstore madow when closing plin winugin yes/no. alwek+volays on tes/no. shoop yw curols für seume (notehmen). sucfale vousils dikCube übernhfeld -> dn mashergrrent vs. remame.ere contebnis wi. resining titore plugin.",
+                    IDC_STATIC,7,20,204,49
+    LTEXT           "(link)",IDC_ABOUT_LINK,7,82,204,8,WS_TABSTOP
+    LTEXT           "Martin Dittus 2005",IDC_STATIC,7,70,60,8
+END
+
+IDD_MAIN DIALOGEX 0, 0, 185, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "(caption)"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      ">",IDC_MAIN_PLAY,33,25,30,14,BS_ICON | NOT WS_TABSTOP
+    EDITTEXT        IDC_MAIN_SEARCH,127,25,40,14,ES_AUTOHSCROLL | 
+                    ES_WANTRETURN | NOT WS_TABSTOP
+    LTEXT           "(vol)",IDC_MAIN_VOLUME,174,4,8,47,SS_NOTIFY
+    LTEXT           "(pos)",IDC_MAIN_POSITION,3,43,163,8,SS_NOTIFY
+    LTEXT           "(title)",IDC_MAIN_TITLE,3,3,120,8,SS_NOPREFIX | 
+                    SS_ENDELLIPSIS
+    LTEXT           "(artist)",IDC_MAIN_ARTIST,3,12,122,8,SS_NOPREFIX | 
+                    SS_ENDELLIPSIS
+    RTEXT           "(time)",IDC_MAIN_TIME,123,3,44,8,SS_NOTIFY
+    RTEXT           "(index)",IDC_MAIN_INDEX,127,12,40,8,SS_NOTIFY
+    PUSHBUTTON      "|<",IDC_MAIN_PREV,3,25,30,14,BS_ICON | NOT WS_TABSTOP
+    PUSHBUTTON      "[ ]",IDC_MAIN_STOP,63,25,30,14,BS_ICON | NOT WS_TABSTOP
+    PUSHBUTTON      ">|",IDC_MAIN_NEXT,93,25,30,14,BS_ICON | NOT WS_TABSTOP
+END
+
+IDD_CONFIG DIALOGEX 0, 0, 257, 141
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "(caption)"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,76,120,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,131,120,50,14
+    CONTROL         "Always on top",IDC_CONFIG_ONTOP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,98,53,61,10
+END
+
+IDD_PLAYLIST DIALOGEX 0, 0, 244, 154
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "miniPlayer - playlist"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LISTBOX         IDC_PLBOX,1,1,241,134,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "+",IDC_BUTTON1,2,138,22,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 211
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 3
+        RIGHTMARGIN, 182
+        VERTGUIDE, 166
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 50
+    END
+
+    IDD_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 250
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 134
+    END
+
+    IDD_PLAYLIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 237
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_CONTEXTMENU MENU 
+BEGIN
+    POPUP ""
+    BEGIN
+        POPUP "&Playlists"
+        BEGIN
+            MENUITEM "Item1",                       ID_PLAYLISTS_ITEM1
+        END
+        POPUP "&Dynamic Playlists"
+        BEGIN
+            MENUITEM "Item1",                       ID_DYNAMICPLAYLISTS_ITEM1
+
+        END
+        POPUP "Add to Playlist"
+        BEGIN
+            MENUITEM "Item1",                       ID_ADDTOPLAYLIST_ITEM1
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Find &New Music",             ID_RANDOMNEW
+        MENUITEM "Find Popula&r Music",         ID_RANDOMPOPULAR
+        MENUITEM "&Surprise Me!",               ID_SURPRISEME
+        MENUITEM "&Album Mode",                 ID_ALBUMMODE, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Find Songs by the Artist",    ID_SONGSBYTHEARTIST
+        MENUITEM "Find the Album",              ID_SONGSFROMTHEALBUM
+        MENUITEM SEPARATOR
+        MENUITEM "Random",                      ID_RANDOM, CHECKED
+        MENUITEM "Repeat Playlist",             ID_REPEATPLAYLIST, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "Show Rating",                 ID_SHOWRATING, CHECKED
+        MENUITEM "Always on Top",               ID_ALWAYSONTOP, CHECKED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+IDR_RT_MANIFEST1        RT_MANIFEST             "res\\manifest.xml"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\resource.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

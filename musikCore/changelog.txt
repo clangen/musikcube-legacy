@@ -1,0 +1,19 @@
+----------------------------------------------------------------------------
+
+a6.2-:
+
+  - Netstream fix. Streams ending in .ogg and .mp3 are now handled
+    correctly.
+  - New musikCore::BatchChgCase and musikCore::BatchChgCaseThread
+    to do batch case changes on tags.
+  - FMOD upgraded to 3.72. Optionally, FMOD 3.71 can also be used,
+    check the #define in musikConfig.h
+  - musikCore::TaskQueue added and implemented in musikCore::Library.
+    This should take away any problems or issues interfaces may have 
+    with queuing their own threads. Any number of instances of this
+    object may exist for any purpose, and will act independantly of
+    one another.
+  - musik:: namespace renamed musikCore::
+  - netstreams are no longer purged on synchronization. 
+
+----------------------------------------------------------------------------
