@@ -5,8 +5,7 @@
 //   musik is a cross platform, open source
 //   multimedia library. More information at:
 //
-//     http://musik.berlios.de
-//     http://musik.sourceforge.net
+//     http://www.musikcube.com
 //
 // Copyright and Credits:
 //
@@ -736,7 +735,6 @@ void SetMainLibrary( musikCore::Library* library )
 
 ///////////////////////////////////////////////////
 
-#define MUSIKCUBE_VER _T( "1.0 final" )
 
 BOOL CAboutDlg::OnInitDialog()
 {

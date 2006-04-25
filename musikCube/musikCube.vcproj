@@ -505,6 +505,9 @@
 				RelativePath=".\musikCube.h">
 			</File>
 			<File
+				RelativePath=".\musikCubeVersion.h">
+			</File>
+			<File
 				RelativePath=".\Resource.h">
 			</File>
 			<File

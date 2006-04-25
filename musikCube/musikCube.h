@@ -5,8 +5,7 @@
 //   musik is a cross platform, open source
 //   multimedia library. More information at:
 //
-//     http://musik.berlios.de
-//     http://musik.sourceforge.net
+//     http://www.musikcube.com
 //
 // Copyright and Credits:
 //
@@ -43,6 +42,7 @@
 
 ///////////////////////////////////////////////////
 
+#include "musikCubeVersion.h"
 #include "resource.h"       // main symbols
 #include "musikPrefs.h"
 #include "musikCubeFunctor.h"
