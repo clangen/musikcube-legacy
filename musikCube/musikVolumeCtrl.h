@@ -45,6 +45,7 @@
 
 #include "musikCube.h"
 #include "musikTrackCtrl.h"
+#include "musikDynamicText.h"
 
 #include <musikCore.h>
 
@@ -59,6 +60,7 @@ public:
 	~CmusikVolumeCtrl();
 
     void UpdateVolume();
+	void SetLabelWidth(int inWidth);
 
 private:
 
@@ -70,6 +72,36 @@ private:
 
 	// macros
 	DECLARE_MESSAGE_MAP()
+};
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+
+class CmusikVolumeWnd : public CWnd
+{
+public:
+
+	void UpdateVolume();
+	~CmusikVolumeWnd();
+
+	void SetLabelWidth(int inWidth);
+
+private:
+
+	CmusikVolumeCtrl* m_VolumeCtrl;
+	CmusikDynamicText* m_VolumeLabel;
+	CmusikDynamicText* m_Caption;
+	int mLabelWidth;
+
+	DECLARE_MESSAGE_MAP()
+
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	LRESULT OnVolumeChanged(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnPaint();
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };
 
 ///////////////////////////////////////////////////

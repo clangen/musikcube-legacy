@@ -203,16 +203,6 @@
 					<File
 						RelativePath=".\musikEditInPlace.h">
 					</File>
-					<Filter
-						Name="musikTrackCtrl"
-						Filter="">
-						<File
-							RelativePath=".\musikTrackCtrl.cpp">
-						</File>
-						<File
-							RelativePath=".\musikTrackCtrl.h">
-						</File>
-					</Filter>
 				</Filter>
 				<Filter
 					Name="musikPlaylistCtrl"
@@ -350,6 +340,16 @@
 					</File>
 					<File
 						RelativePath=".\musikEqualizerCtrl.h">
+					</File>
+				</Filter>
+				<Filter
+					Name="musikTrackCtrl"
+					Filter="">
+					<File
+						RelativePath=".\musikTrackCtrl.cpp">
+					</File>
+					<File
+						RelativePath=".\musikTrackCtrl.h">
 					</File>
 				</Filter>
 			</Filter>

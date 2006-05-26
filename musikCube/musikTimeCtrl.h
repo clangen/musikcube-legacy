@@ -64,6 +64,7 @@ public:
 
 	// size
 	void SetSize( const CSize& size );
+	int GetTotalTimeSz(){return m_TotalTime->GetDynSize().cx;}
 
 	// message maps
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

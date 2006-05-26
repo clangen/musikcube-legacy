@@ -126,7 +126,6 @@ public:
 	virtual ~CmusikNowPlayingCtrl();
 
 	// getting children
-	CmusikVolumeCtrl* GetVolumeCtrl(){ return m_Volume; }
 	CmusikTimeCtrl* GetTimeCtrl(){ return m_Track; }
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
@@ -177,7 +176,7 @@ protected:
 	CmusikNowPlayingInfo* m_Info2;
 
 	// volume slider
-	CmusikVolumeCtrl *m_Volume;
+	CmusikVolumeWnd *m_Volume;
 
 	// seek slider
 	CmusikTimeCtrl* m_Track;

@@ -364,9 +364,8 @@ int CmusikNowPlayingCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	m_Info2->Set( _T( "%cNot Playing" ) );
 
-	m_Volume = new CmusikVolumeCtrl();
-	if ( !m_Volume->Create( TBS_VERT | TBS_NOTICKS | WS_CHILD | WS_VISIBLE, CRect( 0, 0, 0, 0 ), this, 123 ) )
-		return -1;
+	m_Volume = new CmusikVolumeWnd();
+	m_Volume->Create(NULL, NULL, WS_CHILD | WS_VISIBLE, rcClient, this, 123, NULL);
 	m_Tips.AddTool( m_Volume, _T( "volume" ) );
 
 	m_Track = new CmusikTimeCtrl();
@@ -408,6 +407,8 @@ int CmusikNowPlayingCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetButtonBitmaps();
 	UpdateCheckboxes();
 
+	m_Volume->SetLabelWidth(this->m_Track->GetTotalTimeSz());
+
 	return 0;
 }
 
@@ -430,6 +431,8 @@ void CmusikNowPlayingCtrl::UpdateInfo( bool refresh )
 	m_Info2->RedrawWindow();
 	m_Info1->RedrawWindow();
 	RedrawWindow();
+
+	m_Volume->SetLabelWidth(this->m_Track->GetTotalTimeSz());
 }
 
 ///////////////////////////////////////////////////
@@ -524,7 +527,7 @@ void CmusikNowPlayingCtrl::RescaleInfo()
 	CRect rcClient;
 	CRect lpRect;
 
-	int x_offset = 8;
+	int x_offset = 4;
 
 	int btn_x, btn_y;
 	if ( musikCube::g_DrawGraphics )
@@ -542,31 +545,36 @@ void CmusikNowPlayingCtrl::RescaleInfo()
 	GetClientRect( &rcClient );	
 	int btn_sum = ( MUSIK_NOWPLAYING_TOGGLE_CNT * btn_x ) + ( MUSIK_NOWPLAYING_TOGGLE_CNT * btn_spc );
 
+	int track_top = rcClient.bottom - 18;
+
 	//
 	// track
 	//
-
-	lpRect = CRect( 
+	CRect trackRect = CRect( 
 		rcClient.left + btn_sum + x_offset,	// left
-		rcClient.bottom - 18,				// top
-		rcClient.right - 4 - 18,			// right
-		rcClient.bottom - 2 );				// bottom
+		track_top,							// top
+		rcClient.right,						// right
+		rcClient.bottom - 2);				// bottom
 
-	m_Track->MoveWindow( lpRect );
+	m_Track->MoveWindow(trackRect);
 
 	//
 	// volume
 	//
 
-	lpRect = CRect( 
-		rcClient.right - 16,			// left
-		rcClient.top,					// top
-		rcClient.right,					// right
-		rcClient.bottom + 4 );			// bottom
+	CRect volumeRect = CRect(
+		CPoint(
+			rcClient.right - 128,			// left
+			(track_top / 2) - (16 / 2) + 2
+			//rcClient.bottom - 18 - 12 - 4	// top
+		),
+		CSize(
+			128,
+			16
+		)
+	);
 
-	m_Volume->MoveWindow( lpRect );
-
-	int track_top = rcClient.bottom - 18;
+	m_Volume->MoveWindow(volumeRect);
 	
 	//
 	// toggles 
@@ -619,47 +627,50 @@ void CmusikNowPlayingCtrl::RescaleInfo()
 
 	int info_start = btn_sum + 8;
 
-	if ( musikCube::g_Player->IsPlaying() )
+	if (musikCube::g_Player->IsPlaying())
 	{
 		// may be hidden
-		m_Info2->ShowWindow( SW_SHOWNORMAL );
+		m_Info2->ShowWindow(SW_SHOWNORMAL);
 
 		szSize = m_Info1->GetSize();
-		szSize.cx = rcClient.Width() - btn_sum - 16 - 8;
+		szSize.cx = rcClient.Width() - btn_sum - 8 - volumeRect.Width() - 8;
 
 		// [title]
 		lpRect = CRect(
 			CPoint( btn_sum + x_offset, 4 ),
 			szSize );
 
-		m_Info1->MoveWindow( lpRect );
+		m_Info1->MoveWindow(lpRect);
 
 		// by [artist] from the album [album]
 
 		int ht = m_Info2->GetHeight();
-		int remain = rcClient.Height() - ( m_Info2->GetHeight() + 16 );
+		int remain = rcClient.Height() - (m_Info2->GetHeight() + 16);
 
 		szSize = m_Info2->GetSize();
-		szSize.cx = rcClient.Width() - btn_sum - 16 - 8;
+		szSize.cx = rcClient.Width() - btn_sum - 8 - volumeRect.Width() - 8;
 
 		lpRect = CRect(
-			CPoint( btn_sum + x_offset, ( remain / 2 ) + ( ht / 2 ) + 2 ),
+			CPoint(
+			btn_sum + x_offset, 
+			(remain / 2) + 
+			(ht / 2) + 2),
 			szSize );
 
-		m_Info2->MoveWindow( lpRect );
+		m_Info2->MoveWindow(lpRect);
 	}
 	else
 	{
-		m_Info2->ShowWindow( SW_HIDE );
+		m_Info2->ShowWindow(SW_HIDE);
 
 		int ht = m_Info1->GetHeight();
 
 		// [not playing]
 		lpRect = CRect(
-			CPoint( btn_sum + x_offset, ( track_top / 2 ) - ( ht / 2 ) ),
+			CPoint(btn_sum + x_offset, (track_top / 2) - (ht / 2)),
 			m_Info2->GetSize() );
 
-		m_Info1->MoveWindow( lpRect );
+		m_Info1->MoveWindow(lpRect);
 	}
 }
 
