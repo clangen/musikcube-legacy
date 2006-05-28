@@ -60,6 +60,7 @@ public:
 	// misc
 	void SetLockIfNotPlaying( bool lock = true ){ m_LockIfNotPlaying = lock; }
 	bool IsLockSet(){ return m_LockIfNotPlaying; }
+	bool IsDragging(){ return m_IsCapturing; }
 
 	void SetPos( int nPos );
 

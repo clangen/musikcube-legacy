@@ -41,6 +41,8 @@
 
 #include "stdafx.h"
 
+#include <cmath>
+
 #include "musikVolumeCtrl.h"
 #include "MEMDC.H"
 
@@ -74,7 +76,7 @@ int CmusikVolumeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CmusikTrackCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	SetRange(0, 255);
+	SetRange(0, 100);
     UpdateVolume();
 
 	return 0;
@@ -85,22 +87,24 @@ int CmusikVolumeCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CmusikVolumeCtrl::UpdateVolume()
 {
 	if (musikCube::g_Player)
-		SetPos(musikCube::g_Player->GetMaxVolume());
+		SetPos((int)ceil((((float)musikCube::g_Player->GetMaxVolume() / 255.0) * 100.0)));
 }
 
 ///////////////////////////////////////////////////
 
 void CmusikVolumeCtrl::OnPosChanged()
 {
-	if ( musikCube::g_Player )
+	if (musikCube::g_Player)
 	{
-		musikCube::g_Player->SetMaxVolume( GetPos(), true );
+		musikCube::g_Player->SetMaxVolume((int)((float)GetPos() * 2.55), true);
 	}
 
-	if ( musikCube::g_Prefs )
-		musikCube::g_Prefs->SetPlayerVolume( GetPos() );
+	int n = GetPos();
 
-	this->GetParent()->PostMessage(WM_NOWPLAYING_VOLUME_CHANGED);
+	if (musikCube::g_Prefs)
+		musikCube::g_Prefs->SetPlayerVolume((int)((float)GetPos() * 2.55));
+
+	GetParent()->PostMessage(WM_NOWPLAYING_VOLUME_CHANGED);
 }
 
 ///////////////////////////////////////////////////
@@ -121,6 +125,8 @@ END_MESSAGE_MAP()
 CmusikVolumeWnd::~CmusikVolumeWnd()
 {
 	delete m_VolumeLabel;
+	delete m_VolumeCtrl;
+	m_VolumeCtrl = NULL;
 	m_VolumeLabel = NULL;
 }
 
@@ -128,10 +134,8 @@ CmusikVolumeWnd::~CmusikVolumeWnd()
 
 LRESULT CmusikVolumeWnd::OnVolumeChanged(WPARAM wParam, LPARAM lParam)
 {
-	m_VolumeCtrl->UpdateVolume();
-
 	wchar_t volume[5];
-	wsprintf(volume, _T("%3d"), (100 * musikCube::g_Player->GetMaxVolume())/255);
+	wsprintf(volume, _T("%3d"), (int)ceil((float)(((float)musikCube::g_Player->GetMaxVolume() / 255.0) * 100.0)));
 
 	m_VolumeLabel->SetDynText(volume, false, false);
 
@@ -165,8 +169,8 @@ int CmusikVolumeWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_Caption->SetDynText(_T("vol:"));
 	m_Caption->SetDynFont(12, 0, 0);
 	
-	
 	OnVolumeChanged(0, 0);
+	m_VolumeCtrl->UpdateVolume();
 
 	return 0;
 }
@@ -187,7 +191,8 @@ void CmusikVolumeWnd::SetLabelWidth(int inWidth)
 
 void CmusikVolumeWnd::UpdateVolume()
 {
-	//this->OnVolumeChanged(NULL, NULL);
+	m_VolumeCtrl->UpdateVolume();
+	this->OnVolumeChanged(NULL, NULL);
 }
 
 ///////////////////////////////////////////////////
