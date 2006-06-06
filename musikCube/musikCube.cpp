@@ -688,6 +688,28 @@ void UseGlobalHotkeys( bool use )
     }
 }
 
+void UseWMediaKeys( bool use )
+{
+    HWND hwnd = AfxGetApp()->GetMainWnd()->GetSafeHwnd();
+
+    UnregisterHotKey( hwnd, 200 );
+    UnregisterHotKey( hwnd, 201 );
+    UnregisterHotKey( hwnd, 202 );
+    UnregisterHotKey( hwnd, 203 );
+    UnregisterHotKey( hwnd, 204 );
+    UnregisterHotKey( hwnd, 205 );
+
+    if ( use )
+    {
+		RegisterHotKey( hwnd,  200,  0, VK_MEDIA_PREV_TRACK );	// Prev Song
+		RegisterHotKey( hwnd,  201,  0, VK_MEDIA_PREV_TRACK );	// Next Song
+		// TODO VK_VOLUME_MUTE
+        RegisterHotKey( hwnd,  202,  0, VK_VOLUME_UP );	// Vol Up (I can't test)
+        RegisterHotKey( hwnd,  203,  0, VK_VOLUME_DOWN );	// Vol Down (I can't test)
+        RegisterHotKey( hwnd,  204,  0, VK_MEDIA_PLAY_PAUSE );	// Play/Pause
+		RegisterHotKey( hwnd,  205,  0, VK_MEDIA_STOP );	// Stop
+    }
+}
 ///////////////////////////////////////////////////
 
 CString CmusikCubeApp::RelToAbs( CString& path )

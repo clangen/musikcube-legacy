@@ -954,6 +954,9 @@ void CmusikPrefsInterfaceGeneral::LoadPrefs()
     ptrBtn = (CButton*)GetDlgItem( IDC_CHECK_USEGLOBALKEYS );
     ptrBtn->SetCheck( musikCube::g_Prefs->GetUseGlobalHotkeys() );
 
+	// windows media keys
+    ptrBtn = (CButton*)GetDlgItem( IDC_CHECK_USEWMEDIAKEYS );
+    ptrBtn->SetCheck( musikCube::g_Prefs->GetUseWMediaKeys() );
 	// close to system tray
     ptrBtn = (CButton*)GetDlgItem( IDC_CLOSETOTRAY );
     ptrBtn->SetCheck( musikCube::g_Prefs->GetCloseToSystemTray() );
@@ -992,6 +995,13 @@ void CmusikPrefsInterfaceGeneral::CommitChanges()
         UseGlobalHotkeys( ptrBtn->GetCheck() );
     }
 
+	// mce keys
+	ptrBtn = (CButton*)GetDlgItem( IDC_CHECK_USEWMEDIAKEYS );
+	if ( ptrBtn-> GetCheck() != musikCube::g_Prefs->GetUseWMediaKeys() )
+	{
+		musikCube::g_Prefs->SetUseWMediaKeys( ptrBtn->GetCheck() );
+        UseWMediaKeys( ptrBtn->GetCheck() );
+	}
     // auto sync
 	musikCube::g_Prefs->SetSynchronizeOnStartup( m_AutoSynchronize.GetCheck() );
 

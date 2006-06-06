@@ -869,6 +869,8 @@ BEGIN
     CONTROL         "Enable Global Hotkeys",IDC_CHECK_USEGLOBALKEYS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,87,87,10
     PUSHBUTTON      "?",IDC_BUTTON1,107,85,13,13
+    CONTROL         "Enable Windows Media Keys",IDC_CHECK_USEWMEDIAKEYS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,99,106,10
 END
 
 IDD_CD_RIPPER DIALOGEX 0, 0, 520, 215

@@ -1,6 +1,7 @@
 1.0rc2 - 1.0 final
 
   - added: better volume control
+  - added: Yann Le Moigne's windows media key patch
   - added: view -> selection boxes
   - added: updated installer with associations seperate from plugin installs, thanks insomnia
   - added: theme editor dialog. File -> Theme Editor

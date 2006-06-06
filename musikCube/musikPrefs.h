@@ -96,6 +96,7 @@ public:
 	bool IsAlwaysOnTop(){ return m_Dlg_AlwaysOnTop; }
 	bool GetUseUTC(){ return m_Dlg_UseUTC; }
     bool GetUseGlobalHotkeys(){ return m_Dlg_GlobalHotkeys; }
+	bool GetUseWMediaKeys(){ return m_Dlg_WMediaKeys; }
 	bool GetCloseToSystemTray(){ return m_Dlg_CloseToSystemTray; }
 	int  GetDlgLastPlayed(){ return m_Dlg_LastPlayed; }
 	bool GetSelBoxShowAll(){ return m_Dlg_SelBoxShowAll; }
@@ -118,6 +119,7 @@ public:
 	void SetAlwaysOnTop( bool on_top ){ m_Dlg_AlwaysOnTop = on_top; }
 	void SetUseUTC( bool use_utc ){ m_Dlg_UseUTC = use_utc; }
     void SetUseGlobalHotkeys( bool use ){ m_Dlg_GlobalHotkeys = use; }
+	void SetUseWMediaKeys( bool use ){ m_Dlg_WMediaKeys = use; }
 	void SetCloseToSystemTray( bool close ){ m_Dlg_CloseToSystemTray = close; }
 	void SetDlgLastPlayed( int last ){ m_Dlg_LastPlayed = last; }
 	void SetSelBoxShowAll( bool showall	) { m_Dlg_SelBoxShowAll = showall; }
@@ -367,6 +369,7 @@ private:
 	bool	m_Dlg_UseUTC;
     bool    m_Dlg_ShowBalloonTips;
     bool    m_Dlg_GlobalHotkeys;
+	bool    m_Dlg_WMediaKeys;
     string  m_Lib_Path;
 	bool	m_Dlg_CloseToSystemTray;
 	int		m_Dlg_LastPlayed;

@@ -100,6 +100,7 @@ void CmusikPrefs::LoadPrefs()
 	m_Dlg_UseUTC				= StringToBool( config->GetValue( "Dialog", "Use UTC", "1" ) );
 	m_Dlg_AlwaysOnTop			= StringToBool( config->GetValue( "Dialog", "Always on Top", "0" ) );
     m_Dlg_GlobalHotkeys         = StringToBool( config->GetValue( "Dialog", "UseGlobalHotkeys", "0" ) );
+	m_Dlg_WMediaKeys            = StringToBool( config->GetValue( "Dialog", "UseWMediaKeys", "0" ) );
 	m_Dlg_CloseToSystemTray		= StringToBool( config->GetValue( "Dialog", "CloseToSystemTray", "0" ) );
 	m_Dlg_LastPlayed			= StringToInt( config->GetValue( "Dialog", "LastPlayed", "0" ) );
 	m_Dlg_SelBoxShowAll			= StringToBool( config->GetValue( "Dialog", "SelectionBoxShowAll", "1" ) );
@@ -220,6 +221,7 @@ void CmusikPrefs::SavePrefs()
 	config->SetValue( "Dialog", "Always on Top", BoolToString( m_Dlg_AlwaysOnTop ) );
 	config->SetValue( "Dialog", "Use UTC", BoolToString( m_Dlg_UseUTC ) );
     config->SetValue( "Dialog", "UseGlobalHotkeys", BoolToString( m_Dlg_GlobalHotkeys ) );
+	config->SetValue( "Dialog", "UseWMediaKeys", BoolToString( m_Dlg_WMediaKeys ) );
 	config->SetValue( "Dialog", "CloseToSystemTray", BoolToString( m_Dlg_CloseToSystemTray ) );
 	config->SetValue( "Dialog", "LastPlayed", IntToString( m_Dlg_LastPlayed ) );
 	config->SetValue( "Dialog", "SelectionBoxShowAll", BoolToString( m_Dlg_SelBoxShowAll ) );

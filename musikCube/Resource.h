@@ -291,6 +291,8 @@
 #define IDC_BUTTON_ACTIVECAPTION        1126
 #define IDC_BUTTON_LOAD                 1127
 #define IDC_BUTTON_SAVE                 1128
+#define IDC_CHECK_USEMCEKEYS            1129
+#define IDC_CHECK_USEWMEDIAKEYS         1129
 #define ID_FILE_PREFERENCES             32771
 #define ID_FILE_SEP                     32772
 #define ID_ADD_FILES                    32774

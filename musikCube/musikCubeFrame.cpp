@@ -221,6 +221,7 @@ LRESULT CmusikCubeFrame::OnHotKey( WPARAM wParam, LPARAM lParam )
     switch( wParam )
     {
     case 100:
+	case 200: // WMKeys
 	// ctrl+win+numpad4 -> Previous Song
         if ( musikCube::g_Player->IsPlaying() )
         {
@@ -231,6 +232,7 @@ LRESULT CmusikCubeFrame::OnHotKey( WPARAM wParam, LPARAM lParam )
         break;
 
     case 101:
+	case 201:  // WMKeys
 	// ctrl+win+numpad6 -> Next Song
         if ( musikCube::g_Player->IsPlaying() )
         {
@@ -241,6 +243,7 @@ LRESULT CmusikCubeFrame::OnHotKey( WPARAM wParam, LPARAM lParam )
         break;
 
     case 102:
+	case 202:  // WMKeys
 	// ctrl+win+numpad8 -> Volume Up
         {
 			int volume = musikCube::g_Player->GetMaxVolume() + 12;
@@ -260,6 +263,7 @@ LRESULT CmusikCubeFrame::OnHotKey( WPARAM wParam, LPARAM lParam )
         break;
 
     case 103:
+	case 203:  // WMKeys
 	// ctrl+win+numpad2 -> Volume Down
 		{
             int volume = musikCube::g_Player->GetMaxVolume() - 12;
@@ -279,6 +283,7 @@ LRESULT CmusikCubeFrame::OnHotKey( WPARAM wParam, LPARAM lParam )
         break;
 
     case 104:  
+	case 204:  // WMKeys
 		// ctrl+win+numpad5 -> Pause/Play
         {
 			if ( musikCube::g_Player->IsPaused() )
@@ -303,6 +308,7 @@ LRESULT CmusikCubeFrame::OnHotKey( WPARAM wParam, LPARAM lParam )
         break;
 
     case 105:
+	case 205: // WMKeys
 	// ctrl+win+numpad0 -> Stop
         {
             if ( show_tips )
@@ -510,6 +516,8 @@ void CmusikCubeFrame::initCube()
 
     // setup hotkeys
     UseGlobalHotkeys( musikCube::g_Prefs->GetUseGlobalHotkeys() );
+	// setup windows media keys
+	UseGlobalHotkeys( musikCube::g_Prefs->GetUseWMediaKeys() );
 
     // tray icon
 	m_IsMinimized = false;

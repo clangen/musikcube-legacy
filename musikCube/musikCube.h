@@ -91,6 +91,7 @@ private:
 ///////////////////////////////////////////////////
 
 void UseGlobalHotkeys( bool use = true );
+void UseWMediaKeys( bool use = true );
 void SetMainLibrary( musikCore::Library* library );
 
 enum 
