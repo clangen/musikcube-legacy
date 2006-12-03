@@ -1,0 +1,136 @@
+# Project: sqlite3
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = obj/where.o obj/attach.o obj/auth.o obj/btree.o obj/build.o obj/date.o obj/delete.o obj/expr.o obj/func.o obj/hash.o obj/insert.o obj/legacy.o obj/main.o obj/opcodes.o obj/os_mac.o obj/os_unix.o obj/os_win.o obj/pager.o obj/parse.o obj/pragma.o obj/printf.o obj/random.o obj/select.o obj/shell.o obj/table.o obj/tclsqlite.o obj/tokenize.o obj/trigger.o obj/update.o obj/utf.o obj/util.o obj/vacuum.o obj/vdbe.o obj/vdbeapi.o obj/vdbeaux.o obj/vdbemem.o $(RES)
+LINKOBJ  = obj/where.o obj/attach.o obj/auth.o obj/btree.o obj/build.o obj/date.o obj/delete.o obj/expr.o obj/func.o obj/hash.o obj/insert.o obj/legacy.o obj/main.o obj/opcodes.o obj/os_mac.o obj/os_unix.o obj/os_win.o obj/pager.o obj/parse.o obj/pragma.o obj/printf.o obj/random.o obj/select.o obj/shell.o obj/table.o obj/tclsqlite.o obj/tokenize.o obj/trigger.o obj/update.o obj/utf.o obj/util.o obj/vacuum.o obj/vdbe.o obj/vdbeapi.o obj/vdbeaux.o obj/vdbemem.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib"  
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = ../../gcclib/sqlite3.a
+CXXFLAGS = $(CXXINCS)   
+CFLAGS = $(INCS) -D UNICODE -D _UNICODE -D NO_TCL  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ../../gcclib/sqlite3.a all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(LINKOBJ)
+	ar r $(BIN) $(LINKOBJ)
+	ranlib $(BIN)
+
+obj/where.o: where.c
+	$(CC) -c where.c -o obj/where.o $(CFLAGS)
+
+obj/attach.o: attach.c
+	$(CC) -c attach.c -o obj/attach.o $(CFLAGS)
+
+obj/auth.o: auth.c
+	$(CC) -c auth.c -o obj/auth.o $(CFLAGS)
+
+obj/btree.o: btree.c
+	$(CC) -c btree.c -o obj/btree.o $(CFLAGS)
+
+obj/build.o: build.c
+	$(CC) -c build.c -o obj/build.o $(CFLAGS)
+
+obj/date.o: date.c
+	$(CC) -c date.c -o obj/date.o $(CFLAGS)
+
+obj/delete.o: delete.c
+	$(CC) -c delete.c -o obj/delete.o $(CFLAGS)
+
+obj/expr.o: expr.c
+	$(CC) -c expr.c -o obj/expr.o $(CFLAGS)
+
+obj/func.o: func.c
+	$(CC) -c func.c -o obj/func.o $(CFLAGS)
+
+obj/hash.o: hash.c
+	$(CC) -c hash.c -o obj/hash.o $(CFLAGS)
+
+obj/insert.o: insert.c
+	$(CC) -c insert.c -o obj/insert.o $(CFLAGS)
+
+obj/legacy.o: legacy.c
+	$(CC) -c legacy.c -o obj/legacy.o $(CFLAGS)
+
+obj/main.o: main.c
+	$(CC) -c main.c -o obj/main.o $(CFLAGS)
+
+obj/opcodes.o: opcodes.c
+	$(CC) -c opcodes.c -o obj/opcodes.o $(CFLAGS)
+
+obj/os_mac.o: os_mac.c
+	$(CC) -c os_mac.c -o obj/os_mac.o $(CFLAGS)
+
+obj/os_unix.o: os_unix.c
+	$(CC) -c os_unix.c -o obj/os_unix.o $(CFLAGS)
+
+obj/os_win.o: os_win.c
+	$(CC) -c os_win.c -o obj/os_win.o $(CFLAGS)
+
+obj/pager.o: pager.c
+	$(CC) -c pager.c -o obj/pager.o $(CFLAGS)
+
+obj/parse.o: parse.c
+	$(CC) -c parse.c -o obj/parse.o $(CFLAGS)
+
+obj/pragma.o: pragma.c
+	$(CC) -c pragma.c -o obj/pragma.o $(CFLAGS)
+
+obj/printf.o: printf.c
+	$(CC) -c printf.c -o obj/printf.o $(CFLAGS)
+
+obj/random.o: random.c
+	$(CC) -c random.c -o obj/random.o $(CFLAGS)
+
+obj/select.o: select.c
+	$(CC) -c select.c -o obj/select.o $(CFLAGS)
+
+obj/shell.o: shell.c
+	$(CC) -c shell.c -o obj/shell.o $(CFLAGS)
+
+obj/table.o: table.c
+	$(CC) -c table.c -o obj/table.o $(CFLAGS)
+
+obj/tclsqlite.o: tclsqlite.c
+	$(CC) -c tclsqlite.c -o obj/tclsqlite.o $(CFLAGS)
+
+obj/tokenize.o: tokenize.c
+	$(CC) -c tokenize.c -o obj/tokenize.o $(CFLAGS)
+
+obj/trigger.o: trigger.c
+	$(CC) -c trigger.c -o obj/trigger.o $(CFLAGS)
+
+obj/update.o: update.c
+	$(CC) -c update.c -o obj/update.o $(CFLAGS)
+
+obj/utf.o: utf.c
+	$(CC) -c utf.c -o obj/utf.o $(CFLAGS)
+
+obj/util.o: util.c
+	$(CC) -c util.c -o obj/util.o $(CFLAGS)
+
+obj/vacuum.o: vacuum.c
+	$(CC) -c vacuum.c -o obj/vacuum.o $(CFLAGS)
+
+obj/vdbe.o: vdbe.c
+	$(CC) -c vdbe.c -o obj/vdbe.o $(CFLAGS)
+
+obj/vdbeapi.o: vdbeapi.c
+	$(CC) -c vdbeapi.c -o obj/vdbeapi.o $(CFLAGS)
+
+obj/vdbeaux.o: vdbeaux.c
+	$(CC) -c vdbeaux.c -o obj/vdbeaux.o $(CFLAGS)
+
+obj/vdbemem.o: vdbemem.c
+	$(CC) -c vdbemem.c -o obj/vdbemem.o $(CFLAGS)

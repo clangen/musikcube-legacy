@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMShellHook", "MMShellHook.vcproj", "{C372ABA2-E90B-459B-B5B2-A9A181DFE807}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Debug DLL = Debug DLL
+		Debug Unicode = Debug Unicode
+		Debug Unicode DLL = Debug Unicode DLL
+		NASM Debug = NASM Debug
+		NASM Release = NASM Release
+		Release = Release
+		Release DLL = Release DLL
+		Release Unicode = Release Unicode
+		Release Unicode DLL = Release Unicode DLL
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug.ActiveCfg = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug.Build.0 = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug DLL.ActiveCfg = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug DLL.Build.0 = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug Unicode.ActiveCfg = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug Unicode.Build.0 = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug Unicode DLL.ActiveCfg = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Debug Unicode DLL.Build.0 = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.NASM Debug.ActiveCfg = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.NASM Debug.Build.0 = Debug|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.NASM Release.ActiveCfg = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.NASM Release.Build.0 = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release.ActiveCfg = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release.Build.0 = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release DLL.ActiveCfg = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release DLL.Build.0 = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release Unicode.ActiveCfg = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release Unicode.Build.0 = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release Unicode DLL.ActiveCfg = Release|Win32
+		{C372ABA2-E90B-459B-B5B2-A9A181DFE807}.Release Unicode DLL.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

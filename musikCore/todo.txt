@@ -1,0 +1,1 @@
+The core is fairly usable right now, it just changes a lot.

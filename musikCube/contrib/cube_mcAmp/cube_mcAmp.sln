@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cube_mcAmp", "cube_mcAmp.vcproj", "{5F9287FE-7CD2-4547-B53F-D7EFE1E4EC7F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{99140D9E-2F39-406D-AD74-CA89B8C354CF} = {99140D9E-2F39-406D-AD74-CA89B8C354CF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "musikCore", "..\..\..\musikCore\musikCore.vcproj", "{A43DCC0A-9D52-45E3-83BD-67765130F62A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "musikCube", "..\..\musikCube.vcproj", "{99140D9E-2F39-406D-AD74-CA89B8C354CF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{5F9287FE-7CD2-4547-B53F-D7EFE1E4EC7F}.Debug.ActiveCfg = Debug|Win32
+		{5F9287FE-7CD2-4547-B53F-D7EFE1E4EC7F}.Debug.Build.0 = Debug|Win32
+		{5F9287FE-7CD2-4547-B53F-D7EFE1E4EC7F}.Release.ActiveCfg = Release|Win32
+		{5F9287FE-7CD2-4547-B53F-D7EFE1E4EC7F}.Release.Build.0 = Release|Win32
+		{A43DCC0A-9D52-45E3-83BD-67765130F62A}.Debug.ActiveCfg = Debug|Win32
+		{A43DCC0A-9D52-45E3-83BD-67765130F62A}.Debug.Build.0 = Debug|Win32
+		{A43DCC0A-9D52-45E3-83BD-67765130F62A}.Release.ActiveCfg = Release|Win32
+		{A43DCC0A-9D52-45E3-83BD-67765130F62A}.Release.Build.0 = Release|Win32
+		{99140D9E-2F39-406D-AD74-CA89B8C354CF}.Debug.ActiveCfg = Debug|Win32
+		{99140D9E-2F39-406D-AD74-CA89B8C354CF}.Debug.Build.0 = Debug|Win32
+		{99140D9E-2F39-406D-AD74-CA89B8C354CF}.Release.ActiveCfg = Release|Win32
+		{99140D9E-2F39-406D-AD74-CA89B8C354CF}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
