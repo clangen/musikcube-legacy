@@ -738,7 +738,7 @@ BOOL CCDDB::GetTrackPositions(CArray<CCDDBTrackPosition, CCDDBTrackPosition&>& t
 
   //Iterate through all the tracks getting their starting position
   tracks.SetSize(nTotalTracks + 1);
-  for (i=1; i<=nTotalTracks; i++)
+  for (int i=1; i<=nTotalTracks; i++)
   {                      
     mciStatusParms.dwItem = MCI_STATUS_POSITION;
     mciStatusParms.dwTrack = i;
@@ -1024,7 +1024,7 @@ LPSTR CCDDB::FindHTTPBody(LPCSTR pszResponse)
   ASSERT(strlen(pszResponse));
 
   //Find the HTTP body
-  LPSTR pszData = strstr(pszResponse, "\r\n\r\n");
+  LPSTR pszData = (LPSTR)strstr(pszResponse, "\r\n\r\n");
   
   //If found, skip over the 2 lines
   if (pszData)
@@ -2444,7 +2444,7 @@ BOOL CCDDB::Submit(const CCDDBSite& server, const CString& sCategory, const CStr
     }
 
     //Then the track titles
-    for (i=0; i<record.m_TrackTitles.GetSize(); i++)  
+    for (int i=0; i<record.m_TrackTitles.GetSize(); i++)  
     {
       CString sKeyword;
       sKeyword.Format(_T("TTITLE%d"), i);
@@ -2457,7 +2457,7 @@ BOOL CCDDB::Submit(const CCDDBSite& server, const CString& sCategory, const CStr
     sBody += sBuf; 
 
     //Then the extended track data
-    for (i=0; i<record.m_ExtendedTrackData.GetSize(); i++) 
+    for (int i=0; i<record.m_ExtendedTrackData.GetSize(); i++) 
     {
       CString sLine;
 

@@ -201,7 +201,7 @@ public:
     afx_msg BOOL OnMouseWheel(UINT Flags, short zDelta, CPoint pt);
 
     // draggable window code
-    afx_msg UINT OnNcHitTest(CPoint point);
+    afx_msg LRESULT OnNcHitTest(CPoint point);
     afx_msg void OnNcRButtonUp(UINT nHitTest, CPoint pt);
     //}}AFX_MSG
 

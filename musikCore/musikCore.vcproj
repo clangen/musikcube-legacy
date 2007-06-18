@@ -1,114 +1,177 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="8.00"
 	Name="musikCore"
 	ProjectGUID="{A43DCC0A-9D52-45E3-83BD-67765130F62A}"
-	Keyword="Win32Proj">
+	Keyword="Win32Proj"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			CharacterSet="1">
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/D ID3LIB_LINKOPTION=1 /J"
 				Optimization="0"
 				AdditionalIncludeDirectories="3rdparty/OpenThreads/include/;3rdparty/OpenThreads/include/OpenThreads/;3rdparty/sqlite3/;3rdparty/bass/include;include/"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;NO_TCL"
-				MinimalRebuild="TRUE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				RuntimeTypeInfo="TRUE"
+				RuntimeTypeInfo="true"
 				UsePrecompiledHeader="1"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="bass.lib OpenThreads_uD.lib sqlite3_uD.lib"
 				OutputFile="../musikCube/bin/$(ProjectName)_uD.dll"
 				AdditionalLibraryDirectories="lib/"
-				GenerateDebugInformation="TRUE"
-				ImportLibrary="lib/$(TargetName).lib"/>
+				GenerateDebugInformation="true"
+				ImportLibrary="lib/$(TargetName).lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCWebDeploymentTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="Release"
 			IntermediateDirectory="Release"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
 			CharacterSet="1"
-			WholeProgramOptimization="TRUE">
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="3"
-				GlobalOptimizations="TRUE"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="3rdparty/OpenThreads/include/;3rdparty/OpenThreads/include/OpenThreads/;3rdparty/sqlite3/;3rdparty/bass/include;include/"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;NO_TCL"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="1"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="0"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="0"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="bass.lib OpenThreads_u.lib sqlite3_u.lib"
 				OutputFile="../musikCube/bin/$(ProjectName)_u.dll"
 				AdditionalLibraryDirectories="lib/"
-				ImportLibrary="lib/$(TargetName).lib"/>
+				ImportLibrary="lib/$(TargetName).lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCWebDeploymentTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -116,246 +179,303 @@
 	<Files>
 		<Filter
 			Name="musikTask"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikTask.cpp">
+				RelativePath=".\src\musikTask.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikTask.h">
+				RelativePath=".\include\musikTask.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikFunctor"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikFunctor.cpp">
+				RelativePath=".\src\musikFunctor.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikFunctor.h">
+				RelativePath=".\include\musikFunctor.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikPlaylist"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikPlaylist.cpp">
+				RelativePath=".\src\musikPlaylist.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikPlaylist.h">
+				RelativePath=".\include\musikPlaylist.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikPlayer"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikPlayer.cpp">
+				RelativePath=".\src\musikPlayer.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikPlayer.h">
+				RelativePath=".\include\musikPlayer.h"
+				>
 			</File>
 			<Filter
 				Name="musikPlayerBASS"
-				Filter="">
+				>
 				<File
-					RelativePath=".\src\musikBASSPlugin.cpp">
+					RelativePath=".\src\musikBASSPlugin.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\include\musikBASSPlugin.h">
+					RelativePath=".\include\musikBASSPlugin.h"
+					>
 				</File>
 				<File
-					RelativePath=".\src\musikBASSStream.cpp">
+					RelativePath=".\src\musikBASSStream.cpp"
+					>
 					<FileConfiguration
-						Name="Debug|Win32">
+						Name="Debug|Win32"
+						>
 						<Tool
 							Name="VCCLCompilerTool"
-							UsePrecompiledHeader="0"/>
+							UsePrecompiledHeader="0"
+						/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\include\musikBASSStream.h">
+					RelativePath=".\include\musikBASSStream.h"
+					>
 				</File>
 				<File
-					RelativePath=".\src\musikPlayerBASS.cpp">
+					RelativePath=".\src\musikPlayerBASS.cpp"
+					>
 				</File>
 				<File
-					RelativePath=".\include\musikPlayerBASS.h">
+					RelativePath=".\include\musikPlayerBASS.h"
+					>
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="musikLibrary"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikLibrary.cpp">
+				RelativePath=".\src\musikLibrary.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikLibrary.h">
+				RelativePath=".\include\musikLibrary.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\musikLibraryCallbacks.cpp">
+				RelativePath=".\src\musikLibraryCallbacks.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikLibraryCallbacks.h">
+				RelativePath=".\include\musikLibraryCallbacks.h"
+				>
 			</File>
 			<File
-				RelativePath=".\src\musikLibraryPatches.cpp">
+				RelativePath=".\src\musikLibraryPatches.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikEqualizer"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\Equ.cpp">
+				RelativePath=".\src\Equ.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\Fftsg_fl.cpp">
+				RelativePath=".\src\Fftsg_fl.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\src\musikEQSettings.cpp">
+				RelativePath=".\src\musikEQSettings.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikEQSettings.h">
+				RelativePath=".\include\musikEQSettings.h"
+				>
 			</File>
 			<File
-				RelativePath=".\include\paramlist.hpp">
+				RelativePath=".\include\paramlist.hpp"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikBatchRetag"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikBatchRetag.cpp">
+				RelativePath=".\src\musikBatchRetag.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikBatchRetag.h">
+				RelativePath=".\include\musikBatchRetag.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikBatchAdd"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikBatchAdd.cpp">
+				RelativePath=".\src\musikBatchAdd.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikBatchAdd.h">
+				RelativePath=".\include\musikBatchAdd.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikTaskQueue"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikTaskQueue.cpp">
+				RelativePath=".\src\musikTaskQueue.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikTaskQueue.h">
+				RelativePath=".\include\musikTaskQueue.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikBatchChgCase"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikBatchChgCase.cpp">
+				RelativePath=".\src\musikBatchChgCase.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikBatchChgCase.h">
+				RelativePath=".\include\musikBatchChgCase.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikTagToFn"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikTagToFn.cpp">
+				RelativePath=".\src\musikTagToFn.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikTagToFn.h">
+				RelativePath=".\include\musikTagToFn.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikTagFromFn"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikTagFromFn.cpp">
+				RelativePath=".\src\musikTagFromFn.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikTagFromFn.h">
+				RelativePath=".\include\musikTagFromFn.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikRemoveOld"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikRemoveOld.cpp">
+				RelativePath=".\src\musikRemoveOld.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikRemoveOld.h">
+				RelativePath=".\include\musikRemoveOld.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikDir"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikDir.cpp">
+				RelativePath=".\src\musikDir.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikDir.h">
+				RelativePath=".\include\musikDir.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikFilename"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikFilename.cpp">
+				RelativePath=".\src\musikFilename.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikFilename.h">
+				RelativePath=".\include\musikFilename.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikReloadTags"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikReloadTags.cpp">
+				RelativePath=".\src\musikReloadTags.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikReloadTags.h">
+				RelativePath=".\include\musikReloadTags.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="musikCrossfader"
-			Filter="">
+			>
 			<File
-				RelativePath=".\src\musikCrossfader.cpp">
+				RelativePath=".\src\musikCrossfader.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\include\musikCrossfader.h">
+				RelativePath=".\include\musikCrossfader.h"
+				>
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\include\musikConfig.h">
+			RelativePath=".\include\musikConfig.h"
+			>
 		</File>
 		<File
-			RelativePath=".\include\musikCore.h">
+			RelativePath=".\include\musikCore.h"
+			>
 		</File>
 		<File
-			RelativePath=".\include\StdString.h">
+			RelativePath=".\include\StdString.h"
+			>
 		</File>
 		<File
-			RelativePath=".\src\unicode.cpp">
+			RelativePath=".\src\unicode.cpp"
+			>
 			<FileConfiguration
-				Name="Debug|Win32">
+				Name="Debug|Win32"
+				>
 				<Tool
 					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"/>
+					UsePrecompiledHeader="0"
+				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release|Win32">
+				Name="Release|Win32"
+				>
 				<Tool
 					Name="VCCLCompilerTool"
-					UsePrecompiledHeader="0"/>
+					UsePrecompiledHeader="0"
+				/>
 			</FileConfiguration>
 		</File>
 		<File
-			RelativePath=".\src\unicode.h">
+			RelativePath=".\src\unicode.h"
+			>
 		</File>
 	</Files>
 	<Globals>

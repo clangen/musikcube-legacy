@@ -89,7 +89,7 @@ protected:
     virtual void NcPaintGripper(CDC* pDC, CRect rcClient);
     virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID);
     virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler);
-    afx_msg UINT OnNcHitTest(CPoint point);
+    afx_msg LRESULT OnNcHitTest(CPoint point);
     afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
     afx_msg void OnNcPaint();
     afx_msg BOOL OnEraseBkgnd(CDC* pDC);

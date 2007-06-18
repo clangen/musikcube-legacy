@@ -1,96 +1,145 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="8.00"
 	Name="sqlite3"
 	ProjectGUID="{07688CCC-54B0-42BA-9562-3852CDA5094A}"
-	Keyword="Win32Proj">
+	Keyword="Win32Proj"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
 			ConfigurationType="4"
-			CharacterSet="1">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;NO_TCL"
-				MinimalRebuild="TRUE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib/sqlite3_uD.lib"/>
+				OutputFile="../../lib/sqlite3_uD.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="Release"
 			IntermediateDirectory="Release"
 			ConfigurationType="4"
-			CharacterSet="1">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="3"
-				GlobalOptimizations="TRUE"
 				FavorSizeOrSpeed="1"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;NO_TCL"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="../../lib/sqlite3_u.lib"/>
+				OutputFile="../../lib/sqlite3_u.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -99,200 +148,264 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
 			<File
-				RelativePath=".\alter.c">
+				RelativePath=".\alter.c"
+				>
 			</File>
 			<File
-				RelativePath=".\analyze.c">
+				RelativePath=".\analyze.c"
+				>
 			</File>
 			<File
-				RelativePath=".\attach.c">
+				RelativePath=".\attach.c"
+				>
 			</File>
 			<File
-				RelativePath=".\auth.c">
+				RelativePath=".\auth.c"
+				>
 			</File>
 			<File
-				RelativePath=".\btree.c">
+				RelativePath=".\btree.c"
+				>
 			</File>
 			<File
-				RelativePath=".\build.c">
+				RelativePath=".\build.c"
+				>
 			</File>
 			<File
-				RelativePath=".\callback.c">
+				RelativePath=".\callback.c"
+				>
 			</File>
 			<File
-				RelativePath=".\complete.c">
+				RelativePath=".\complete.c"
+				>
 			</File>
 			<File
-				RelativePath=".\date.c">
+				RelativePath=".\date.c"
+				>
 			</File>
 			<File
-				RelativePath=".\delete.c">
+				RelativePath=".\delete.c"
+				>
 			</File>
 			<File
-				RelativePath=".\expr.c">
+				RelativePath=".\expr.c"
+				>
 			</File>
 			<File
-				RelativePath=".\func.c">
+				RelativePath=".\func.c"
+				>
 			</File>
 			<File
-				RelativePath=".\hash.c">
+				RelativePath=".\hash.c"
+				>
 			</File>
 			<File
-				RelativePath=".\insert.c">
+				RelativePath=".\insert.c"
+				>
 			</File>
 			<File
-				RelativePath=".\legacy.c">
+				RelativePath=".\legacy.c"
+				>
 			</File>
 			<File
-				RelativePath=".\main.c">
+				RelativePath=".\main.c"
+				>
 			</File>
 			<File
-				RelativePath=".\opcodes.c">
+				RelativePath=".\opcodes.c"
+				>
 			</File>
 			<File
-				RelativePath=".\os_mac.c">
+				RelativePath=".\os_mac.c"
+				>
 			</File>
 			<File
-				RelativePath=".\os_unix.c">
+				RelativePath=".\os_unix.c"
+				>
 			</File>
 			<File
-				RelativePath=".\os_win.c">
+				RelativePath=".\os_win.c"
+				>
 			</File>
 			<File
-				RelativePath=".\pager.c">
+				RelativePath=".\pager.c"
+				>
 			</File>
 			<File
-				RelativePath=".\parse.c">
+				RelativePath=".\parse.c"
+				>
 			</File>
 			<File
-				RelativePath=".\pragma.c">
+				RelativePath=".\pragma.c"
+				>
 			</File>
 			<File
-				RelativePath=".\prepare.c">
+				RelativePath=".\prepare.c"
+				>
 			</File>
 			<File
-				RelativePath=".\printf.c">
+				RelativePath=".\printf.c"
+				>
 			</File>
 			<File
-				RelativePath=".\random.c">
+				RelativePath=".\random.c"
+				>
 			</File>
 			<File
-				RelativePath=".\select.c">
+				RelativePath=".\select.c"
+				>
 			</File>
 			<File
-				RelativePath=".\shell.c">
+				RelativePath=".\shell.c"
+				>
 			</File>
 			<File
-				RelativePath=".\stdafx.cpp">
+				RelativePath=".\stdafx.cpp"
+				>
 			</File>
 			<File
-				RelativePath=".\table.c">
+				RelativePath=".\table.c"
+				>
 			</File>
 			<File
-				RelativePath=".\tclsqlite.c">
+				RelativePath=".\tclsqlite.c"
+				>
 			</File>
 			<File
-				RelativePath=".\tokenize.c">
+				RelativePath=".\tokenize.c"
+				>
 			</File>
 			<File
-				RelativePath=".\trigger.c">
+				RelativePath=".\trigger.c"
+				>
 			</File>
 			<File
-				RelativePath=".\update.c">
+				RelativePath=".\update.c"
+				>
 			</File>
 			<File
-				RelativePath=".\utf.c">
+				RelativePath=".\utf.c"
+				>
 			</File>
 			<File
-				RelativePath=".\util.c">
+				RelativePath=".\util.c"
+				>
 			</File>
 			<File
-				RelativePath=".\vacuum.c">
+				RelativePath=".\vacuum.c"
+				>
 			</File>
 			<File
-				RelativePath=".\vdbe.c">
+				RelativePath=".\vdbe.c"
+				>
 			</File>
 			<File
-				RelativePath=".\vdbeapi.c">
+				RelativePath=".\vdbeapi.c"
+				>
 			</File>
 			<File
-				RelativePath=".\vdbeaux.c">
+				RelativePath=".\vdbeaux.c"
+				>
 			</File>
 			<File
-				RelativePath=".\vdbefifo.c">
+				RelativePath=".\vdbefifo.c"
+				>
 			</File>
 			<File
-				RelativePath=".\vdbemem.c">
+				RelativePath=".\vdbemem.c"
+				>
 			</File>
 			<File
-				RelativePath=".\where.c">
+				RelativePath=".\where.c"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
 			<File
-				RelativePath=".\btree.h">
+				RelativePath=".\btree.h"
+				>
 			</File>
 			<File
-				RelativePath=".\config.h">
+				RelativePath=".\config.h"
+				>
 			</File>
 			<File
-				RelativePath=".\hash.h">
+				RelativePath=".\hash.h"
+				>
 			</File>
 			<File
-				RelativePath=".\keywordhash.h">
+				RelativePath=".\keywordhash.h"
+				>
 			</File>
 			<File
-				RelativePath=".\opcodes.h">
+				RelativePath=".\opcodes.h"
+				>
 			</File>
 			<File
-				RelativePath=".\os.h">
+				RelativePath=".\os.h"
+				>
 			</File>
 			<File
-				RelativePath=".\os_common.h">
+				RelativePath=".\os_common.h"
+				>
 			</File>
 			<File
-				RelativePath=".\os_mac.h">
+				RelativePath=".\os_mac.h"
+				>
 			</File>
 			<File
-				RelativePath=".\os_unix.h">
+				RelativePath=".\os_unix.h"
+				>
 			</File>
 			<File
-				RelativePath=".\os_win.h">
+				RelativePath=".\os_win.h"
+				>
 			</File>
 			<File
-				RelativePath=".\pager.h">
+				RelativePath=".\pager.h"
+				>
 			</File>
 			<File
-				RelativePath=".\parse.h">
+				RelativePath=".\parse.h"
+				>
 			</File>
 			<File
-				RelativePath=".\sqlite3.h">
+				RelativePath=".\sqlite3.h"
+				>
 			</File>
 			<File
-				RelativePath=".\sqliteInt.h">
+				RelativePath=".\sqliteInt.h"
+				>
 			</File>
 			<File
-				RelativePath=".\stdafx.h">
+				RelativePath=".\stdafx.h"
+				>
 			</File>
 			<File
-				RelativePath=".\vdbe.h">
+				RelativePath=".\vdbe.h"
+				>
 			</File>
 			<File
-				RelativePath=".\vdbeInt.h">
+				RelativePath=".\vdbeInt.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
-			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
 		</Filter>
 		<File
-			RelativePath=".\ReadMe.txt">
+			RelativePath=".\ReadMe.txt"
+			>
 		</File>
 	</Files>
 	<Globals>

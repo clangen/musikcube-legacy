@@ -270,13 +270,13 @@ void CmusikDockBar::NcPaintGripper(CDC* pDC, CRect rcClient)
 
 ///////////////////////////////////////////////////
 
-UINT CmusikDockBar::OnNcHitTest(CPoint point)
+LRESULT CmusikDockBar::OnNcHitTest(CPoint point)
 {
     CRect rcBar;
     GetWindowRect(rcBar);
 
     // hit client area
-    UINT nRet = basemusikDockBar::OnNcHitTest(point);
+    LRESULT nRet = basemusikDockBar::OnNcHitTest(point);
     if (nRet != HTCLIENT)
         return nRet;
 
@@ -306,7 +306,7 @@ void CmusikDockBar::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler)
         CPoint pt;
         ::GetCursorPos(&pt);
            BOOL bLButtonDown = (::GetKeyState(VK_LBUTTON) < 0);
-        UINT nHit = OnNcHitTest(pt);
+        LRESULT nHit = OnNcHitTest(pt);
 
         BOOL bHideHit            = (nHit == HTCLOSE);
         BOOL bWasHidePushed        = m_biOptions->bPushed;

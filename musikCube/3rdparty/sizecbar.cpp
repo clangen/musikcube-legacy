@@ -579,7 +579,7 @@ void CSizingControlBar::OnPaint()
     CPaintDC dc(this);
 }
 
-UINT CSizingControlBar::OnNcHitTest(CPoint point)
+LRESULT CSizingControlBar::OnNcHitTest(CPoint point)
 {
     CRect rcBar, rcEdge;
     GetWindowRect(rcBar);
@@ -1014,7 +1014,7 @@ BOOL CSizingControlBar::NegotiateSpace(int nLengthTotal, BOOL bHorz)
     }
 
     // make all the bars the same width
-    for (i = 0; i < nNumBars; i++)
+    for (int i = 0; i < nNumBars; i++)
         if (bHorz)
             arrSCBars[i]->m_szHorz.cy = nWidthMax;
         else
@@ -1025,7 +1025,7 @@ BOOL CSizingControlBar::NegotiateSpace(int nLengthTotal, BOOL bHorz)
     while (nDelta != 0)
     {
         int nDeltaOld = nDelta;
-        for (i = 0; i < nNumBars; i++)
+        for (int i = 0; i < nNumBars; i++)
         {
             pBar = arrSCBars[i];
             int nLMin = bHorz ?
@@ -1045,7 +1045,7 @@ BOOL CSizingControlBar::NegotiateSpace(int nLengthTotal, BOOL bHorz)
         }
         // clear m_bKeepSize flags
         if ((nDeltaOld == nDelta) || (nDelta == 0))
-            for (i = 0; i < nNumBars; i++)
+            for (int i = 0; i < nNumBars; i++)
                 arrSCBars[i]->m_bKeepSize = FALSE;
     }
 

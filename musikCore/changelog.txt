@@ -1,3 +1,9 @@
+  - Visual Studio 2005 is now the supported Windows environment.  The projects 
+    and some of the solutions have been updated.  We will not be maintaining
+    older Visual Studio 2003 project files.
+  - This is the initial pass at VS2005 conformance.  It will build and run
+    properly, but there are still a lot of warnings to clean up.
+    
 ----------------------------------------------------------------------------
 
 a6.2-:

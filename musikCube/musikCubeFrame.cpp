@@ -3672,6 +3672,7 @@ musikCore::String CmusikCubeFrame::GetSelectionCtrlFilter(CmusikSelectionCtrl* s
     if (end - start > 0)
     {
         CmusikSelectionCtrl* currentControl;
+		int lasti;
         for (int i = start; i < end - 1; i++)
         {
             currentControl = this->m_ActiveFilterViews[i];
@@ -3679,9 +3680,10 @@ musikCore::String CmusikCubeFrame::GetSelectionCtrlFilter(CmusikSelectionCtrl* s
             filter += L"(";
             filter += currentControl->GetSelectedItemsQuery();
             filter += L") AND ";
+			lasti = i;
         }
 
-        currentControl = this->m_ActiveFilterViews[i];
+        currentControl = this->m_ActiveFilterViews[lasti];
             filter += L"(";
             filter += currentControl->GetSelectedItemsQuery();
             filter += L")";

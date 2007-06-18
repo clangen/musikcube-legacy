@@ -55,41 +55,41 @@ bool CIniFile::ReadFile()
     // Note that the '\r' will be written to INI files from
     // Unix so that the created INI file can be read under Win32
     // without change.
-    if ( line[line.length() - 1] == '\r')
+    if ( line[line.length()==0?0:line.length()-1] == '\r') 
       line = line.substr( 0, line.length() - 1);
     
     if ( line.length()) {
       // Check that the user hasn't openned a binary file by checking the first
       // character of each line!
       if ( !isprint( line[0])) {
-    printf( "Failing on char %d\n", line[0]);
-    f.close();
-    return false;
+	printf( "Failing on char %d\n", line[0]);
+	f.close();
+	return false;
       }
       if (( pLeft = line.find_first_of(";#[=")) != string::npos) {
-    switch ( line[pLeft]) {
-    case '[':
-      if ((pRight = line.find_last_of("]")) != string::npos &&
-          pRight > pLeft) {
-        keyname = line.substr( pLeft + 1, pRight - pLeft - 1);
-        AddKeyName( keyname);
-      }
-      break;
-      
-    case '=':
-      valuename = line.substr( 0, pLeft);
-      value = line.substr( pLeft + 1);
-      SetValue( keyname, valuename, value);
-      break;
-      
-    case ';':
-    case '#':
-      if ( !names.size())
-        HeaderComment( line.substr( pLeft + 1));
-      else
-        KeyComment( keyname, line.substr( pLeft + 1));
-      break;
-    }
+	switch ( line[pLeft]) {
+	case '[':
+	  if ((pRight = line.find_last_of("]")) != string::npos &&
+	      pRight > pLeft) {
+	    keyname = line.substr( pLeft + 1, pRight - pLeft - 1);
+	    AddKeyName( keyname);
+	  }
+	  break;
+	  
+	case '=':
+	  valuename = line.substr( 0, pLeft);
+	  value = line.substr( pLeft + 1);
+	  SetValue( keyname, valuename, value);
+	  break;
+	  
+	case ';':
+	case '#':
+	  if ( !names.size())
+	    HeaderComment( line.substr( pLeft + 1));
+	  else
+	    KeyComment( keyname, line.substr( pLeft + 1));
+	  break;
+	}
       }
     }
   }
@@ -292,10 +292,10 @@ double CIniFile::GetValueF(string const keyname, string const valuename, double 
 
 // 16 variables may be a bit of over kill, but hey, it's only code.
 unsigned CIniFile::GetValueV( string const keyname, string const valuename, char *format,
-                  void *v1, void *v2, void *v3, void *v4,
-                    void *v5, void *v6, void *v7, void *v8,
-                    void *v9, void *v10, void *v11, void *v12,
-                    void *v13, void *v14, void *v15, void *v16)
+			      void *v1, void *v2, void *v3, void *v4,
+  			      void *v5, void *v6, void *v7, void *v8,
+  			      void *v9, void *v10, void *v11, void *v12,
+  			      void *v13, void *v14, void *v15, void *v16)
 {
   string   value;
   // va_list  args;
@@ -313,8 +313,8 @@ unsigned CIniFile::GetValueV( string const keyname, string const valuename, char
   // va_end( args);
 
   nVals = sscanf( value.c_str(), format,
-          v1, v2, v3, v4, v5, v6, v7, v8,
-          v9, v10, v11, v12, v13, v14, v15, v16);
+		  v1, v2, v3, v4, v5, v6, v7, v8,
+		  v9, v10, v11, v12, v13, v14, v15, v16);
 
   return nVals;
 }

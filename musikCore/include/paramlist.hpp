@@ -1,4 +1,5 @@
-// For compilers that support precompilation, includes "wx/wx.h".
+// For compilers that support precompilation, includes "wx/wx.h".
+
 //#include <iostream.h>
 #include <stdio.h>
 #include <stdlib.h>

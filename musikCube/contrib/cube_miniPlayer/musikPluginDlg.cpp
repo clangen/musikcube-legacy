@@ -1135,9 +1135,9 @@ LRESULT CMainDlg::OnTrackSliderMoved(WPARAM wParam, LPARAM lParam)
 }
 
 // draggable window
-UINT CMainDlg::OnNcHitTest(CPoint point)
+LRESULT CMainDlg::OnNcHitTest(CPoint point)
 {
-    UINT hit = CDialog::OnNcHitTest(point);
+    LRESULT hit = CDialog::OnNcHitTest(point);
     if ( hit == HTCLIENT ) 
         return HTCAPTION;
     else

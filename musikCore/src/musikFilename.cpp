@@ -190,7 +190,7 @@ String Filename::GetTrimPath() const
 bool Filename::FileExists(const String& fn)
 {
 #ifdef WIN32
-    return _waccess(fn.c_str(), 1 /*R_OK*/) == 0;
+    return _waccess(fn.c_str(), 04 /*check for read access*/) == 0;
 #else
     return access(utf16to8(fn).c_str(), R_OK) == 0;
 #endif
