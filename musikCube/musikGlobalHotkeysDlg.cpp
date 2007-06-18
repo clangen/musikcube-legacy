@@ -39,6 +39,8 @@
 #include "stdafx.h"
 #include "musikCube.h"
 #include "musikGlobalHotkeysDlg.h"
+#include "musikCubeMessages.h"
+#include "musikCubeFrame.h"
 #include "GlobalHotkeys.h"
 
 #pragma warning(disable : 4800) // forcing bool to int
@@ -74,6 +76,7 @@ void CmusikGlobalHotkeysDlg::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_NEXTALBUM_HOTKEY, m_NextAlbum);
     DDX_Control(pDX, IDC_PREVALBUM_HOTKEY, m_PrevAlbum);
     DDX_Control(pDX, IDC_ENABLEHOTKEYS_CHECKBOX, m_EnableHotkeys);
+	DDX_Control(pDX, IDC_VOLUMEKEYS_CONTROL_MUSIKCUBE_VOL_CHECKBOX, m_EnableVolkeys);
 }
 
 ///////////////////////////////////////////////////
@@ -101,6 +104,8 @@ void CmusikGlobalHotkeysDlg::LoadHotkeys()
     this->SetHotkeyControl(this->m_PrevArtist, musikCube::g_Prefs->GetPrevArtistHotkey());
     this->SetHotkeyControl(this->m_NextAlbum, musikCube::g_Prefs->GetNextAlbumHotkey());
     this->SetHotkeyControl(this->m_PrevAlbum, musikCube::g_Prefs->GetPrevAlbumHotkey());
+	this->m_EnableVolkeys.SetCheck(musikCube::g_Prefs->GetUseVolumeHotkeys());
+
 }
 
 ///////////////////////////////////////////////////
@@ -119,6 +124,7 @@ void CmusikGlobalHotkeysDlg::SaveHotkeys()
     musikCube::g_Prefs->SetPrevArtistHotkey(this->m_PrevArtist.GetHotKey());
     musikCube::g_Prefs->SetNextAlbumHotkey(this->m_NextAlbum.GetHotKey());
     musikCube::g_Prefs->SetPrevAlbumHotkey(this->m_PrevAlbum.GetHotKey());
+	musikCube::g_Prefs->SetUseVolumeHotkeys(this->m_EnableVolkeys.GetCheck());
 
     if (musikCube::g_Prefs->GetUseGlobalHotkeys())
     {

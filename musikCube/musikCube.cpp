@@ -39,6 +39,7 @@
 #include "stdafx.h"
 #include "musikCube.h"
 #include "musikCubeFrame.h"
+#include "3rdparty/mdump.h"
 
 #include <OpenThreads/Thread>
 using namespace OpenThreads;
@@ -65,6 +66,8 @@ BEGIN_MESSAGE_MAP(CmusikCubeApp, CWinApp)
 END_MESSAGE_MAP()
 
 ///////////////////////////////////////////////////
+
+MiniDumper* minidump = new MiniDumper();
 
 namespace musikCube 
 {

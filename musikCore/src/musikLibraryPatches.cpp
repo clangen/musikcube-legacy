@@ -47,7 +47,7 @@ using namespace musikCore;
 
 void Library::PatchLibrary()
 {
-    int prev_version = -1;
+	int prev_version = -1;
 
     m_ProtectingLibrary.lock();
 
@@ -314,7 +314,7 @@ void Library::PatchLibrary()
 
 static int sqlite_Patch5AddStdPlaylistInfoArray(void *args, int numCols, char **results, char ** columnNames)
 {
-    PlaylistInfoArray* p = (PlaylistInfoArray*)args;
+	PlaylistInfoArray* p = (PlaylistInfoArray*)args;
     PlaylistInfo info (utf8to16(results[0]), MUSIK_PLAYLIST_TYPE_STANDARD, atoi(results[1]));
     p->push_back(info); 
     return 0;
@@ -324,7 +324,7 @@ static int sqlite_Patch5AddStdPlaylistInfoArray(void *args, int numCols, char **
 
 int Library::Patch5GetAllStdPlaylists(PlaylistInfoArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -358,7 +358,7 @@ int Library::Patch5GetAllStdPlaylists(PlaylistInfoArray& target, bool clear_targ
 
 static int sqlite_Patch5AddDynPlaylistInfoArray(void *args, int numCols, char **results, char ** columnNames)
 {
-    PlaylistInfoArray* p = (PlaylistInfoArray*)args;
+	PlaylistInfoArray* p = (PlaylistInfoArray*)args;
 
     PlaylistInfo info (utf8to16(results[0]), MUSIK_PLAYLIST_TYPE_DYNAMIC, atoi(results[1]));
     //info.m_Order = atoi(results[2]);
@@ -371,7 +371,7 @@ static int sqlite_Patch5AddDynPlaylistInfoArray(void *args, int numCols, char **
 
 int Library::Patch5GetAllDynPlaylists(PlaylistInfoArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -407,7 +407,7 @@ int Library::Patch5GetAllDynPlaylists(PlaylistInfoArray& target, bool clear_targ
 
 int Library::Patch4GetStdPlaylist(int id, Playlist& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)

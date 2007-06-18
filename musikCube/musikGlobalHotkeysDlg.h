@@ -78,6 +78,7 @@ protected:          // variables
     CHotKeyCtrl m_NextAlbum;
     CHotKeyCtrl m_PrevAlbum;
     CButton m_EnableHotkeys;
+	CButton m_EnableVolkeys;
 };
 
 ///////////////////////////////////////////////////

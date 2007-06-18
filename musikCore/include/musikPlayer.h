@@ -71,7 +71,7 @@ MUSIKEXPORT enum
 ///////////////////////////////////////////////////
 
 /** 
-* Song advance types
+* Song advance types bit masks
 */
 MUSIKEXPORT enum
 {
@@ -226,11 +226,16 @@ public:
      * \param use_global if true the same equalizer will be used for every song
      */
     void EnableEqualizer(bool enable, bool use_global);
-    /*
+    /**
      * \param use_global if true, all songs will share a global equalizer. if
      * false, the equalizers will be loaded from the database on a per song basis
      */
     void UseGlobalEQSettings(bool use_global);
+	/**
+	 * \param prevmode if true, previous will return to the last track played
+	 * rather than the previous track in the playlist
+	 */
+	void SetSmartPreviousEnabled(bool prevmode);
 
     /**
      * \return a pointer to the internal song information object. this object
@@ -475,6 +480,10 @@ public:
      * \return true if crossfader is flagged as enabled, false otherwise
      */
     bool IsCrossfaderEnabled();
+	/**
+	* \return true if smart previous is enabled, false otherwise
+	*/
+	bool IsSmartPreviousEnabled();
 
     /**
      * \return number of active streams (playing songs)
@@ -511,6 +520,18 @@ public:
      * otherwise they will be added before they are removed.
      */
     void ModifyPlaymode(unsigned long add, unsigned long remove, bool remove_first = true);
+	/**
+     * \return the current previous mode. Modes can be any combination of the following:
+     * MUSIK_PLAYER_NORMAL_PREVIOUS, MUSIK_PLAYER_SMART_PREVIOUS
+     
+    unsigned long GetPrevmode(){ return m_Prevmode; }
+    /**
+     * Set a new default previous mode.
+     *
+     * \param mode previous mode. Can be any combination of the following:
+     * MUSIK_PLAYER_NORMAL_PREVIOUS, MUSIK_PLAYER_SMART_PREVIOUS
+     
+    void SetPrevmode(unsigned long pmode){ m_Prevmode = pmode; }*/
 
     /**
      * \return address of the currently managed playlist. 
@@ -601,6 +622,9 @@ public:
     EQSettings& GetEQSettings(){ return m_EQSettings; }
     int GetRate(){ return m_Rate; }
 
+	bool g_isNext;
+	bool g_isPrev;
+
 protected:
 
     // reserved for internal use.
@@ -610,6 +634,7 @@ protected:
     int m_FadeType;
     String m_Format;
     unsigned long m_Playmode;
+	unsigned long m_Prevmode;
     int m_PrevSong;
     int m_Duration;
     int m_PlayerType;

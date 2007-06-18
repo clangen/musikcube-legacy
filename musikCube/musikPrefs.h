@@ -116,6 +116,8 @@ public:
     //
     bool        GetUseGlobalHotkeys()                       { return m_Hotkey_Enable; }
     void        SetUseGlobalHotkeys(bool use)               { m_Hotkey_Enable = use; }
+	bool        GetUseVolumeHotkeys()                       { return m_Hotkey_Volume_Enable; }
+    void        SetUseVolumeHotkeys(bool use)               { m_Hotkey_Volume_Enable = use; }
     DWORD       GetPlayPauseHotkey()                        { return m_Hotkey_PlayPause; }
     void        SetPlayPauseHotkey(DWORD value)             { m_Hotkey_PlayPause = value; }
     DWORD       GetStopHotkey()                             { return m_Hotkey_Stop; }
@@ -357,6 +359,7 @@ private:
     CPoint  m_Dlg_Pos;
     bool    m_Dlg_Maximized;
     int     m_Dlg_FileDrop_Prompt;
+	int     m_Dlg_Smart_Previous;
     bool    m_Dlg_PlaylistInfoVisible;
     int     m_Dlg_PlaylistInfoVizStyle;
     bool    m_Dlg_SynchronizeOnStartup;
@@ -374,6 +377,7 @@ private:
 
     // hotkeys
     bool    m_Hotkey_Enable;
+	bool    m_Hotkey_Volume_Enable;
     DWORD   m_Hotkey_PlayPause;
     DWORD   m_Hotkey_Stop;
     DWORD   m_Hotkey_NextTrack;
@@ -423,6 +427,7 @@ private:
     int m_Player_Volume;
     int m_Player_Buffer;
     unsigned long m_Player_Playmode;
+	bool m_Smart_Previous_Global;
 
     // crossfader
     int m_Crossfader_Current;

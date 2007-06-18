@@ -93,6 +93,9 @@ Player::Player(Functor* functor, Library* library)
     m_PlayerType        = MUSIK_PLAYER_NORMAL;
     m_State                = MUSIK_PLAYER_INIT_UNINITIALIZED;
 
+	g_isNext			= false;
+	g_isPrev			= false;
+
     InitEQSettings();
 }
 
@@ -816,6 +819,7 @@ void Player::UpdateSongHistory(bool begin)
     {
         if (begin)
         {
+			m_CurrSong.GetLibrary()->UpdateLastPlayed(m_CurrSong);
             m_CurrSong.GetLibrary()->UpdateTimesPlayed(m_CurrSong);
         }
         else
@@ -832,6 +836,8 @@ bool Player::Next(bool expired)
 {
     if (!m_Playlist || !IsPlaying())
         return false;
+
+	g_isNext = true;
 
     // if repeat single is enabled, and the
     // stream naturally expired (a "next" button
@@ -908,6 +914,8 @@ bool Player::Next(bool expired)
     }
     else
         PlayCD(m_Index);
+
+	g_isNext = false;
         
     return true;
 }
@@ -919,11 +927,47 @@ bool Player::Prev()
     if (!m_Playlist || !IsPlaying())
         return false;
 
+	g_isPrev = true;
+
     // if the song is under 6000 ms, we want to go
     // to the previous track
     if (GetTimeNow(MUSIK_TIME_MSECS) < 6000 || !IsPlaying())
     {
-        m_Index--;
+			// Intelligent Previous implimentation
+			//  -ObsidianX
+			if ( m_Playmode & MUSIK_PLAYER_PLAYMODE_RANDOM )
+			{
+				Library *g_Library = GetLibrary();
+				int playingID = GetPlaying()->GetID();
+				int lastsong = g_Library->GetLastSong( playingID, g_Library );
+				int index = -1;
+
+				//temp section for debugging
+				//int tempPlaylistSize = m_Playlist->GetCount();
+				//end of temp section
+				
+				for( size_t i = 0; i < m_Playlist->GetCount(); i++ )
+				{
+					if( m_Playlist->GetSongID( i ) == lastsong )
+					{
+						index = i;
+					}
+				}
+				//Temp section to avoid crash on errors	//
+				if (index < 0) {						//
+					m_Index--;							//
+				}										//
+				else {									//
+					m_Index = index;					//
+				}										//
+				//End of temp section	//////////////////
+
+				//m_Index = index;
+			}	
+			else
+			{
+				m_Index--;
+			}
 
         if (m_Index < 0) 
         {
@@ -957,6 +1001,8 @@ bool Player::Prev()
         Play(m_Index, MUSIK_CROSSFADER_NEW_SONG);
     else
         PlayCD(m_Index);
+
+	g_isPrev = false;
 
     return true;
 }

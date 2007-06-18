@@ -106,6 +106,7 @@
 #define IDC_USEUTC                      1017
 #define IDC_WRITETAGS                   1017
 #define IDC_COMMENTS                    1017
+#define IDC_SMART_PREVIOUS_CHECK        1017
 #define IDC_BUTTON2                     1018
 #define IDC_BTNYES                      1018
 #define IDC_FIELDSTRING2                1018
@@ -310,6 +311,7 @@
 #define IDC_HOTKEYS_OK_BUTTON           1131
 #define IDC_CANCEL_HOTKEYS_CANCEL_BUTTON 1132
 #define IDC_ENABLEHOTKEYS_CHECKBOX      1133
+#define IDC_VOLUMEKEYS_CONTROL_MUSIKCUBE_VOL_CHECKBOX 1134
 #define ID_FILE_PREFERENCES             32771
 #define ID_FILE_SEP                     32772
 #define ID_ADD_FILES                    32774
@@ -579,7 +581,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        201
 #define _APS_NEXT_COMMAND_VALUE         33123
-#define _APS_NEXT_CONTROL_VALUE         1134
+#define _APS_NEXT_CONTROL_VALUE         1135
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif

@@ -74,9 +74,25 @@ public:
     static void UnloadHotkeys();
     static bool ProcessHotkey(enum Hotkey hotkey, std::wstring& statusString);
 
+	HWND getMainCubeHwnd();
+	
 protected:
 
     static void SetHotkey(HWND hwnd, enum Hotkey hotkey, DWORD serializedHotkey);
+
+/*	UINT m_nNumMixers;
+	HMIXER m_hMixer;
+	MIXERCAPS m_mxcaps;
+
+	CString m_strDstLineName, m_strVolumeControlName;
+	DWORD m_dwMinimum, m_dwMaximum;
+	DWORD m_dwVolumeControlID;
+
+	bool WinVolInitialize();
+	bool WinVolUninitialize();
+	bool WinGetMasterVolumeControl();
+	bool WinGetMasterVolumeValue(DWORD &dwVal) const;
+	bool WinSetMasterVolumeValue(DWORD dwVal) const;*/
 };
 
 ///////////////////////////////////////////////////

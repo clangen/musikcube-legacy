@@ -65,7 +65,7 @@ bool g_UTC = true;
 
 Library::Library(const String& filename)
 {
-    srand(time(0));
+	srand(time(0));
 
     m_pDB = NULL;
     m_Transactions = 0;
@@ -83,21 +83,21 @@ Library::Library(const String& filename)
 
 Library::~Library()
 {
-    Shutdown();
+	Shutdown();
 }
 
 ///////////////////////////////////////////////////
 
 void Library::SetUseUTC(bool use)
 {
-    ::g_UTC = use;
+	::g_UTC = use;
 }
 
 ///////////////////////////////////////////////////
 
 void Library::SetFilename(const String& filename, bool reinit)
 {
-    m_Filename = filename;
+	m_Filename = filename;
     if (reinit)
     {
         Shutdown();
@@ -109,7 +109,7 @@ void Library::SetFilename(const String& filename, bool reinit)
 
 void Library::InitFields()
 {
-    m_Fields.push_back("Artist");
+	m_Fields.push_back("Artist");
     m_Fields.push_back("Album");
     m_Fields.push_back("Year");
     m_Fields.push_back("Genre");
@@ -150,7 +150,7 @@ void Library::InitFields()
 
 int Library::GetSongFieldID(String field) const
 {
-    for (size_t i = 0; i < m_Fields.size(); i++)
+	for (size_t i = 0; i < m_Fields.size(); i++)
     {
         if (field == m_Fields.at(i))
             return i;
@@ -162,7 +162,7 @@ int Library::GetSongFieldID(String field) const
 
 void Library::GetSongFields(StringArray& target) const
 {
-    target.clear();
+	target.clear();
 
     for (size_t i = 0; i < m_Fields.size(); i ++)
         target.push_back(m_Fields.at(i));
@@ -172,7 +172,7 @@ void Library::GetSongFields(StringArray& target) const
 
 void Library::GetSongFieldsDB(StringArray& target) const
 {
-    target.clear();
+	target.clear();
 
     for (size_t i = 0; i < m_FieldsDB.size(); i ++)
         target.push_back(m_FieldsDB.at(i));
@@ -182,7 +182,7 @@ void Library::GetSongFieldsDB(StringArray& target) const
 
 String Library::GetSongFieldStr(const size_t field_id) const
 {
-    if (field_id >= m_Fields.size())
+	if (field_id >= m_Fields.size())
         return "";
 
     return m_Fields.at(field_id);
@@ -192,7 +192,7 @@ String Library::GetSongFieldStr(const size_t field_id) const
 
 String Library::GetSongFieldDBStr(const size_t field_id) const
 {
-    if (field_id >= m_FieldsDB.size())
+	if (field_id >= m_FieldsDB.size())
         return "";
 
     return m_FieldsDB.at(field_id);
@@ -202,7 +202,7 @@ String Library::GetSongFieldDBStr(const size_t field_id) const
 
 int Library::GetSongFieldDBID(String field) const
 {
-    for (size_t i = 0; i < m_FieldsDB.size(); i++)
+	for (size_t i = 0; i < m_FieldsDB.size(); i++)
     {
         if (field == m_FieldsDB.at(i))
             return i;
@@ -214,7 +214,7 @@ int Library::GetSongFieldDBID(String field) const
 
 bool Library::InitStdTables()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -269,14 +269,14 @@ bool Library::InitStdTables()
 
 bool Library::InitHistoryTable()
 {
-    return false;
+	return false;
 }
 
 ///////////////////////////////////////////////////
 
 bool Library::InitChgCaseTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -355,7 +355,7 @@ bool Library::InitChgCaseTable()
 
 bool Library::InitEqTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -486,7 +486,7 @@ bool Library::InitEqTable()
 
 bool Library::InitPathTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -524,7 +524,7 @@ bool Library::InitPathTable()
 
 bool Library::InitMaskTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -557,7 +557,7 @@ bool Library::InitMaskTable()
 
 bool Library::InitDynTable(bool create_stock_playlists)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -599,7 +599,7 @@ bool Library::InitDynTable(bool create_stock_playlists)
 
 bool Library::InitCrossfaderTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -663,7 +663,7 @@ bool Library::InitCrossfaderTable()
 
 bool Library::InitVersionTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -722,7 +722,7 @@ bool Library::InitVersionTable()
 
 void Library::InitDefaultDynPlaylists()
 {
-    String query;
+	String query;
 
     query.Format(
         _T(" lastplayed < julianday('now') AND ")
@@ -776,7 +776,7 @@ void Library::InitDefaultDynPlaylists()
 
 bool Library::InitLibTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -851,7 +851,7 @@ bool Library::InitLibTable()
 
 bool Library::InitTempLibTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -883,7 +883,7 @@ bool Library::InitTempLibTable()
 
 bool Library::Startup()
 {
-    if (this->m_DatabaseOpen)
+	if (this->m_DatabaseOpen)
     {
         Shutdown();
     }
@@ -946,7 +946,7 @@ bool Library::Startup()
 
 void Library::Shutdown()
 {
-    // lock it up and close it down.
+	// lock it up and close it down.
     m_ProtectingLibrary.lock();
         if (m_DatabaseOpen)
         {
@@ -961,7 +961,7 @@ void Library::Shutdown()
 
 void Library::BeginTransaction()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return;
 
     m_ProtectingLibrary.lock();
@@ -980,7 +980,7 @@ void Library::BeginTransaction()
 
 void Library::EndTransaction()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return;
 
     m_ProtectingLibrary.lock();
@@ -1004,7 +1004,7 @@ void Library::EndTransaction()
 
 int Library::DeleteCrossfader(int id)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -1031,7 +1031,7 @@ int Library::DeleteCrossfader(int id)
 
 int Library::CreateStdPlaylist(const String& name, const StringArray& songids, int order)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nID, nRet;
@@ -1104,7 +1104,7 @@ int Library::CreateStdPlaylist(const String& name, const StringArray& songids, i
 
 int Library::CreateStdPlaylist(const String& name, Playlist& playlist, int order)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nID, nRet;
@@ -1177,7 +1177,7 @@ int Library::CreateStdPlaylist(const String& name, Playlist& playlist, int order
 
 int Library::AppendStdPlaylist(int id, const StringArray& files)
 {
-    if (!m_DatabaseOpen) 
+	if (!m_DatabaseOpen) 
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet = 1;
@@ -1227,7 +1227,7 @@ int Library::AppendStdPlaylist(int id, const StringArray& files)
 
 int Library::AppendStdPlaylist(int id, const Playlist& playlist)
 {
-    if (!m_DatabaseOpen) 
+	if (!m_DatabaseOpen) 
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -1280,7 +1280,7 @@ int Library::AppendStdPlaylist(int id, const Playlist& playlist)
 
 int Library::RewriteDynPlaylistQuery(int id, const String& query)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
     
     int nRet;
@@ -1310,7 +1310,7 @@ int Library::RewriteDynPlaylistQuery(int id, const String& query)
 
 int Library::GetDynPlaylistInfo(int id, String& name, String& query)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -1360,7 +1360,7 @@ int Library::GetDynPlaylistInfo(int id, String& name, String& query)
 
 int Library::RewriteStdPlaylist(Playlist& playlist)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -1428,7 +1428,7 @@ int Library::RewriteStdPlaylist(Playlist& playlist)
 
 int Library::RenameStdPlaylist(int id, const String& str)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -1463,7 +1463,7 @@ int Library::RenameStdPlaylist(int id, const String& str)
 
 int Library::RenameDynPlaylist(int id, const String& name)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -1498,7 +1498,7 @@ int Library::RenameDynPlaylist(int id, const String& name)
 
 void Library::GetPlaylistAttr(Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return;
 
     target.SetTotalSize(0.0f);
@@ -1518,7 +1518,7 @@ void Library::GetPlaylistAttr(Playlist& target)
 
 int Library::GetStdPlaylist(int id, Playlist& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String query;
@@ -1543,7 +1543,7 @@ int Library::GetStdPlaylist(int id, Playlist& target, bool clear_target)
 
 int Library::QueryDynPlaylist(int id, Playlist& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
     {
         return MUSIK_LIBRARY_NOT_OPEN;
     }
@@ -1598,7 +1598,7 @@ int Library::QueryDynPlaylist(int id, Playlist& target, bool clear_target)
 
 bool Library::GetDynPlaylistFns(int id, StringArray& target, bool clear_target)
 {
-    Playlist ids;
+	Playlist ids;
     QueryDynPlaylist(id, ids, false);
 
     if (!ids.GetCount())
@@ -1623,7 +1623,7 @@ bool Library::GetDynPlaylistFns(int id, StringArray& target, bool clear_target)
 
 bool Library::GetDynPlaylistFns(int id, String& target)
 {
-    Playlist ids;
+	Playlist ids;
     QueryDynPlaylist(id, ids, false);
 
     if (!ids.GetCount())
@@ -1648,7 +1648,7 @@ bool Library::GetDynPlaylistFns(int id, String& target)
 
 bool Library::GetStdPlaylistFns(Playlist& ids, String& target)
 {
-    // do it
+	// do it
     BeginTransaction();
 
     for (size_t i = 0; i < ids.GetCount(); i++)
@@ -1667,7 +1667,7 @@ bool Library::GetStdPlaylistFns(Playlist& ids, String& target)
 
 bool Library::GetStdPlaylistFns(int id, String& target)
 {
-    Playlist ids;
+	Playlist ids;
     GetStdPlaylist(id, ids, false);
 
     if (!ids.GetCount())
@@ -1692,7 +1692,7 @@ bool Library::GetStdPlaylistFns(int id, String& target)
 
 bool Library::GetStdPlaylistFns(int id, StringArray& target, bool clear_target)
 {
-    Playlist ids;
+	Playlist ids;
     GetStdPlaylist(id, ids, false);
 
     if (!ids.GetCount())
@@ -1716,7 +1716,7 @@ bool Library::GetStdPlaylistFns(int id, StringArray& target, bool clear_target)
 
 bool Library::GetStdPlaylistFns(Playlist& playlist, StringArray& target, bool clear_target)
 {
-    if (!playlist.GetCount())
+	if (!playlist.GetCount())
         return false;
 
     if (clear_target)
@@ -1737,7 +1737,7 @@ bool Library::GetStdPlaylistFns(Playlist& playlist, StringArray& target, bool cl
 
 int Library::CreateDynPlaylist(const String& name, const String& query, int order)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nID, nRet;
@@ -1780,7 +1780,7 @@ int Library::CreateDynPlaylist(const String& name, const String& query, int orde
 
 int Library::DeleteStdPlaylist(int id)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -1832,7 +1832,7 @@ int Library::DeleteStdPlaylist(int id)
 
 int Library::DeleteDynPlaylist(int id)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     // do it
@@ -1860,7 +1860,7 @@ int Library::DeleteDynPlaylist(int id)
 
 String Library::GetOrder(int type, bool terminate, bool by_upper, bool descend)
 {
-    String sTerminate = _T("");
+	String sTerminate = _T("");
     if (terminate)
         sTerminate = _T(";");
 
@@ -2265,7 +2265,7 @@ String Library::GetOrder(int type, bool terminate, bool by_upper, bool descend)
 
 void Library::VerifyYearList(StringArray & list)
 {
-    size_t count = list.size();
+	size_t count = list.size();
 
     for (size_t i = 0; i < count ; i++)
     {
@@ -2281,7 +2281,7 @@ void Library::VerifyYearList(StringArray & list)
 
 int Library::GetAllSongs(Playlist& target)
 {
-    int nRet = QuerySongs("filename <> '' ORDER BY artist,album,tracknum", target);
+	int nRet = QuerySongs("filename <> '' ORDER BY artist,album,tracknum", target);
 
     return nRet;
 }
@@ -2290,7 +2290,7 @@ int Library::GetAllSongs(Playlist& target)
 
 int Library::GetAllTempSongs(Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     target.Clear();
@@ -2325,7 +2325,7 @@ int Library::GetAllTempSongs(Playlist& target)
 
 int Library::QuickQuery(String str, Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     str = "%" + str + "%";
@@ -2356,7 +2356,7 @@ int Library::QuickQuery(String str, Playlist& target)
 
 int Library::RawQueryStringArray(const String& query, StringArray& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     target.clear();
@@ -2380,7 +2380,7 @@ int Library::RawQueryStringArray(const String& query, StringArray& target)
 
 int Library::QuerySongs(const String& query, Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     target.Clear();
@@ -2418,7 +2418,7 @@ int Library::QuerySongs(const String& query, Playlist& target)
 
 int Library::QuerySongs(const String& query, Playlist& target, int orderBy)
 {
-    String newQuery;
+	String newQuery;
     newQuery.Format(_T("%ls %ls"), query.c_str(), Library::GetOrder(orderBy, true).c_str());
 
     return QuerySongs(newQuery, target);
@@ -2428,7 +2428,7 @@ int Library::QuerySongs(const String& query, Playlist& target, int orderBy)
 
 int Library::RawQuerySongs(String query, Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     target.Clear();
@@ -2458,7 +2458,7 @@ int Library::RawQuerySongs(String query, Playlist& target)
 
 int Library::GetRelatedSongs(String partial_query, int source_type, PlaylistInfo& info, Playlist& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     musikCore::String pre_stmt;
@@ -2536,7 +2536,7 @@ int Library::GetRelatedSongs(String partial_query, int source_type, PlaylistInfo
 
 int Library::GetRelatedSongs(String partial_query, int source_type, Playlist& target, bool sub_query, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -2594,7 +2594,7 @@ int Library::GetRelatedSongs(String partial_query, int source_type, Playlist& ta
 
 int Library::GetOpenTransactions() const
 {
-    return m_Transactions;
+	return m_Transactions;
 }
 
 ///////////////////////////////////////////////////
@@ -2603,7 +2603,7 @@ int Library::GetOpenTransactions() const
 
 int Library::GetAllDistinct(int source_type, StringArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -2643,7 +2643,7 @@ int Library::GetAllDistinct(int source_type, StringArray& target, bool clear_tar
 
 int Library::GetDistinctCount(int field)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String query;
@@ -2667,7 +2667,7 @@ int Library::GetDistinctCount(int field)
 
 int Library::GetSongCount()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String query;
@@ -2690,7 +2690,7 @@ int Library::GetSongCount()
 
 int Library::GetFieldFromID(int id, int field, String& string)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String type = GetSongFieldDBStr(field);
@@ -2725,10 +2725,12 @@ int Library::GetFieldFromID(int id, int field, String& string)
 
 int Library::GetSongInfoFromID(int id, SongInfo& info)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     info.SetID(id);
+	
+	Player *player = GetPlayer();
 
     // do it
     int nRet;
@@ -2745,10 +2747,14 @@ int Library::GetSongInfoFromID(int id, SongInfo& info)
             SONG_TABLE_NAME,
             id);
 
+		int (*callback)( void*, int, char**, char** );
+		callback = ( player->g_isNext ? &LibraryCallbacks::GetSongInfoFromIDUpdate : &LibraryCallbacks::GetSongInfoFromID );
+
         nRet = sqlite3_exec(
             m_pDB, 
             utf16to8(query).c_str(), 
-            &LibraryCallbacks::GetSongInfoFromID, 
+            //&LibraryCallbacks::GetSongInfoFromID, 
+			callback,
             &info, 
             NULL);
     }
@@ -2764,7 +2770,7 @@ int Library::GetSongInfoFromID(int id, SongInfo& info)
 
 bool Library::SetSongInfo(SongInfo& info, int songid)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     int result = 0;
@@ -2833,7 +2839,7 @@ bool Library::SetSongInfo(SongInfo& info, int songid)
 
 bool Library::SetSongRating(int songid, int rating)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     int result = 0;
@@ -2867,7 +2873,7 @@ bool Library::SetSongRating(int songid, int rating)
 
 bool Library::SetSongEqualizer(int songid, int eq_id)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     int result = 0;
@@ -2902,7 +2908,7 @@ bool Library::SetSongEqualizer(int songid, int eq_id)
 
 int Library::GetAllStdPlaylists(PlaylistInfoArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -2940,7 +2946,7 @@ int Library::GetAllStdPlaylists(PlaylistInfoArray& target, bool clear_target)
 
 int Library::GetAllDynPlaylists(PlaylistInfoArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -2973,7 +2979,7 @@ int Library::GetAllDynPlaylists(PlaylistInfoArray& target, bool clear_target)
 
 int Library::GetAllCrossfaderPresets(StringArray& target, IntArray& target_ids, bool clear_targets)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_targets)
@@ -3034,7 +3040,7 @@ int Library::GetAllCrossfaderPresets(StringArray& target, IntArray& target_ids, 
 
 int Library::GetCrossfader(int id, Crossfader& fader)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -3065,7 +3071,7 @@ int Library::GetCrossfader(int id, Crossfader& fader)
 
 int Library::GetSongAttrFromFilename(const String& fn, Song& song)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     // do it
@@ -3102,7 +3108,7 @@ int Library::GetSongAttrFromFilename(const String& fn, Song& song)
 
 int Library::GetSongAttrFromID(int id, Song& song)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     // do it
@@ -3120,7 +3126,7 @@ int Library::GetSongAttrFromID(int id, Song& song)
         nRet = sqlite3_exec(
             m_pDB, 
             utf16to8(query).c_str(), 
-            &LibraryCallbacks::GetSongAttr, 
+            &LibraryCallbacks::GetSongAttr,
             &song, 
             NULL);
 
@@ -3134,7 +3140,7 @@ int Library::GetSongAttrFromID(int id, Song& song)
 
 bool Library::RemoveSong(int songid)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     int nRes;
@@ -3165,7 +3171,7 @@ bool Library::RemoveSong(int songid)
 
 bool Library::RemoveSong(const String& fn)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     int nRet;
@@ -3201,7 +3207,7 @@ bool Library::RemoveSong(const String& fn)
 
 bool Library::AddSong(const String& fn)
 {
-    bool result = false;
+	bool result = false;
 
     if (!IsSongInLibrary(fn))
     {
@@ -3265,7 +3271,7 @@ bool Library::AddSong(const String& fn)
 
 void Library::ClearTempSongTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return;
 
     m_ProtectingLibrary.lock();
@@ -3277,7 +3283,7 @@ void Library::ClearTempSongTable()
 
 void Library::PopulateTempSongTable(Playlist& source)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return;
 
     ClearTempSongTable();
@@ -3305,7 +3311,7 @@ void Library::PopulateTempSongTable(Playlist& source)
 
 bool Library::AddFile(const SongInfo& info)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     int nRet;
@@ -3379,7 +3385,7 @@ bool Library::AddFile(const SongInfo& info)
 
 bool Library::AddNet(const String & fn)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
     
     int nRet;
@@ -3438,7 +3444,7 @@ bool Library::AddNet(const String & fn)
 
 bool Library::IsSongInLibrary(const String& fn)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     // case insensitive for windows
@@ -3476,7 +3482,7 @@ bool Library::IsSongInLibrary(const String& fn)
 
 bool Library::IsSongInLibrary(int songid)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     String query;
@@ -3507,7 +3513,7 @@ bool Library::IsSongInLibrary(int songid)
 
 int Library::GetEqualizerIDFromSongID(int id)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int target;
@@ -3539,7 +3545,7 @@ int Library::GetEqualizerIDFromSongID(int id)
 
 int Library::GetCrossfaderIDFromName(const String& name)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int target = -1;
@@ -3571,7 +3577,7 @@ int Library::GetCrossfaderIDFromName(const String& name)
 
 int Library::GetEqualizerIDFromName(const String& name)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int target;
@@ -3608,7 +3614,7 @@ int Library::GetEqualizerIDFromName(const String& name)
 
 int Library::CreateCrossfader(Crossfader& fader)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (GetCrossfaderIDFromName(fader.m_Name) != -1)
@@ -3648,7 +3654,7 @@ int Library::CreateCrossfader(Crossfader& fader)
 
 int Library::CreateEqualizer(EQSettings& eq, bool is_preset)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRes;
@@ -3723,7 +3729,7 @@ int Library::CreateEqualizer(EQSettings& eq, bool is_preset)
 
 int Library::DeleteEqualizer(int id)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRes;
@@ -3750,7 +3756,7 @@ int Library::DeleteEqualizer(int id)
 
 int Library::UpdateEqualizer(int id, const EQSettings& eq)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRes;
@@ -3828,7 +3834,7 @@ int Library::UpdateEqualizer(int id, const EQSettings& eq)
 
 int Library::UpdateDefaultCrossfader(const Crossfader& fader)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRes;
@@ -3861,7 +3867,7 @@ int Library::UpdateDefaultCrossfader(const Crossfader& fader)
 
 int Library::UpdateDefaultEqualizer(const EQSettings& eq)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRes;
@@ -3936,7 +3942,7 @@ int Library::UpdateDefaultEqualizer(const EQSettings& eq)
 
 int Library::GetDefaultCrossfader(Crossfader& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -3966,7 +3972,7 @@ int Library::GetDefaultCrossfader(Crossfader& target)
 
 int Library::GetDefaultEqualizer(EQSettings& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -3996,7 +4002,7 @@ int Library::GetDefaultEqualizer(EQSettings& target)
 
 int Library::ResetDefaultEqualizer()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRes;
@@ -4034,7 +4040,7 @@ int Library::ResetDefaultEqualizer()
 
 int Library::ResetDefaultCrossfader()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRes;
@@ -4070,7 +4076,7 @@ int Library::ResetDefaultCrossfader()
 
 int Library::GetEqualizer(int eq_id, EQSettings& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4111,7 +4117,7 @@ int Library::GetEqualizer(int eq_id, EQSettings& target)
 
 int  Library::GetAllEqualizerPresets(StringArray& target, IntArray& target_ids, bool clear_targets)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_targets)
@@ -4171,7 +4177,7 @@ int  Library::GetAllEqualizerPresets(StringArray& target, IntArray& target_ids, 
 
 int Library::GetSongFormatFromID(int id, String& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4200,7 +4206,7 @@ int Library::GetSongFormatFromID(int id, String& target)
 
 void Library::GetInfoArrayFromPlaylist(Playlist& playlist, SongInfoArray& info, int replace_field_type, String new_field, bool clear)
 {
-    if (clear)
+	if (clear)
         info.clear();
 
     SongInfo tmp_info;
@@ -4235,7 +4241,7 @@ void Library::GetInfoArrayFromPlaylist(Playlist& playlist, SongInfoArray& info, 
 
 void Library::GetInfoArrayFromPlaylist(Playlist& playlist, SongInfoArray& info, int from, int to)
 {
-    info.clear();
+	info.clear();
 
     SongInfo tmp_info;
     Library* curr;
@@ -4267,7 +4273,7 @@ void Library::GetInfoArrayFromPlaylist(Playlist& playlist, SongInfoArray& info, 
 
 int Library::GetDirtySongs(Playlist& target)
 {
-    target.SetType(MUSIK_PLAYLIST_TYPE_STANDARD);
+	target.SetType(MUSIK_PLAYLIST_TYPE_STANDARD);
     return QuerySongs("dirty = 1", target);
 }
 
@@ -4275,7 +4281,7 @@ int Library::GetDirtySongs(Playlist& target)
 
 int Library::FinalizeDirtySongs()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4302,9 +4308,9 @@ int Library::FinalizeDirtySongs()
 
 ///////////////////////////////////////////////////
 
-int Library::AddMask(const String& mask)
+int Library::AddMask(const String& mask)  //Somebody STOP me!
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4332,7 +4338,7 @@ int Library::AddMask(const String& mask)
 
 int Library::RemoveMask(const String& mask)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4360,7 +4366,7 @@ int Library::RemoveMask(const String& mask)
 
 int Library::GetAllMasks(StringArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -4393,7 +4399,7 @@ int Library::GetAllMasks(StringArray& target, bool clear_target)
 
 int Library::AddChgCase(const String& word)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4421,7 +4427,7 @@ int Library::AddChgCase(const String& word)
 
 int Library::RemoveChgCase(const String& word)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4449,7 +4455,7 @@ int Library::RemoveChgCase(const String& word)
 
 int Library::GetAllChgCase(StringArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -4482,7 +4488,7 @@ int Library::GetAllChgCase(StringArray& target, bool clear_target)
 
 int Library::AddPath(const String& path)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4510,7 +4516,7 @@ int Library::AddPath(const String& path)
 
 int Library::RemovePath(const String& path)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4538,7 +4544,7 @@ int Library::RemovePath(const String& path)
 
 int Library::GetAllPaths(StringArray& target, bool clear_target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     if (clear_target)
@@ -4569,7 +4575,7 @@ int Library::GetAllPaths(StringArray& target, bool clear_target)
 
 void Library::ReloadTags(Song& song)
 {
-    SongInfo info(this);
+	SongInfo info(this);
     info.SetID(song.GetID());
     info.Requery();    
     info.LoadInfo(info.GetFilename());
@@ -4582,7 +4588,7 @@ void Library::ReloadTags(Song& song)
 
 void Library::ClearLibrary(bool clear_all_tables)
 {
-    m_ProtectingLibrary.lock();
+	m_ProtectingLibrary.lock();
         sqlite3_exec(m_pDB, "delete from songs;", NULL, NULL, NULL);
 
         if (clear_all_tables)
@@ -4605,7 +4611,7 @@ void Library::ClearLibrary(bool clear_all_tables)
 
 int Library::UpdateTimesPlayed(SongInfo& song)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4615,7 +4621,39 @@ int Library::UpdateTimesPlayed(SongInfo& song)
     String query;
     query.Format(
         _T(" UPDATE %ls ") 
-        _T(" SET timesplayed = (timesplayed + 1), lastplayed = %ls ")
+        _T(" SET timesplayed = (timesplayed + 1) ")
+        _T(" WHERE songid = %d;"),
+        SONG_TABLE_NAME,
+        _T("julianday('now')"),
+        song.GetID());
+
+    nRet = sqlite3_exec(
+        m_pDB, 
+        utf16to8(query).c_str(), 
+        NULL, NULL, NULL);
+
+    m_ProtectingLibrary.unlock();
+
+    return nRet;
+
+    return -1;
+}
+
+///////////////////////////////////////////////////
+
+int Library::UpdateLastPlayed(SongInfo& song)
+{
+	if (!m_DatabaseOpen)
+        return MUSIK_LIBRARY_NOT_OPEN;
+
+    int nRet;
+
+    m_ProtectingLibrary.lock();
+
+    String query;
+    query.Format(
+        _T(" UPDATE %ls ") 
+        _T(" SET lastplayed = %ls ")
         _T(" WHERE songid = %d;"),
         SONG_TABLE_NAME,
         _T("julianday('now')"),
@@ -4638,7 +4676,7 @@ int Library::UpdateTimesPlayed(SongInfo& song)
 
 int Library::UpdatePlayTime(SongInfo& song)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     int nRet;
@@ -4673,7 +4711,7 @@ int Library::UpdatePlayTime(SongInfo& song)
 
 int Library::SortPlaylist(Playlist* playlist, int field, bool descending)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String sQuery;
@@ -4720,7 +4758,7 @@ int Library::SortPlaylist(Playlist* playlist, int field, bool descending)
 
 void Library::DeleteSong(String& fn)
 {
-    m_ProtectingLibrary.lock();
+	m_ProtectingLibrary.lock();
 
     String realfn = fn;
 #if defined(WIN32) || defined(__MINGW32__)
@@ -4746,7 +4784,7 @@ void Library::DeleteSong(String& fn)
 
 void Library::DeleteSongs(Playlist& songs)
 {
-    String filename;
+	String filename;
     std::stack<Library*> libs;
     Library* curr;
 
@@ -4781,7 +4819,7 @@ void Library::DeleteSongs(Playlist& songs)
 
 int Library::GetAllFns(String& items)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;    
 
     items.clear();
@@ -4802,14 +4840,14 @@ int Library::GetAllFns(String& items)
 
 void Library::QueueTask(Task* ptrTask)
 {
-    m_Tasks.Push(ptrTask);
+	m_Tasks.Push(ptrTask);
 }
 
 ///////////////////////////////////////////////////
 
 void Library::FlushTaskQueue()
 {
-    m_Tasks.Flush();
+	m_Tasks.Flush();
 }
 
 ///////////////////////////////////////////////////
@@ -4832,7 +4870,7 @@ int Library::Rand(int min, int max)
 
 const String Library::GetRandom(int field, size_t count)
 {
-    StringArray target;
+	StringArray target;
     GetAllDistinct(field, target, true);
 
     if (target.size() < count)
@@ -4866,7 +4904,7 @@ const String Library::GetRandom(int field, size_t count)
 
 int Library::GetNextArtist(String& artist_name, Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String query;
@@ -4930,7 +4968,7 @@ int Library::GetNextArtist(String& artist_name, Playlist& target)
 
 int Library::GetPrevArtist(String& artist_name, Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String query;
@@ -4994,7 +5032,7 @@ int Library::GetPrevArtist(String& artist_name, Playlist& target)
 
 int Library::GetNextAlbum(String& artist_name, String& album_name, Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String query;
@@ -5067,7 +5105,7 @@ int Library::GetNextAlbum(String& artist_name, String& album_name, Playlist& tar
 
 int Library::GetPrevAlbum(String& artist_name, String& album_name, Playlist& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     String query;
@@ -5140,7 +5178,7 @@ int Library::GetPrevAlbum(String& artist_name, String& album_name, Playlist& tar
 
 void Library::GetRandom(int field, Playlist& target, bool clear_target, size_t count)
 {
-    StringArray all_items;
+	StringArray all_items;
     GetAllDistinct(field, all_items, true);
 
     if (all_items.size() < count)
@@ -5188,7 +5226,7 @@ void Library::GetRandom(int field, Playlist& target, bool clear_target, size_t c
 
 int Library::GetTaskType()
 {
-    if (m_Tasks.size())
+	if (m_Tasks.size())
     {
         return m_Tasks.front()->GetType();
     }
@@ -5200,7 +5238,7 @@ int Library::GetTaskType()
 
 int Library::RemoveFromStdPlaylist(const SongArray& items, int playlistid)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return MUSIK_LIBRARY_NOT_OPEN;
 
     musikCore::String in_stmt, temp;
@@ -5237,7 +5275,7 @@ int Library::RemoveFromStdPlaylist(const SongArray& items, int playlistid)
 
 static int sqlite_RemLibFnUpdate(void *args, int numCols, char **results, char ** columnNames)
 {
-    SongInfo *pLibItem = new SongInfo();
+	SongInfo *pLibItem = new SongInfo();
 
     pLibItem->SetID(atoi(results[0])); 
     pLibItem->SetFilename(results[1]);
@@ -5254,14 +5292,14 @@ static int sqlite_RemLibFnUpdate(void *args, int numCols, char **results, char *
 RemLibrary::RemLibrary(const String& filename)
 : Library(filename)
 {
-    InitRemPathTable();
+	InitRemPathTable();
 }
 
 ///////////////////////////////////////////////////
 
 String RemLibrary::GetRemPath()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
     {
         return _T("");
     }
@@ -5289,7 +5327,7 @@ String RemLibrary::GetRemPath()
 
 void RemLibrary::SetRemPath(const String& path, bool update_all_songs)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
     {
         return;
     }
@@ -5384,7 +5422,7 @@ void RemLibrary::SetRemPath(const String& path, bool update_all_songs)
 
 bool RemLibrary::InitRemPathTable()
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return false;
 
     bool error = false;
@@ -5422,7 +5460,7 @@ bool RemLibrary::InitRemPathTable()
 
 int Library::UpdatePlaylistOrder(const PlaylistInfo& target)
 {
-    if (!m_DatabaseOpen)
+	if (!m_DatabaseOpen)
         return -1;
 
     int nRet = -1;
@@ -5466,7 +5504,7 @@ int Library::UpdatePlaylistOrder(const PlaylistInfo& target)
 
 void Library::Claim(Playlist& playlist)
 {
-    for (size_t i = 0; i < playlist.size(); i++)
+	for (size_t i = 0; i < playlist.size(); i++)
         playlist.at(i).SetLibrary(this);
 }
 
@@ -5474,11 +5512,68 @@ void Library::Claim(Playlist& playlist)
 
 void Library::Claim(SongInfoArray& songs)
 {
-    for (size_t i = 0; i < songs.size(); i++)
+	for (size_t i = 0; i < songs.size(); i++)
         songs.at(i).SetLibrary(this);
 }
 
 ///////////////////////////////////////////////////
+
+int Library::GetLastSong( int songid, Library *lib )
+{
+	String query;
+	query.Format(
+		_T( " SELECT DISTINCT julianday( lastplayed ) " )
+		_T( " FROM %ls " )
+		_T( " WHERE lastplayed > 0 " )
+		_T( " AND songid = %d " )
+		_T( " LIMIT 1 " ),
+		SONG_TABLE_NAME,
+		songid);
+
+	String lastplayed;
+	sqlite3_exec(
+		lib->m_pDB,
+		utf16to8( query ).c_str(),
+		&LibraryCallbacks::GetStringFromRow,
+		&lastplayed,
+		NULL);
+
+	query.clear();
+	query.Format(
+		_T( " SELECT DISTINCT songid " )
+		_T( " FROM %ls " )
+		_T( " WHERE julianday( lastplayed ) < %ls " )
+		_T( " AND julianday( lastplayed ) > 0 " )
+		_T( " ORDER BY julianday( lastplayed ) DESC " )
+		_T( " LIMIT 1 " ),
+		SONG_TABLE_NAME,
+		lastplayed.c_str());
+
+	int newid;
+	sqlite3_exec(
+		lib->m_pDB,
+		utf16to8( query ).c_str(),
+		&LibraryCallbacks::GetIntFromRow,
+		&newid,
+		NULL);
+
+	query.clear();
+	query.Format(
+		_T( " UPDATE %ls " )
+		_T( " SET lastplayed=0 " )
+		_T( " WHERE lastplayed > %ls " ),
+		SONG_TABLE_NAME,
+		lastplayed.c_str());
+
+	sqlite3_exec(
+		lib->m_pDB,
+		utf16to8( query ).c_str(),
+		NULL,
+		NULL,
+		NULL);
+
+	return newid;
+}
 
 
 

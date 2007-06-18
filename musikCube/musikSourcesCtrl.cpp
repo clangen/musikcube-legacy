@@ -2067,7 +2067,10 @@ void CmusikSourcesCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 {
     ScreenToClient(&point);
     m_RightClick = this->m_PropTree->FindItem(point);
+	if (!(m_RightClick == NULL))
+	{
     this->ShowDockBarMenu();
+	}
 }
 
 ///////////////////////////////////////////////////

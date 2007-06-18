@@ -54,6 +54,7 @@ public:
     static int GetCrossfader(void *args, int numCols, char **results, char ** columnNames);
     static int GetEqualizer(void *args, int numCols, char **results, char ** columnNames);
     static int GetSongInfoFromID(void *args, int numCols, char **results, char ** columnNames);
+	static int GetSongInfoFromIDUpdate(void *args, int numCols, char **results, char ** columnNames);
     static int AddSongToStringArray(void *args, int numCols, char **results, char ** columnNames);
     static int GetIntFromRow(void *args, int numCols, char **results, char ** columnNames);
     static int GetStringFromRow(void *args, int numCols, char **results, char ** columnNames);

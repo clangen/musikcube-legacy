@@ -514,10 +514,10 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,10,143,10
     CONTROL         "Double clicking a song starts playback and sets the visible playlist as the Now Playing playlist",
                     IDC_WHOLEPLAYLIST,"Button",BS_AUTORADIOBUTTON | 
-                    BS_MULTILINE | WS_GROUP,7,28,192,18
+                    BS_MULTILINE | WS_GROUP,7,30,192,18
     CONTROL         "Double clicking a song queues it in Now Playing",
                     IDC_QUEUESONG,"Button",BS_AUTORADIOBUTTON | BS_MULTILINE,
-                    7,46,186,12
+                    7,48,186,12
 END
 
 IDD_PROPPAGE_SOUND_DRIVER DIALOGEX 0, 0, 210, 154
@@ -1017,49 +1017,52 @@ BEGIN
                     WS_TABSTOP,66,36,102,108
 END
 
-IDD_GLOBAL_HOTKEYS DIALOGEX 0, 0, 296, 134
+IDD_GLOBAL_HOTKEYS DIALOGEX 0, 0, 302, 153
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
 CAPTION "musikCube - Edit Global Hotkeys"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     CONTROL         "Enable Global Hotkeys",IDC_ENABLEHOTKEYS_CHECKBOX,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,104,4,87,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,21,17,87,10
     CONTROL         "",IDC_PLAYPAUSE_HOTKEY,"msctls_hotkey32",WS_BORDER | 
-                    WS_TABSTOP,64,22,74,14
-    CONTROL         "",IDC_STOP_HOTKEY,"msctls_hotkey32",WS_BORDER | 
                     WS_TABSTOP,64,40,74,14
-    CONTROL         "",IDC_NEXTTRACK_HOTKEY,"msctls_hotkey32",WS_BORDER | 
+    CONTROL         "",IDC_STOP_HOTKEY,"msctls_hotkey32",WS_BORDER | 
                     WS_TABSTOP,64,58,74,14
+    CONTROL         "",IDC_NEXTTRACK_HOTKEY,"msctls_hotkey32",WS_BORDER | 
+                    WS_TABSTOP,64,76,74,14
     CONTROL         "",IDC_PREVTRACK_HOTKEY,"msctls_hotkey32",WS_BORDER | 
-                    WS_TABSTOP,64,75,74,14
-    CONTROL         "",IDC_VOLUMEUP_HOTKEY,"msctls_hotkey32",WS_BORDER | 
                     WS_TABSTOP,64,93,74,14
+    CONTROL         "",IDC_VOLUMEUP_HOTKEY,"msctls_hotkey32",WS_BORDER | 
+                    WS_TABSTOP,64,111,74,14
     CONTROL         "",IDC_VOLUMEDOWN_HOTKEY,"msctls_hotkey32",WS_BORDER | 
-                    WS_TABSTOP,217,22,75,14
-    CONTROL         "",IDC_NEXTARTIST_HOTKEY,"msctls_hotkey32",WS_BORDER | 
                     WS_TABSTOP,217,40,75,14
-    CONTROL         "",IDC_PREVARTIST_HOTKEY,"msctls_hotkey32",WS_BORDER | 
+    CONTROL         "",IDC_NEXTARTIST_HOTKEY,"msctls_hotkey32",WS_BORDER | 
                     WS_TABSTOP,217,58,75,14
+    CONTROL         "",IDC_PREVARTIST_HOTKEY,"msctls_hotkey32",WS_BORDER | 
+                    WS_TABSTOP,217,76,75,14
     CONTROL         "",IDC_NEXTALBUM_HOTKEY,"msctls_hotkey32",WS_BORDER | 
-                    WS_TABSTOP,217,75,75,14
-    CONTROL         "",IDC_PREVALBUM_HOTKEY,"msctls_hotkey32",WS_BORDER | 
                     WS_TABSTOP,217,93,75,14
-    PUSHBUTTON      "Cancel",IDC_CANCEL_HOTKEYS_CANCEL_BUTTON,242,116,50,14
-    PUSHBUTTON      "OK",IDC_HOTKEYS_OK_BUTTON,187,116,50,14
-    RTEXT           "Play or Pause:",IDC_STATIC,4,22,56,14,SS_CENTERIMAGE
-    RTEXT           "Volume Down:",IDC_STATIC,156,22,56,14,SS_CENTERIMAGE
-    RTEXT           "Stop:",IDC_STATIC,4,40,56,14,SS_CENTERIMAGE
-    RTEXT           "Next Artist:",IDC_STATIC,156,40,56,14,SS_CENTERIMAGE
-    RTEXT           "Next Track:",IDC_STATIC,4,58,56,14,SS_CENTERIMAGE
-    RTEXT           "Previous Artist:",IDC_STATIC,156,58,56,14,
+    CONTROL         "",IDC_PREVALBUM_HOTKEY,"msctls_hotkey32",WS_BORDER | 
+                    WS_TABSTOP,217,111,75,14
+    PUSHBUTTON      "Cancel",IDC_CANCEL_HOTKEYS_CANCEL_BUTTON,242,135,50,14
+    PUSHBUTTON      "OK",IDC_HOTKEYS_OK_BUTTON,187,135,50,14
+    RTEXT           "Play or Pause:",IDC_STATIC,4,40,56,14,SS_CENTERIMAGE
+    RTEXT           "Volume Down:",IDC_STATIC,156,40,56,14,SS_CENTERIMAGE
+    RTEXT           "Stop:",IDC_STATIC,4,58,56,14,SS_CENTERIMAGE
+    RTEXT           "Next Artist:",IDC_STATIC,156,58,56,14,SS_CENTERIMAGE
+    RTEXT           "Next Track:",IDC_STATIC,4,76,56,14,SS_CENTERIMAGE
+    RTEXT           "Previous Artist:",IDC_STATIC,156,76,56,14,
                     SS_CENTERIMAGE
-    RTEXT           "Previous Track:",IDC_STATIC,4,75,56,14,SS_CENTERIMAGE
-    RTEXT           "Next Album:",IDC_STATIC,156,75,56,14,SS_CENTERIMAGE
-    RTEXT           "Volume Up:",IDC_STATIC,4,93,56,14,SS_CENTERIMAGE
-    RTEXT           "Previous Album:",IDC_STATIC,156,93,56,14,SS_CENTERIMAGE
-    CONTROL         "",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,4,
-                    110,288,1,WS_EX_STATICEDGE
+    RTEXT           "Previous Track:",IDC_STATIC,4,93,56,14,SS_CENTERIMAGE
+    RTEXT           "Next Album:",IDC_STATIC,156,93,56,14,SS_CENTERIMAGE
+    RTEXT           "Volume Up:",IDC_STATIC,4,111,56,14,SS_CENTERIMAGE
+    RTEXT           "Previous Album:",IDC_STATIC,156,111,56,14,
+                    SS_CENTERIMAGE
+    CONTROL         "Multimedia keyboard volume keys control musikCube volume",
+                    IDC_VOLUMEKEYS_CONTROL_MUSIKCUBE_VOL_CHECKBOX,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,173,13,119,
+                    18
 END
 
 
@@ -1122,7 +1125,7 @@ BEGIN
 
     IDD_PROPPAGE_INTERFACE_WORKFLOW, DIALOG
     BEGIN
-        LEFTMARGIN, 5
+        LEFTMARGIN, 7
         RIGHTMARGIN, 203
         VERTGUIDE, 15
         TOPMARGIN, 7
@@ -1333,7 +1336,7 @@ BEGIN
     IDD_GLOBAL_HOTKEYS, DIALOG
     BEGIN
         LEFTMARGIN, 4
-        RIGHTMARGIN, 292
+        RIGHTMARGIN, 298
         VERTGUIDE, 60
         VERTGUIDE, 64
         VERTGUIDE, 138
@@ -1342,7 +1345,7 @@ BEGIN
         VERTGUIDE, 212
         VERTGUIDE, 217
         TOPMARGIN, 4
-        BOTTOMMARGIN, 130
+        BOTTOMMARGIN, 149
         HORZGUIDE, 22
         HORZGUIDE, 36
         HORZGUIDE, 40

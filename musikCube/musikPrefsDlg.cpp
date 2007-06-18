@@ -118,7 +118,7 @@ void CmusikPrefsInterfaceWorkflow::CommitChanges()
     }
     else
         musikCube::g_Prefs->SetFileDropPrompt(-1);
-
+	
     CButton* ptrBtn;
 
     // now playing

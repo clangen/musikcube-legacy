@@ -43,7 +43,7 @@
 
 CmusikPrefs::CmusikPrefs(musikCore::String& filename)
 {
-    string fn = musikCore::utf16to8(filename, false);
+	string fn = musikCore::utf16to8(filename, false);
     config = new CIniFile(fn);
 
     if (!config->ReadFile())
@@ -69,7 +69,7 @@ CmusikPrefs::CmusikPrefs(musikCore::String& filename)
 
 CmusikPrefs::~CmusikPrefs()
 {
-    SavePrefs();
+	SavePrefs();
     delete config;
 }
 
@@ -77,7 +77,7 @@ CmusikPrefs::~CmusikPrefs()
 
 void CmusikPrefs::LoadPrefs()
 {
-    // main dialog
+	// main dialog
     m_Lib_Path                  = config->GetValue("Library", "Path", "~/.musikproject/musik_u.db");
 
     m_Dlg_Size                      = StringToCSize(config->GetValue("Dialog", "Dialog Size", "800x600"));
@@ -100,6 +100,7 @@ void CmusikPrefs::LoadPrefs()
 
     // hotkeys
     m_Hotkey_Enable         = StringToBool(config->GetValue("Hotkeys", "UseGlobalHotkeys", "1"));
+	m_Hotkey_Volume_Enable  = StringToBool(config->GetValue("Hotkeys", "EnableVolumekeys", "0"));
     m_Hotkey_PlayPause      = (DWORD) StringToInt(config->GetValue("Hotkeys", "PlayPause", "1637"));
     m_Hotkey_Stop           = (DWORD) StringToInt(config->GetValue("Hotkeys", "Stop", "1632"));
     m_Hotkey_NextTrack      = (DWORD) StringToInt(config->GetValue("Hotkeys", "NextTrack", "1638"));
@@ -205,7 +206,7 @@ void CmusikPrefs::LoadPrefs()
 
 void CmusikPrefs::SavePrefs()
 {
-    // main dialog
+	// main dialog
     config->SetValue("Library", "Path", m_Lib_Path);
 
     config->SetValue("Dialog", "Dialog Size", CSizeToString(m_Dlg_Size));
@@ -228,6 +229,7 @@ void CmusikPrefs::SavePrefs()
 
     // hotkeys
     config->SetValue("Hotkeys", "UseGlobalHotkeys", BoolToString(m_Hotkey_Enable));
+	config->SetValue("Hotkeys", "EnableVolumekeys", BoolToString(m_Hotkey_Volume_Enable));
     config->SetValue("Hotkeys", "PlayPause", IntToString(m_Hotkey_PlayPause));
     config->SetValue("Hotkeys", "Stop", IntToString(m_Hotkey_Stop));
     config->SetValue("Hotkeys", "NextTrack", IntToString(m_Hotkey_NextTrack));
@@ -291,7 +293,7 @@ void CmusikPrefs::SavePrefs()
     config->SetValue("Equalizer", "Set Name", IntToString(m_Equalizer_Current));
     config->SetValue("Equalizer", "Band State", IntToString(m_Equalizer_Band_State));
     config->SetValue("Equalizer", "Channels Locked", BoolToString(m_Equalizer_Locked));
-    config->SetValue("Equalizer", "Use Global Equalizer", BoolToString(m_Equalizer_Global));
+    config->SetValue("Equalizer", "Use Global Equalizer", BoolToString(m_Dlg_Smart_Previous));
     config->SetValue("Equalizer", "Multiplier", FloatToString(m_Equalizer_Multiplier));
 
     // dialog colors
@@ -340,7 +342,7 @@ void CmusikPrefs::SavePrefs()
 
 string CmusikPrefs::GetDefPlaylistOrder()
 {
-    stringstream sstr;
+	stringstream sstr;
     sstr << musikCore::MUSIK_LIBRARY_TYPE_TRACKNUM << "," <<
             musikCore::MUSIK_LIBRARY_TYPE_TITLE << "," << 
             musikCore::MUSIK_LIBRARY_TYPE_ARTIST << "," << 
@@ -356,7 +358,7 @@ string CmusikPrefs::GetDefPlaylistOrder()
 
 string CmusikPrefs::GetDefPlaylistSizes()
 {
-    string sRet = "50,168,100,100,80,60,70";
+	string sRet = "50,168,100,100,80,60,70";
     return sRet;
 }
 

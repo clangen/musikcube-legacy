@@ -47,7 +47,7 @@
 
 void GlobalHotkeys::SetHotkey(HWND hwnd, enum Hotkey hotkey, DWORD serializedHotkey)
 {
-    if (serializedHotkey != 0)
+	if (serializedHotkey != 0)
     {
         WORD virtualKey, modifiers;
         GlobalHotkeys::DeserializeHotkey(serializedHotkey, virtualKey, modifiers);
@@ -66,7 +66,7 @@ void GlobalHotkeys::SetHotkey(HWND hwnd, enum Hotkey hotkey, DWORD serializedHot
 
 void GlobalHotkeys::ReloadHotkeys()
 {
-    CmusikCubeFrame* musikFrame = (CmusikCubeFrame*) AfxGetApp()->GetMainWnd();
+	CmusikCubeFrame* musikFrame = (CmusikCubeFrame*) AfxGetApp()->GetMainWnd();
     HWND musikHWND = musikFrame->GetSafeHwnd();
 
     GlobalHotkeys::UnloadHotkeys();
@@ -94,7 +94,7 @@ void GlobalHotkeys::ReloadHotkeys()
 
 void GlobalHotkeys::UnloadHotkeys()
 {
-    CmusikCubeFrame* musikFrame = (CmusikCubeFrame*) AfxGetApp()->GetMainWnd();
+	CmusikCubeFrame* musikFrame = (CmusikCubeFrame*) AfxGetApp()->GetMainWnd();
     HWND musikHWND = musikFrame->GetSafeHwnd();
 
     ::UnregisterHotKey(musikHWND, Hotkey::PlayPauseResume);
@@ -120,10 +120,14 @@ void GlobalHotkeys::UnloadHotkeys()
 
 bool GlobalHotkeys::ProcessHotkey(enum GlobalHotkeys::Hotkey hotkey, std::wstring& statusString)
 {
-    CmusikCubeFrame* musikFrame = (CmusikCubeFrame*) AfxGetApp()->GetMainWnd();
+	CmusikCubeFrame* musikFrame = (CmusikCubeFrame*) AfxGetApp()->GetMainWnd();
     HWND musikHWND = musikFrame->GetSafeHwnd();
-
-    switch(hotkey)
+	if (!musikCube::g_Prefs->GetUseVolumeHotkeys())
+	{
+		::UnregisterHotKey(musikHWND, Hotkey::MediaKeyVolumeUp);
+		::UnregisterHotKey(musikHWND, Hotkey::MediaKeyVolumeDown);
+	}
+	switch(hotkey)
     {
     ////////////////////////
     // play, pause, resume
@@ -188,39 +192,46 @@ bool GlobalHotkeys::ProcessHotkey(enum GlobalHotkeys::Hotkey hotkey, std::wstrin
     // volume up
     ////////////////////////
     case Hotkey::VolumeUp:
-    case Hotkey::MediaKeyVolumeUp:
-        {
-            int volume = musikCube::g_Player->GetMaxVolume() + 12;
-            if (volume > 255) volume = 255;
-            musikCube::g_Player->SetMaxVolume(volume);
-            musikFrame->m_NowPlayingView->GetCtrl()->UpdateVolume();     // hack
-            
-            int vol = 100 * musikCube::g_Player->GetMaxVolume() / 255;
-            musikCore::String info;
-            info.Format(_T("Volume: %d%%"), vol);
-            //
-            statusString = info;
-        }
-        return true;
+	case Hotkey::MediaKeyVolumeUp:
+		{
+			int volume = musikCube::g_Player->GetMaxVolume() + 12;
+			if (volume > 255)
+			{
+				volume = 255;
+			}
+			musikCube::g_Player->SetMaxVolume(volume);
+			musikFrame->m_NowPlayingView->GetCtrl()->UpdateVolume();     // hack
+				
+			int vol = 100 * musikCube::g_Player->GetMaxVolume() / 255;
+			musikCore::String info;
+			info.Format(_T("Volume: %d%%"), vol);
+			//
+			statusString = info;
+		}
+		return true;
+
 
     ////////////////////////
     // volume down
     ////////////////////////
     case Hotkey::VolumeDown:
-    case Hotkey::MediaKeyVolumeDown:
-        {
-            int volume = musikCube::g_Player->GetMaxVolume() - 12;
-            if (volume < 0) volume = 0;
-            musikCube::g_Player->SetMaxVolume(volume);
-            musikFrame->m_NowPlayingView->GetCtrl()->UpdateVolume();     // hack
+	case Hotkey::MediaKeyVolumeDown:
+		{
+			int volume = musikCube::g_Player->GetMaxVolume() - 12;
+			if (volume < 0)
+			{
+				volume = 0;
+			}
+			musikCube::g_Player->SetMaxVolume(volume);
+			musikFrame->m_NowPlayingView->GetCtrl()->UpdateVolume();     // hack
+					int vol = 100 * musikCube::g_Player->GetMaxVolume() / 255;
+			musikCore::String info;
+			info.Format(L"Volume: %d%%", vol);
+			//
+			statusString = info;
+		}
+		return true;
 
-            int vol = 100 * musikCube::g_Player->GetMaxVolume() / 255;
-            musikCore::String info;
-            info.Format(L"Volume: %d%%", vol);
-            //
-            statusString = info;
-        }
-        return true;
 
     ////////////////////////
     // previous artist, next artist, prev artist album, next artist album
@@ -269,12 +280,14 @@ bool GlobalHotkeys::ProcessHotkey(enum GlobalHotkeys::Hotkey hotkey, std::wstrin
 
     return false;
 }
+	
+
 
 ///////////////////////////////////////////////////
 
 void GlobalHotkeys::DeserializeHotkey(DWORD hotkey, WORD& virtualKey, WORD& modifiers)
 {
-    short hotkeyShort = (short) hotkey;
+	short hotkeyShort = (short) hotkey;
     virtualKey = (WORD) (hotkeyShort & 0x00ff);
     modifiers = (WORD) ((hotkeyShort >> 8) & 0x0ff);
 }

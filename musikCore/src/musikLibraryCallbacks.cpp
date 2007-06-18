@@ -49,7 +49,7 @@ using namespace musikCore;
 
 int LibraryCallbacks::AddSongToPlaylist(void *args, int numCols, char **results, char ** columnNames)
 {
-    if (numCols == 3)
+	if (numCols == 3)
     {
         Song song;
         song.SetID(atoi(results[0])); 
@@ -70,7 +70,7 @@ int LibraryCallbacks::AddSongToPlaylist(void *args, int numCols, char **results,
 
 int LibraryCallbacks::GetSongAttr(void *args, int numCols, char **results, char ** columnNames)
 {
-    Song* p = (Song*)args;
+	Song* p = (Song*)args;
 
     p->SetID(atoi(results[0])); 
     p->SetDuration(atoi(results[1]) / 1000);
@@ -83,7 +83,7 @@ int LibraryCallbacks::GetSongAttr(void *args, int numCols, char **results, char 
 
 int LibraryCallbacks::GetFieldFromID(void *args, int numCols, char **results, char ** columnNames)
 {
-    String* p = (String*)args;
+	String* p = (String*)args;
     *p = String(utf8to16(results[0])); 
 
     return 0;
@@ -93,7 +93,7 @@ int LibraryCallbacks::GetFieldFromID(void *args, int numCols, char **results, ch
 
 int LibraryCallbacks::GetCrossfader(void *args, int numCols, char **results, char ** columnNames)
 {
-    Crossfader* p = (Crossfader*)args;
+	Crossfader* p = (Crossfader*)args;
 
     p->Set(
         (float)atof(results[0]), 
@@ -114,7 +114,7 @@ int LibraryCallbacks::GetCrossfader(void *args, int numCols, char **results, cha
 
 int LibraryCallbacks::GetEqualizer(void *args, int numCols, char **results, char ** columnNames)
 {
-    EQSettings* p = (EQSettings*)args;
+	EQSettings* p = (EQSettings*)args;
 
     int offset;
     if (numCols == 37)
@@ -171,7 +171,7 @@ int LibraryCallbacks::GetEqualizer(void *args, int numCols, char **results, char
 
 int LibraryCallbacks::GetSongInfoFromID(void *args, int numCols, char **results, char ** columnNames)
 {
-    SongInfo* p = (SongInfo*)args;
+	SongInfo* p = (SongInfo*)args;
 
     p->SetTrackNum      (results[0]);
     p->SetArtist        (utf8to16(results[1]));
@@ -184,7 +184,34 @@ int LibraryCallbacks::GetSongInfoFromID(void *args, int numCols, char **results,
     p->SetYear          (results[8]);
     p->SetRating        (results[9]);
     p->SetBitrate       (results[10]);
-    p->SetLastPlayed    (results[11]);
+	p->SetLastPlayed    (results[11]);
+    p->SetNotes         (utf8to16(results[12]));
+    p->SetTimesPlayed   (results[13]);
+    p->SetTimeAdded     (results[14]);
+    p->SetFilesize      (results[15]);
+    p->SetFilename      (utf8to16(results[16]));
+    p->SetEqualizer     (results[17]);
+    p->SetDirtyFlag     (results[18]);
+
+    return 0;
+}
+
+int LibraryCallbacks::GetSongInfoFromIDUpdate(void *args, int numCols, char **results, char ** columnNames)
+{
+	SongInfo* p = (SongInfo*)args;
+
+    p->SetTrackNum      (results[0]);
+    p->SetArtist        (utf8to16(results[1]));
+    p->SetAlbum         (utf8to16(results[2]));
+    p->SetGenre         (utf8to16(results[3]));
+    p->SetTitle         (utf8to16(results[4]));
+    p->SetDuration      (results[5]);
+    p->SetFormat        (results[6]);
+    p->SetVBR           (results[7]);
+    p->SetYear          (results[8]);
+    p->SetRating        (results[9]);
+    p->SetBitrate       (results[10]);
+	p->SetLastPlayed    (results[11]);
     p->SetNotes         (utf8to16(results[12]));
     p->SetTimesPlayed   (results[13]);
     p->SetTimeAdded     (results[14]);
@@ -200,7 +227,7 @@ int LibraryCallbacks::GetSongInfoFromID(void *args, int numCols, char **results,
 
 int LibraryCallbacks::AddSongToStringArray(void *args, int numCols, char **results, char ** columnNames)
 {
-    StringArray* p = (StringArray*)args;
+	StringArray* p = (StringArray*)args;
     p->push_back(utf8to16(results[0])); 
 
     return 0;
@@ -210,7 +237,7 @@ int LibraryCallbacks::AddSongToStringArray(void *args, int numCols, char **resul
 
 int LibraryCallbacks::GetIntFromRow(void *args, int numCols, char **results, char ** columnNames)
 {
-    int* n = (int*)args;
+	int* n = (int*)args;
     *n = atoi(results[0]); 
 
     return 0;
@@ -220,7 +247,7 @@ int LibraryCallbacks::GetIntFromRow(void *args, int numCols, char **results, cha
 
 int LibraryCallbacks::GetStringFromRow(void *args, int numCols, char **results, char ** columnNames)
 {
-    String* str = (String*)args;
+	String* str = (String*)args;
     *str = utf8to16(results[0]); 
 
     return 0;
@@ -230,7 +257,7 @@ int LibraryCallbacks::GetStringFromRow(void *args, int numCols, char **results, 
 
 int LibraryCallbacks::AppendFileStringFromRow(void *args, int numCols, char **results, char ** columnNames)
 {
-    String* str = (String*)args;
+	String* str = (String*)args;
     *str += utf8to16(results[0]); 
     *str += _T("\0");
 
@@ -241,7 +268,7 @@ int LibraryCallbacks::AppendFileStringFromRow(void *args, int numCols, char **re
 
 int LibraryCallbacks::AddRowToStringArray(void *args, int numCols, char **results, char ** columnNames)
 {
-    StringArray* p = (StringArray*)args;
+	StringArray* p = (StringArray*)args;
     p->push_back(utf8to16(results[0])); 
 
     return 0;
@@ -251,7 +278,7 @@ int LibraryCallbacks::AddRowToStringArray(void *args, int numCols, char **result
 
 int LibraryCallbacks::AddRowToIntArray(void *args, int numCols, char **results, char ** columnNames)
 {
-    IntArray* p = (IntArray*)args;
+	IntArray* p = (IntArray*)args;
     p->push_back(atoi(results[0])); 
 
     return 0;
@@ -260,7 +287,7 @@ int LibraryCallbacks::AddRowToIntArray(void *args, int numCols, char **results, 
 
 int LibraryCallbacks::AddStdPlaylistInfoArray(void *args, int numCols, char **results, char ** columnNames)
 {
-    PlaylistInfoArray* p = (PlaylistInfoArray*)args;
+	PlaylistInfoArray* p = (PlaylistInfoArray*)args;
 
     PlaylistInfo info (utf8to16(results[0]), MUSIK_PLAYLIST_TYPE_STANDARD, atoi(results[1]));
     info.m_Order = atoi(results[2]);
@@ -273,7 +300,7 @@ int LibraryCallbacks::AddStdPlaylistInfoArray(void *args, int numCols, char **re
 
 int LibraryCallbacks::AddDynPlaylistInfoArray(void *args, int numCols, char **results, char ** columnNames)
 {
-    PlaylistInfoArray* p = (PlaylistInfoArray*)args;
+	PlaylistInfoArray* p = (PlaylistInfoArray*)args;
 
     PlaylistInfo info (utf8to16(results[0]), MUSIK_PLAYLIST_TYPE_DYNAMIC, atoi(results[1]));
     info.m_Order = atoi(results[2]);

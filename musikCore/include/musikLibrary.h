@@ -55,6 +55,10 @@ using namespace OpenThreads;
 
 ///////////////////////////////////////////////////
 
+#define MUSIK_PREV_SONG 2
+
+///////////////////////////////////////////////////
+
 namespace musikCore {
 
 ///////////////////////////////////////////////////
@@ -995,6 +999,14 @@ public:
      */
     static int Rand(int min, int max);
 
+	/**
+	 * Get the last played song
+	 *
+	 * \param index current song
+	 * \return previous index
+	 */
+	static int GetLastSong( int songid, Library *lib );
+
     int QuerySongs(const String & query, Playlist & target);
     int QuerySongs(const String & query, Playlist & target, int orderBy);
     int RawQuerySongs(String query, Playlist& target);
@@ -1038,6 +1050,7 @@ protected:
     void VerifyYearList(StringArray & list);
     int UpdatePlayTime(SongInfo& song);
     int UpdateTimesPlayed(SongInfo& song);
+	int UpdateLastPlayed(SongInfo& song);
 
     void InitFields();
 
