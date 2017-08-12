@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
@@ -95,7 +95,7 @@ void CDSystem::QueryToPlaylist(CmusikPlaylistCDCtrl* playlist, musikCore::SongIn
 
     DWORD dwDiscID;
     cddb.ComputeDiscID(dwDiscID, drives.ElementAt(driveid));
- 
+
     int track_count = CDSystem::GetDiscTrackCount(driveid);
 
     musikCore::SongInfoArray* songs = new musikCore::SongInfoArray();
@@ -196,7 +196,7 @@ gottracks:
     else if (playlist)
     {
         playlist->SetSongInfoArray(songs);
-        playlist->Refresh(); 
+        playlist->Refresh();
         target = songs;
         return;
     }
@@ -212,7 +212,7 @@ CmusikRipDlg::CmusikRipDlg(CWnd* pParent /*=NULL*/)
     : CDialog(CmusikRipDlg::IDD, pParent)
 {
     m_Functor = new Functor(this);
-    m_Rip = NULL;   
+    m_Rip = NULL;
     m_DriveID = -1;
     m_Parent = pParent;
 }
@@ -223,7 +223,7 @@ CmusikRipDlg::CmusikRipDlg(CWnd* parent, int driveid)
     : CDialog(CmusikRipDlg::IDD, parent)
 {
     m_Functor = new Functor(this);
-    m_Rip = NULL;   
+    m_Rip = NULL;
     m_DriveID = driveid;
     m_Parent = parent;
 }
@@ -290,22 +290,24 @@ void CmusikRipDlg::RefreshDriveList()
 {
     CString str;
     int count = 0;
-    const char* pStr = BASS_CD_GetDriveDescription(count);
 
-    while (pStr != 0)
+    BASS_CD_INFO cdInfo = { 0 };
+    BOOL result = BASS_CD_GetInfo(count, &cdInfo);
+
+    while (result)
     {
         int drive = (int)'A';
-        drive += (int)BASS_CD_GetDriveLetter(count);
-    
+        drive += (int)(cdInfo.letter);
+
         str = _T("(");
         str += (wchar_t)drive;
         str += _T(":) ");
-        str += pStr;
+        str += cdInfo.product;
         m_DriveSel.AddString(str);
 
         count++;
-        pStr = BASS_CD_GetDriveDescription(count);
-    }    
+        result = BASS_CD_GetInfo(count, &cdInfo);
+    }
 }
 
 ///////////////////////////////////////////////////
@@ -322,7 +324,7 @@ void CmusikRipDlg::SetRipState(bool ripping)
     m_BrowseBtn.EnableWindow(!ripping);
     m_MaskBtn.EnableWindow(!ripping);
     m_WriteTags.EnableWindow(!ripping);
-    m_Rename.EnableWindow(!ripping); 
+    m_Rename.EnableWindow(!ripping);
     m_EditTrack.EnableWindow(!ripping);
     m_EditInfo.EnableWindow(!ripping);
     m_RipSelBtn.EnableWindow(!ripping);
@@ -354,8 +356,8 @@ void CmusikRipDlg::RipDisc(bool rip_selected)
 {
     m_DriveID = m_DriveSel.GetCurSel();    // make sure we know which drive is selected
 
-    if (musikCube::g_Player->IsPlaying() && 
-         musikCube::g_Player->GetPlayerType() == musikCore::MUSIK_PLAYER_CDROM && 
+    if (musikCube::g_Player->IsPlaying() &&
+         musikCube::g_Player->GetPlayerType() == musikCore::MUSIK_PLAYER_CDROM &&
          m_DriveID == musikCube::g_Player->GetDiscDrive())
     {
         MessageBox(
@@ -432,7 +434,7 @@ void CmusikRipDlg::RipDisc(bool rip_selected)
     m_Data.m_Path = path;
     m_Data.m_Format = m_EncoderSel.GetCurSel();
     m_Data.m_DriveID = m_DriveSel.GetCurSel();
-    m_Data.m_Songs = m_Songs;  
+    m_Data.m_Songs = m_Songs;
     m_Data.m_Functor = m_Functor;
     m_Data.m_WriteTags = m_WriteTags.GetCheck() == 0 ? false : true;
     m_Data.m_ID3V1 = m_ID3V1.GetCheck() == 0 ? false : true;
@@ -487,7 +489,7 @@ BOOL CmusikRipDlg::OnInitDialog()
         GetDlgItem(IDC_SLIDERVAL)->SetWindowText(ItoS(quality).c_str());
         break;
     case 2: // mp3
-        GetDlgItem(IDC_SLIDERVAL)->SetWindowText(ItoS(quality * 32).c_str());   
+        GetDlgItem(IDC_SLIDERVAL)->SetWindowText(ItoS(quality * 32).c_str());
         break;
     };
     m_TrackProgress.SetRange(0, 100);
@@ -498,7 +500,7 @@ BOOL CmusikRipDlg::OnInitDialog()
         m_DriveSel.SetCurSel(m_DriveID);
     else
         m_DriveSel.SetCurSel(musikCube::g_Prefs->GetRipDrive());
-    
+
     if (musikCube::g_Player->GetDiscDrive() == m_DriveID && musikCube::g_Player->GetCDInfo()->size())
     {
         *m_Songs = *musikCube::g_Player->GetCDInfo();
@@ -591,7 +593,7 @@ void CmusikRipDlg::OnBnClickedCancel()
     }
     else
     {
-        
+
         OnClose();
     }
 }
@@ -720,7 +722,7 @@ void CmusikRipDlg::OnClose()
     musikCube::g_Prefs->SetRipWriteTag(m_WriteTags.GetCheck());
     musikCube::g_Prefs->SetRipID3V2(m_ID3V2.GetCheck());
     musikCube::g_Prefs->SetRipID3V1(m_ID3V1.GetCheck());
-    musikCube::g_Prefs->SetRipRename(m_Rename.GetCheck());  
+    musikCube::g_Prefs->SetRipRename(m_Rename.GetCheck());
     musikCube::g_Prefs->SetRipEnc(m_EncoderSel.GetCurSel());
     musikCube::g_Prefs->SetRipDrive(m_DriveSel.GetCurSel());
     musikCube::g_Prefs->SetRipQuality(m_SliderCtrl.GetPos());

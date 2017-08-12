@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
@@ -101,7 +101,7 @@ void Rip::run()
             _T("Ripper out of sync. Please email the musikCube development team with this error."),
             _T("musikCube"),
             MB_ICONWARNING | MB_OK);
-        
+
             m_Error = true;
             m_Active = false;
             m_Finished = true;
@@ -137,10 +137,10 @@ void Rip::run()
             {
                 type = MUSIK_LIBRARY_FORMAT_OGG;
                 fn += _T("ogg");
-                
+
                 command.Format(
-                        _T("oggenc -q %d -o \"%s\" -"), 
-                        m_Params->m_Quality, 
+                        _T("oggenc -q %d -o \"%s\" -"),
+                        m_Params->m_Quality,
                         fn.c_str());
             }
             break;
@@ -152,7 +152,7 @@ void Rip::run()
 
                 command.Format(
                     _T("flac -%d -o \"%s\" -"),
-                    m_Params->m_Quality, 
+                    m_Params->m_Quality,
                     fn.c_str());
             }
             break;
@@ -164,12 +164,12 @@ void Rip::run()
 
                 command.Format(
                     _T("lame -b %d - \"%s\""),
-                    m_Params->m_Quality, 
+                    m_Params->m_Quality,
                     fn.c_str());
             }
             break;
         }
-        
+
         //
         // fire up the command line encoder
         //
@@ -190,19 +190,19 @@ void Rip::run()
             return;
         }
 
-        DWORD pos = BASS_ChannelGetLength(chan);
+        DWORD pos = BASS_ChannelGetLength(chan, BASS_POS_BYTE);
         DWORD orig = pos;
 
-        // 
+        //
         // send the stream through
         //
         int lastprog = 0;
-        while (BASS_ChannelIsActive(chan)) 
+        while (BASS_ChannelIsActive(chan))
         {
             char temp[20000];
             BASS_ChannelGetData(chan, temp, 20000);
 
-            if (BASS_Encode_IsActive(chan) == BASS_ACTIVE_STOPPED) 
+            if (BASS_Encode_IsActive(chan) == BASS_ACTIVE_STOPPED)
             {
                 printf("Error: The encoder died!\n");
                 m_Active = false;
@@ -230,7 +230,7 @@ void Rip::run()
             }
 
             // update status
-            pos = BASS_ChannelGetPosition(chan);
+            pos = BASS_ChannelGetPosition(chan, BASS_POS_BYTE);
             m_Params->m_Progress = (int)(pos / (orig / 100));
             if (m_Params->m_Progress > lastprog)
             {
@@ -253,7 +253,7 @@ void Rip::run()
                 info.SetFilename(fn); // failed to rename, set to original
         }
         else
-            info.SetFilename(fn);     // no rename, set filename 
+            info.SetFilename(fn);     // no rename, set filename
 
         // write the tag (we do it here, not through the
         // encoder to assure unicode is used if necessary)

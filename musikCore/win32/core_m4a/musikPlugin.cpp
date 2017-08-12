@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
@@ -155,7 +155,7 @@ void OnPluginDetach()
 {
     if (handle != 0)
     {
-        BASS_PluginFree(handle); 
+        BASS_PluginFree(handle);
         handle = 0;
     }
     if (handleAlac != 0)
@@ -176,7 +176,7 @@ bool CanPlay(const musikCore::String& filename)
         extension == _T("m4a")
         || extension == _T("mp4")
         || extension == _T("aac")
-        || extension == _T("m4b")        
+        || extension == _T("m4b")
 //        || extension == _T("m4p") // TODO: Add support for this later, maybe?
        )
         return true;
@@ -202,8 +202,8 @@ bool Play(HSTREAM stream, int offset)
 ///////////////////////////////////////////////////
 
 bool CanSeek()
-{ 
-    return true; 
+{
+    return true;
 }
 
 ///////////////////////////////////////////////////
@@ -214,7 +214,7 @@ bool Seek(HSTREAM stream, int ms)
     pos /= 1000;
 
     QWORD seekpos = BASS_ChannelSeconds2Bytes(stream, pos);
-    int set = BASS_ChannelSetPosition(stream, seekpos);
+    int set = BASS_ChannelSetPosition(stream, seekpos, BASS_POS_BYTE);
     return (set == 1);
 }
 
@@ -251,7 +251,7 @@ bool Stop(HSTREAM stream)
 int GetDuration(HSTREAM stream)
 {
     // get duration in milliseconds
-    QWORD len=BASS_ChannelGetLength(stream); // length in bytes
+    QWORD len=BASS_ChannelGetLength(stream, BASS_POS_BYTE); // length in bytes
     float dur=BASS_ChannelBytes2Seconds(stream,len); // the time length
     return (int)(dur * 1000);
 }
@@ -261,7 +261,7 @@ int GetDuration(HSTREAM stream)
 int GetTime(HSTREAM stream)
 {
     // return current time in milliseconds
-    QWORD pos = BASS_ChannelGetPosition(stream); 
+    QWORD pos = BASS_ChannelGetPosition(stream, BASS_POS_BYTE);
     float time = BASS_ChannelBytes2Seconds(stream, pos);
     return (int)(time * 1000);
 }
@@ -282,13 +282,13 @@ bool IsActive(HSTREAM stream)
 HSTREAM LoadFile(const musikCore::String& filename)
 {
     // load your file, then use BASS_StreamCreate(...)
-    // to create a new stream, and return it. 
+    // to create a new stream, and return it.
     HSTREAM load = NULL;
 
     musikCore::Filename fn(filename);
 
     // standard BASS formats
-    if (fn.GetExtension() == _T("aac") 
+    if (fn.GetExtension() == _T("aac")
         || fn.GetExtension() == _T("mp4")
         || fn.GetExtension() == _T("m4a")
         || fn.GetExtension() == _T("m4b")
@@ -303,15 +303,15 @@ HSTREAM LoadFile(const musikCore::String& filename)
     }
 
     if (load)
-        BASS_ChannelPreBuf(load , 500);
-    
+        BASS_ChannelUpdate(load , 500);
+
     return load;
 }
 
 ///////////////////////////////////////////////////
 
 bool ReadTag(const musikCore::String& fn, musikCore::SongInfo& target)
-{    
+{
     bool ret = false;
 
     try
@@ -321,7 +321,7 @@ bool ReadTag(const musikCore::String& fn, musikCore::SongInfo& target)
         target.SetFilename(fn);
         musikCore::String extension = mfn.GetExtension();
         target.SetFormat(extension);
-        
+
         // check that this is an MPEG 4 file
         if (  extension == _T("m4a")
             || extension == _T("mp4")
@@ -345,7 +345,7 @@ bool ReadTag(const musikCore::String& fn, musikCore::SongInfo& target)
 
             // get the title
             tagdata = NULL;
-            if (MP4GetMetadataName(file, &tagdata)) 
+            if (MP4GetMetadataName(file, &tagdata))
             {
                 target.SetTitle(musikCore::utf8to16(tagdata));
                 free(tagdata);
@@ -357,14 +357,14 @@ bool ReadTag(const musikCore::String& fn, musikCore::SongInfo& target)
             }
             // get the artist
             tagdata = NULL;
-            if (MP4GetMetadataArtist(file, &tagdata)) 
+            if (MP4GetMetadataArtist(file, &tagdata))
             {
                 target.SetArtist(musikCore::utf8to16(tagdata));
                 free(tagdata);
             }
             // get the album
             tagdata = NULL;
-            if (MP4GetMetadataAlbum(file, &tagdata)) 
+            if (MP4GetMetadataAlbum(file, &tagdata))
             {
                 target.SetAlbum(musikCore::utf8to16(tagdata));
                 free(tagdata);
@@ -385,14 +385,14 @@ bool ReadTag(const musikCore::String& fn, musikCore::SongInfo& target)
             }
             // get the comment
             tagdata = NULL;
-            if (MP4GetMetadataComment(file, &tagdata)) 
+            if (MP4GetMetadataComment(file, &tagdata))
             {
                 target.SetNotes(musikCore::utf8to16(tagdata));
                 free(tagdata);
             }
             // get the tracknum
             uint16_t tracknum, totaltracks;
-            if (MP4GetMetadataTrack(file, &tracknum, &totaltracks)) 
+            if (MP4GetMetadataTrack(file, &tracknum, &totaltracks))
             {
                 char temp[32];
                 sprintf(temp,"%d/%d",tracknum,totaltracks);
@@ -427,11 +427,11 @@ bool ReadTag(const musikCore::String& fn, musikCore::SongInfo& target)
 bool WriteTag(const musikCore::SongInfo& info)
 {
     bool ret = false;
-/*    
+/*
     try
     {
         mp4ff_metadata_t tags;
-    
+
         // init the tags
         tags.count = 0;
         tags.tags = NULL;
@@ -439,7 +439,7 @@ bool WriteTag(const musikCore::SongInfo& info)
         // set the filename and format
         musikCore::Filename mfn(info.GetFilename());
         musikCore::String extension = mfn.GetExtension();
-        
+
         // check that this is an MPEG 4 file
         if (!(extension == _T("m4a")
             || extension == _T("mp4")
@@ -515,7 +515,7 @@ bool WriteTag(const musikCore::SongInfo& info)
     {
         ret = false;
     }
-*/    
+*/
     return ret;
 }
 

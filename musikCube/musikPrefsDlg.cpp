@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ////////////////////////////////////////////////////
 
@@ -118,7 +118,7 @@ void CmusikPrefsInterfaceWorkflow::CommitChanges()
     }
     else
         musikCube::g_Prefs->SetFileDropPrompt(-1);
-	
+
     CButton* ptrBtn;
 
     // now playing
@@ -185,6 +185,11 @@ void CmusikPrefsSoundDriver::CommitChanges()
 
     int new_driver    = m_SoundDriver.GetCurSel();
 
+    m_SoundDriver.GetLBText(new_driver, tmp);
+    if (tmp == L"Default") {
+        new_driver = -1; /* default */
+    }
+
     m_SoundPlaybackRate.GetWindowText(tmp);
     int new_rate    = StoI((wstring)tmp.GetBuffer());
 
@@ -202,7 +207,7 @@ void CmusikPrefsSoundDriver::CommitChanges()
     if (fmod_needs_restart)
     {
         int res = MessageBox(
-            _T("The sound system must be stopped and restarted to apply the new changes. If you do not to restart now, the changes will not take effect until musikCube as been restarted. Restart sound system?"), 
+            _T("The sound system must be stopped and restarted to apply the new changes. If you do not to restart now, the changes will not take effect until musikCube as been restarted. Restart sound system?"),
             _T(MUSIK_VERSION_STR),
             MB_ICONINFORMATION | MB_YESNO);
         if (res == IDYES)
@@ -214,7 +219,7 @@ void CmusikPrefsSoundDriver::CommitChanges()
 
             musikCube::g_Player->DeinitSound();
             musikCube::g_Player->InitSound(0, musikCube::g_Prefs->GetPlayerDriver(), musikCube::g_Prefs->GetPlayerRate(), musikCore::MUSIK_PLAYER_INIT_RESTART);
-        }    
+        }
     }
 
     // sound buffer size
@@ -240,12 +245,17 @@ void CmusikPrefsSoundDriver::GetSoundDrivers(bool populate)
     {
         m_SoundDriver.Clear();
 
-        for (size_t i = 0; i < m_DriverInfo.size(); i++)
+        musikCore::String driverInfo;
+        for (size_t i = 0; i < m_DriverInfo.size(); i++) {
             m_SoundDriver.InsertString(i, m_DriverInfo.at(i));
+        }
 
         if (m_DriverInfo.size())
         {
-            if (musikCube::g_Prefs->GetPlayerDriver() < (int)m_DriverInfo.size())
+            int driverId = musikCube::g_Prefs->GetPlayerDriver();
+            if (driverId == -1)
+                m_SoundDriver.SelectString(-1, L"Default");
+            else if (driverId < (int)m_DriverInfo.size())
                 m_SoundDriver.SelectString(-1, m_DriverInfo.at(musikCube::g_Prefs->GetPlayerDriver()));
             else
                 m_SoundDriver.SelectString(-1, m_DriverInfo.at(0));
@@ -391,7 +401,7 @@ void CmusikPrefsSoundCrossfader::CommitChanges()
 void CmusikPrefsSoundCrossfader::OnBnClickedReset()
 {
     musikCube::g_Library->ResetDefaultCrossfader();
-    
+
     musikCore::Crossfader fader;
     musikCube::g_Library->GetDefaultCrossfader(fader);
 
@@ -415,13 +425,13 @@ void CmusikPrefsSoundCrossfader::OnBnClickedAdd()
         {
             m_PresetBox.AddString(name);
             m_IDs.push_back(fader_new.m_ID);
-    
+
             m_PresetBox.SetCurSel(m_PresetBox.GetCount() - 1);
         }
         else if (ret == musikCore::MUSIK_LIBRARY_ID_EXISTS)
             MessageBox(
-                _T("Sorry, but a crossfader preset with this name already exists. Please enter a unique name."), 
-                _T(MUSIK_VERSION_STR), 
+                _T("Sorry, but a crossfader preset with this name already exists. Please enter a unique name."),
+                _T(MUSIK_VERSION_STR),
                 MB_OK | MB_ICONWARNING);
     }
     delete pDlg;
@@ -432,14 +442,14 @@ void CmusikPrefsSoundCrossfader::OnBnClickedAdd()
 void CmusikPrefsSoundCrossfader::OnBnClickedDelete()
 {
     int nSel = GetIndex();
-    
+
     if (nSel > -1)
     {
         if (musikCube::g_Library->DeleteCrossfader(m_IDs.at(nSel)) == musikCore::MUSIK_LIBRARY_OK)
         {
             m_PresetBox.DeleteString(nSel);
             m_IDs.erase(m_IDs.begin() + nSel);
-    
+
             --nSel;
             if (nSel == -1)
                 nSel = 0;
@@ -579,7 +589,7 @@ void CmusikPrefsInterfaceTrans::CommitChanges()
         int WM_DEINITTRANS = RegisterWindowMessage(_T("DEINITTRANS"));
         AfxGetApp()->m_pMainWnd ->SendMessage(WM_DEINITTRANS);
     }
-        
+
     // reload
     LoadPrefs();
 
@@ -668,7 +678,7 @@ void CmusikPrefsTunage::CommitChanges()
 
     m_CommandLine.GetWindowText(sWnd);
     musikCube::g_Prefs->SetTunageCmdLine(sWnd.GetBuffer());
-        
+
     // reload
     LoadPrefs();
 
@@ -722,13 +732,13 @@ void CmusikPrefsAutoCapitalize::OnBnClickedAdd()
         {
             m_ListBox.AddString(name);
             m_Items.push_back(name.GetBuffer(0));
-    
+
             m_ListBox.SetCurSel(m_ListBox.GetCount() - 1);
         }
         else
             MessageBox(
-                _T("Sorry, but this word already exists in the library. Please enter a unique word."), 
-                _T(MUSIK_VERSION_STR), 
+                _T("Sorry, but this word already exists in the library. Please enter a unique word."),
+                _T(MUSIK_VERSION_STR),
                 MB_OK | MB_ICONWARNING);
     }
 }
@@ -741,12 +751,12 @@ void CmusikPrefsAutoCapitalize::OnBnClickedDelete()
     for (size_t i = 0; i < m_Items.size(); i++)
     {
         if (m_ListBox.GetSel(i))
-        {    
+        {
             nSel = i;
             break;
         }
     }
-    
+
     if (nSel > -1)
     {
         int ret = musikCube::g_Library->RemoveChgCase(m_Items.at(nSel));
@@ -754,7 +764,7 @@ void CmusikPrefsAutoCapitalize::OnBnClickedDelete()
         {
             m_ListBox.DeleteString(nSel);
             m_Items.erase(m_Items.begin() + nSel);
-    
+
             --nSel;
             if (nSel == -1)
                 nSel = 0;
@@ -788,7 +798,7 @@ IMPLEMENT_DYNAMIC(CmusikPrefsInterfaceGeneral, CmusikPropertyPage)
 CmusikPrefsInterfaceGeneral::CmusikPrefsInterfaceGeneral()
     : CmusikPropertyPage(CmusikPrefsInterfaceGeneral::IDD)
 {
- 
+
 }
 
 ///////////////////////////////////////////////////
@@ -890,7 +900,7 @@ void CmusikPrefsInterfaceGeneral::EnableStartup()
     musikCore::String shortcut_path;
     shortcut_path = app->GetUserDir();
     shortcut_path += _T("\\Start Menu\\Programs\\Startup\\musikCube.lnk");
-    
+
     if (musikCore::Filename::FileExists(shortcut_path))
         return;
 
@@ -898,29 +908,29 @@ void CmusikPrefsInterfaceGeneral::EnableStartup()
     musikCore::String program_path;
     program_path = CmusikCubeApp::GetWorkingDir(true);
 
-    // start code 
+    // start code
     HRESULT hRes = E_FAIL;
     DWORD dwRet = 0;
     CComPtr<IShellLink> ipShellLink;
 
-    // buffer that receives the null-terminated string 
+    // buffer that receives the null-terminated string
     // for the drive and path
     TCHAR szPath[MAX_PATH];
 
-    // buffer that receives the address of the final 
+    // buffer that receives the address of the final
     // file name component in the path
-    LPTSTR lpszFilePart;    
+    LPTSTR lpszFilePart;
     WCHAR wszTemp[MAX_PATH];
-        
+
     // Retrieve the full path and file name of a specified file
     dwRet = GetFullPathName(program_path.c_str(), sizeof(szPath) / sizeof(TCHAR), szPath, &lpszFilePart);
 
-    if (!dwRet)                                        
+    if (!dwRet)
         return;
 
     // Get a pointer to the IShellLink interface
     hRes = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void**)&ipShellLink);
-                             
+
     if (SUCCEEDED(hRes))
     {
         // Get a pointer to the IPersistFile interface
@@ -933,13 +943,13 @@ void CmusikPrefsInterfaceGeneral::EnableStartup()
 
         hRes = ipShellLink->SetArguments(_T("--autostart"));
         if (FAILED(hRes))
-            return;        
+            return;
 
         hRes = ipShellLink->SetDescription(_T("musikCube"));
         if (FAILED(hRes))
             return;
 
-        // IPersistFile is using LPCOLESTR, so make sure 
+        // IPersistFile is using LPCOLESTR, so make sure
         // that the string is Unicode
         #if !defined _UNICODE
             MultiByteToWideChar(CP_ACP, 0, shortcut_path.c_str(), -1, wszTemp, MAX_PATH);
@@ -963,7 +973,7 @@ void CmusikPrefsInterfaceGeneral::DisableStartup()
     GetEnvironmentVariable(_T("USERPROFILE"), buffer, sizeof(buffer));
     shortcut_path = buffer;
     shortcut_path += _T("\\Start Menu\\Programs\\Startup\\musikCube.lnk");
-    
+
     if (musikCore::Filename::FileExists(shortcut_path))
         _wremove(shortcut_path.c_str());
 
@@ -990,7 +1000,7 @@ IMPLEMENT_DYNAMIC(CmusikPrefsInterfaceDevices, CmusikPropertyPage)
 CmusikPrefsInterfaceDevices::CmusikPrefsInterfaceDevices()
     : CmusikPropertyPage(CmusikPrefsInterfaceDevices::IDD)
 {
- 
+
 }
 
 ///////////////////////////////////////////////////

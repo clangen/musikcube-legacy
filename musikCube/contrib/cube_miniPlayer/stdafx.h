@@ -9,17 +9,16 @@
 #define VC_EXTRALEAN
 #endif
 
-#ifndef WINVER
-#define WINVER 0x0500        // at least Win2k/XP
-#endif
+//#undef WINVER
+//#define WINVER 0x0501        // at least XP
 
-#ifndef _WIN32_WINNT
-#define _WIN32_WINNT WINVER    
-#endif                        
-
-#ifndef _WIN32_WINDOWS
-#define _WIN32_WINDOWS WINVER
-#endif
+//#ifndef _WIN32_WINNT
+//#define _WIN32_WINNT WINVER
+//#endif
+//
+//#ifndef _WIN32_WINDOWS
+//#define _WIN32_WINDOWS WINVER
+//#endif
 
 #include <afxwin.h>         // MFC-Kern- und Standardkomponenten
 #include <afxext.h>         // MFC-Erweiterungen

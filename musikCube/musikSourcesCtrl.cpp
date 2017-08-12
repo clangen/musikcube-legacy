@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
@@ -173,7 +173,7 @@ void CmusikSourcesCtrl::RefreshDevices()
                 --i;
             }
         }
-            
+
 
         //
         // now we add drives that don't exist
@@ -211,7 +211,7 @@ void CmusikSourcesCtrl::RefreshDevices()
             }
 
             UINT type = GetDriveType(curr_drives[i].c_str());
-            
+
             switch(type)
             {
             case DRIVE_REMOVABLE:
@@ -222,7 +222,7 @@ void CmusikSourcesCtrl::RefreshDevices()
 
                     info = musikCore::PlaylistInfo(driveName, musikCore::MUSIK_PLAYLIST_TYPE_REMOVABLE, -1);
 
-                    CmusikPropTreeItem *removable = 
+                    CmusikPropTreeItem *removable =
                         this->m_PropTree->InsertItem(new CmusikPropTreeItem(), m_DevicesRootItem);
 
                     removable->SetPlaylistInfo(info);
@@ -238,10 +238,13 @@ void CmusikSourcesCtrl::RefreshDevices()
                     int curr_drive_id = curr_drives[i][0];
 
                     int count = 0;
-                    const char* pStr = BASS_CD_GetDriveDescription(count);
-                    while (pStr != 0)
+
+                    BASS_CD_INFO driveInfo;
+                    BOOL result = BASS_CD_GetInfo(count, &driveInfo);
+
+                    while (result)
                     {
-                        int id = (int)BASS_CD_GetDriveLetter(count) + (int)'A';
+                        int id = (int)driveInfo.letter + (int)'A';
 
                         if (id == curr_drive_id)
                         {
@@ -250,14 +253,14 @@ void CmusikSourcesCtrl::RefreshDevices()
                         }
 
                         count++;
-                        pStr = BASS_CD_GetDriveDescription(count);
+                        result = BASS_CD_GetInfo(count, &driveInfo);
                     }
 
                     musikCore::String driveName = GetDeviceVolumeDescription(curr_drives[i]);
 
                     info = musikCore::PlaylistInfo(driveName, musikCore::MUSIK_PLAYLIST_TYPE_CDPLAYER, curr_drive_id);
 
-                    CmusikPropTreeItem *cdplayer = 
+                    CmusikPropTreeItem *cdplayer =
                         this->m_PropTree->InsertItem(new CmusikPropTreeItem(), m_DevicesRootItem);
 
                     cdplayer->SetPlaylistInfo(info);
@@ -268,7 +271,7 @@ void CmusikSourcesCtrl::RefreshDevices()
                 }
                 break;
             default:
-                break;            
+                break;
             }
         }
     }
@@ -342,9 +345,9 @@ void CmusikSourcesCtrl::FindAttachedDevices(musikCore::StringArray& target)
     {
         wchar_t cur = logdev[i];
         buffer[at] = cur;
-        
+
         if (cur == (wchar_t)'\0')
-        {   
+        {
             target.push_back(buffer);
             count++;
             at = -1;
@@ -394,7 +397,7 @@ void CmusikSourcesCtrl::OnItemDragged(NMHDR* pNotifyStruct, LRESULT* plResult)
 void CmusikSourcesCtrl::OnItemChanged(NMHDR* pNotifyStruct, LRESULT* plResult)
 {
     LPNMPROPTREE pNMPropTree = (LPNMPROPTREE)pNotifyStruct;
-      *plResult = 0;  
+      *plResult = 0;
 
     this->NotifyParentItemChanged(pNMPropTree->pItem);
 }
@@ -477,7 +480,7 @@ void CmusikSourcesCtrl::ShowDockBarMenu()
     CPoint pos;
     ::GetCursorPos(&pos);
     ScreenToClient(&pos);
-    
+
     CmusikPropTreeItem* pItem = this->m_PropTree->FindItem(pos);
 
     if (!pItem || pItem->IsRootLevel())
@@ -503,14 +506,14 @@ void CmusikSourcesCtrl::ShowDockBarMenu()
         popup_menu->EnableMenuItem(ID_SOURCES_SHUFFLEPLAYLIST, MF_ENABLED);
         popup_menu->EnableMenuItem(ID_SOURCES_CLEAR, MF_ENABLED);
     }
-    else 
-    {    
+    else
+    {
         popup_menu->RemoveMenu(ID_SOURCES_SHUFFLEPLAYLIST, MF_BYCOMMAND);
         popup_menu->RemoveMenu(ID_SOURCES_CLEAR, MF_BYCOMMAND);
     }
 
     // rename, delete
-    if (type == musikCore::MUSIK_PLAYLIST_TYPE_STANDARD || 
+    if (type == musikCore::MUSIK_PLAYLIST_TYPE_STANDARD ||
          type == musikCore::MUSIK_PLAYLIST_TYPE_DYNAMIC)
     {
         popup_menu->EnableMenuItem(ID_SOURCES_RENAME, MF_ENABLED);
@@ -527,8 +530,8 @@ void CmusikSourcesCtrl::ShowDockBarMenu()
     }
 
     // copy to / move to
-    if (type == musikCore::MUSIK_PLAYLIST_TYPE_STANDARD || 
-         type == musikCore::MUSIK_PLAYLIST_TYPE_DYNAMIC || 
+    if (type == musikCore::MUSIK_PLAYLIST_TYPE_STANDARD ||
+         type == musikCore::MUSIK_PLAYLIST_TYPE_DYNAMIC ||
          type == musikCore::MUSIK_PLAYLIST_TYPE_NOWPLAYING)
     {
         popup_menu->EnableMenuItem(ID_SOURCES_COPYTO, MF_ENABLED);
@@ -545,11 +548,11 @@ void CmusikSourcesCtrl::ShowDockBarMenu()
         popup_menu->EnableMenuItem(ID_SOURCES_EDITQUERY, MF_ENABLED);
     else
         popup_menu->RemoveMenu(ID_SOURCES_EDITQUERY, MF_BYCOMMAND);
-    
+
     // cdrom functions
     if (type == musikCore::MUSIK_PLAYLIST_TYPE_CDPLAYER)
     {
-        popup_menu->EnableMenuItem(ID_SOURCES_RIPCD, MF_ENABLED);    
+        popup_menu->EnableMenuItem(ID_SOURCES_RIPCD, MF_ENABLED);
         popup_menu->EnableMenuItem(ID_SOURCES_QUERYFREEDB, MF_ENABLED);
         popup_menu->EnableMenuItem(ID_SOURCES_REFRESHCD, MF_ENABLED);
     }
@@ -564,7 +567,7 @@ void CmusikSourcesCtrl::ShowDockBarMenu()
     {
         int id = pItem->GetPlaylistID();
         CmusikPlugin& plugin = musikCube::g_Plugins.at(id);
-        popup_menu->EnableMenuItem(ID_SOURCES_PLUGINEXECUTE, plugin.CanExecute() ? MF_ENABLED : (MF_DISABLED|MF_GRAYED));    
+        popup_menu->EnableMenuItem(ID_SOURCES_PLUGINEXECUTE, plugin.CanExecute() ? MF_ENABLED : (MF_DISABLED|MF_GRAYED));
         popup_menu->EnableMenuItem(ID_SOURCES_PLUGINCONFIGURE, plugin.CanConfigure() ? MF_ENABLED : (MF_DISABLED|MF_GRAYED));
         popup_menu->EnableMenuItem(ID_SOURCES_PLUGINSTOP, plugin.CanStop() ? MF_ENABLED : (MF_DISABLED|MF_GRAYED));
         popup_menu->EnableMenuItem(ID_SOURCES_PLUGINABOUT, plugin.CanAbout() ? MF_ENABLED : (MF_DISABLED|MF_GRAYED));
@@ -579,7 +582,7 @@ void CmusikSourcesCtrl::ShowDockBarMenu()
 
     // LIBRARY: "show all songs"
     if (type == musikCore::MUSIK_PLAYLIST_TYPE_LIBRARY)
-        popup_menu->EnableMenuItem(ID_SOURCES_SHOWALLSONGS, MF_ENABLED);    
+        popup_menu->EnableMenuItem(ID_SOURCES_SHOWALLSONGS, MF_ENABLED);
     else
         popup_menu->RemoveMenu(ID_SOURCES_SHOWALLSONGS, MF_BYCOMMAND);
 
@@ -692,7 +695,7 @@ int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam, LPARAM lpDa
     default:
         break;
     }
-    return 0; 
+    return 0;
 }
 
 ///////////////////////////////////////////////////
@@ -711,7 +714,7 @@ musikCore::String CmusikSourcesCtrl::SourcesFileOp(DWORD mode, const musikCore::
 
         if (default_path != _T(""))
         {
-            bi.lParam =  (long)default_path.c_str(); 
+            bi.lParam =  (long)default_path.c_str();
             bi.lpfn    = BrowseCallbackProc;
         }
 
@@ -729,7 +732,7 @@ musikCore::String CmusikSourcesCtrl::SourcesFileOp(DWORD mode, const musikCore::
                 imalloc->Free (pidl);
                 imalloc->Release ();
             }
-            
+
             // use Michael Dunn's convenient SHFileOperation wrapper to
             // perform the copy using Window's shell api...
             BOOL apicalled;
@@ -740,7 +743,7 @@ musikCore::String CmusikSourcesCtrl::SourcesFileOp(DWORD mode, const musikCore::
                 copy.AddSourceFile(files.at(i));
             }
             copy.AddDestFile(path);
-            
+
             copy.SetOperationFlags(
                 mode,             // op type
                 AfxGetMainWnd(), // handle to main window
@@ -775,7 +778,7 @@ void CmusikSourcesCtrl::OnMenuRenameItem()
 void CmusikSourcesCtrl::OnMenuEditQuery()
 {
     CmusikDynPlaylistDlg dlg;
-    
+
     CmusikPropTreeItem* pItem = this->m_PropTree->GetFocusedItem();
     if (pItem)
     {
@@ -943,7 +946,7 @@ void CmusikSourcesCtrl::ReloadAllItems()
         RefreshDevices();
         m_DevicesTimerID = this->SetTimer(SOURCES_DEVICE_TIMER_ID, 2000, NULL);
     }
-    
+
     // standard playlists
     if (musikCube::g_Prefs->IsPlaylistsVisible())
     {
@@ -1136,7 +1139,7 @@ void CmusikSourcesCtrl::LoadBrowseItems()
         m_BrowseItems.push_back(netstreams);
 
         // search
-        info = musikCore::PlaylistInfo("Search...", MUSIK_SOURCES_TYPE_QUICKSEARCH, -1); 
+        info = musikCore::PlaylistInfo("Search...", MUSIK_SOURCES_TYPE_QUICKSEARCH, -1);
         search = new CmusikPropTreeItem();
         search->SetPlaylistInfo(info);
         search->SetBitmaps(m_pQSOff, m_pQSOn);
@@ -1167,7 +1170,7 @@ void CmusikSourcesCtrl::LoadPluginItems()
         {
             musikCore::PlaylistInfo info;
             info = musikCore::PlaylistInfo(musikCube::g_Plugins.at(i).GetPluginName(), MUSIK_SOURCES_TYPE_PLUGIN, i);
-            
+
             temp = this->m_PropTree->InsertItem(new CmusikPropTreeItem(), m_PluginsRootItem);
             temp->SetPlaylistInfo(info);
             temp->SetBitmaps(m_pPlugOff, m_pPlugOn);
@@ -1206,7 +1209,7 @@ void CmusikSourcesCtrl::LoadStdPlaylistItems()
 
     // load the "Create..."
     musikCore::PlaylistInfo info;
-    info = musikCore::PlaylistInfo("Create...", MUSIK_SOURCES_TYPE_NEWSTDPLAYLIST, -1); 
+    info = musikCore::PlaylistInfo("Create...", MUSIK_SOURCES_TYPE_NEWSTDPLAYLIST, -1);
     temp = this->m_PropTree->InsertItem(new CmusikPropTreeItem(), m_StdPlaylistRootItem);
     temp->SetPlaylistInfo(info);
     temp->SetBitmaps(m_pPLOff, m_pPLOn);
@@ -1269,7 +1272,7 @@ void CmusikSourcesCtrl::LoadDynPlaylistItems()
 
     // load the "Create..."
     musikCore::PlaylistInfo info;
-    info = musikCore::PlaylistInfo("Create...", MUSIK_SOURCES_TYPE_NEWDYNPLAYLIST, -1); 
+    info = musikCore::PlaylistInfo("Create...", MUSIK_SOURCES_TYPE_NEWDYNPLAYLIST, -1);
     temp = this->m_PropTree->InsertItem(new CmusikPropTreeItem(), m_DynPlaylistRootItem);
     temp->SetPlaylistInfo(info);
     temp->SetBitmaps(m_pDPOff, m_pDPOn);
@@ -1311,7 +1314,7 @@ void CmusikSourcesCtrl::OnDropFiles(HDROP hDropInfo, bool right_button)
     {
         if (DragQueryFile(hDropInfo, i, szNextFile, MAX_PATH) > 0)
         {
-            // at a dir: recurse 
+            // at a dir: recurse
             SHGetFileInfo(szNextFile, 0, &rFileInfo, sizeof(rFileInfo), SHGFI_ATTRIBUTES);
             if (rFileInfo.dwAttributes & SFGAO_FOLDER)
             {
@@ -1319,7 +1322,7 @@ void CmusikSourcesCtrl::OnDropFiles(HDROP hDropInfo, bool right_button)
                 sTemp += "\\*.*";
 
                 musikCore::Dir::OpenDir(sTemp, files);
-            }        
+            }
 
             // att a file: add to list
             else
@@ -1408,7 +1411,7 @@ bool CmusikSourcesCtrl::DropAddToLibrary(musikCore::Library* pLibrary, musikCore
 
     batchAddThread = new musikCore::BatchAddTask();
     batchAddThread->m_Params = batchAddParams;
-    
+
     pLibrary->QueueTask(batchAddThread);
 
     return true;
@@ -1467,9 +1470,9 @@ bool CmusikSourcesCtrl::DropOnRemovableDevice(musikCore::StringArray* pFiles, Cm
 bool CmusikSourcesCtrl::DropCopyFilesToDevice(musikCore::StringArray* pFiles, CmusikPropTreeItem* pItem)
 {
     musikCore::String copyPath = SourcesFileOp(
-            FO_COPY, 
-            *pFiles, 
-            ((musikCore::RemLibrary*)pItem->m_Library)->GetRemPath() 
+            FO_COPY,
+            *pFiles,
+            ((musikCore::RemLibrary*)pItem->m_Library)->GetRemPath()
        );
 
     if (copyPath != _T(""))
@@ -1484,7 +1487,7 @@ bool CmusikSourcesCtrl::DropCopyFilesToDevice(musikCore::StringArray* pFiles, Cm
 
         batchAddThread = new musikCore::BatchAddTask();
         batchAddThread->m_Params = batchAddParams;
-        
+
         pItem->m_Library->QueueTask(batchAddThread);
     }
 
@@ -1588,7 +1591,7 @@ void CmusikSourcesCtrl::GetSelFilenames(CmusikPropTreeItem* pItem, musikCore::St
         break;
 
     case musikCore::MUSIK_PLAYLIST_TYPE_DYNAMIC:
-        musikCube::g_Library->GetDynPlaylistFns(pItem->GetPlaylistID(), files); 
+        musikCube::g_Library->GetDynPlaylistFns(pItem->GetPlaylistID(), files);
         break;
 
     case musikCore::MUSIK_PLAYLIST_TYPE_NOWPLAYING:
@@ -1606,7 +1609,7 @@ void CmusikSourcesCtrl::GetSelFilenames(CmusikPropTreeItem* pItem, musikCore::St
 
     default:
         break;
-    } 
+    }
 }
 
 ///////////////////////////////////////////////////
@@ -1614,7 +1617,7 @@ void CmusikSourcesCtrl::GetSelFilenames(CmusikPropTreeItem* pItem, musikCore::St
 void CmusikSourcesCtrl::GetSelFilenames(CmusikPropTreeItem* pItem, musikCore::StringArray& files)
 {
     int nMode = pItem->GetPlaylistType();
-    
+
     switch (nMode)
     {
     case musikCore::MUSIK_PLAYLIST_TYPE_STANDARD:
@@ -1622,7 +1625,7 @@ void CmusikSourcesCtrl::GetSelFilenames(CmusikPropTreeItem* pItem, musikCore::St
         break;
 
     case musikCore::MUSIK_PLAYLIST_TYPE_DYNAMIC:
-        musikCube::g_Library->GetDynPlaylistFns(pItem->GetPlaylistID(), files, false); 
+        musikCube::g_Library->GetDynPlaylistFns(pItem->GetPlaylistID(), files, false);
         break;
 
     case musikCore::MUSIK_PLAYLIST_TYPE_NOWPLAYING:
@@ -1641,14 +1644,14 @@ void CmusikSourcesCtrl::GetSelFilenames(CmusikPropTreeItem* pItem, musikCore::St
 
     default:
         break;
-    }     
+    }
 }
 
 ///////////////////////////////////////////////////
 
 void CmusikSourcesCtrl::DoDrag(CmusikPropTreeItem* pItem)
 {
-    if (!pItem || 
+    if (!pItem ||
         pItem->GetPlaylistType() == musikCore::MUSIK_PLAYLIST_TYPE_CDPLAYER ||
         pItem->GetPlaylistType() == MUSIK_SOURCES_TYPE_PLUGIN)
         return;
@@ -1680,7 +1683,7 @@ void CmusikSourcesCtrl::DoDrag(CmusikPropTreeItem* pItem)
         files.clear();
     }
 
-    
+
     // Add 1 extra for the final null char, and the size of the DROPFILES struct.
     uBuffSize = sizeof(DROPFILES) + sizeof(TCHAR) * (uBuffSize + 1);
 
@@ -1718,7 +1721,7 @@ void CmusikSourcesCtrl::DoDrag(CmusikPropTreeItem* pItem)
     // Put the data in the data source.
     datasrc.CacheGlobalData (CF_HDROP, hgDrop, &etc);
 
-    // Add in our own custom data, so we know that the drag originated from our 
+    // Add in our own custom data, so we know that the drag originated from our
     // window.  CMyDropTarget::DragEnter() checks for this custom format, and
     // doesn't allow the drop if it's present.  This is how we prevent the user
     // from dragging and then dropping in our own window.
@@ -1762,7 +1765,7 @@ void CmusikSourcesCtrl::DoDrag(CmusikPropTreeItem* pItem)
             bool bDeletedAnything = false;
             if (! bDeletedAnything)
             {
-                // The DnD operation wasn't accepted, or was canceled, so we 
+                // The DnD operation wasn't accepted, or was canceled, so we
                 // should call GlobalFree() to clean up.
                 GlobalFree (hgDrop);
                 GlobalFree (hgBool);
@@ -1772,7 +1775,7 @@ void CmusikSourcesCtrl::DoDrag(CmusikPropTreeItem* pItem)
         }
 
         break;
-    }    
+    }
 }
 
 ///////////////////////////////////////////////////
@@ -1808,7 +1811,7 @@ void CmusikSourcesCtrl::RenameItem(CmusikPropTreeItem* pItem, int mode, CPoint p
 
     CRect rcClient;
     GetClientRect(rcClient);
-    
+
     int left;
     musikCube::g_DrawGraphics ? left = 32 : left = 12;
     CRect rect(left, nPos.y + 4, rcClient.Width() - 1, nPos.y + PROPTREEITEM_DEFHEIGHT - 2);
@@ -2050,7 +2053,7 @@ LRESULT CmusikSourcesCtrl::OnItemEditCommit(WPARAM wParam, LPARAM lParam)
         break;
 
     default:
-        
+
         break;
     }
 
@@ -2076,7 +2079,7 @@ void CmusikSourcesCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 ///////////////////////////////////////////////////
 
 void CmusikSourcesCtrl::EnableQuickSearch()
-{   
+{
     CPoint nPos = m_SearchItem->GetLocation();
 
     CRect rcClient;
@@ -2349,7 +2352,7 @@ void CmusikSourcesCtrl::MoveSelectedItemDown()
             {
                 CmusikPropTreeItem* pA = pItem;
                 CmusikPropTreeItem* pB = pItem->GetNext();
-    
+
                 // need to make sure we don't move the item below "Create..."
                 if (m_StdPlaylistItems.size() && pB == m_StdPlaylistItems.at(m_StdPlaylistItems.size() - 1))
                     return;
@@ -2367,7 +2370,7 @@ void CmusikSourcesCtrl::MoveSelectedItemDown()
                 musikCube::g_Library->UpdatePlaylistOrder(pB->GetPlaylistInfo());
 
                 // move B above A
-                pB->Detach();        
+                pB->Detach();
                 CmusikPropTreeItem* pFirst = pA->GetPrev();
                 pA->SetPrev(pB);
                 pB->SetNext(pA);

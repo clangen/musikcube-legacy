@@ -132,8 +132,8 @@ bool Play(HSTREAM stream, int offset)
 ///////////////////////////////////////////////////
 
 bool CanSeek()
-{ 
-    return true; 
+{
+    return true;
 }
 
 ///////////////////////////////////////////////////
@@ -142,7 +142,7 @@ bool Seek(HSTREAM stream, int ms)
 {
     float secs = (float)ms / 1000.0f;
     QWORD pos = BASS_ChannelSeconds2Bytes(stream, secs);
-    BASS_ChannelSetPosition(stream, pos);
+    BASS_ChannelSetPosition(stream, pos, BASS_POS_BYTE);
 
     return true;
 }
@@ -166,7 +166,7 @@ bool Resume(HSTREAM stream)
 ///////////////////////////////////////////////////
 
 bool Stop(HSTREAM stream)
-{   
+{
     BASS_ChannelStop(stream);
     BASS_StreamFree(stream);
     return true;
@@ -175,9 +175,9 @@ bool Stop(HSTREAM stream)
 ///////////////////////////////////////////////////
 
 int GetDuration(HSTREAM stream)
-{   
-    QWORD bytelength = BASS_ChannelGetLength(stream);
-    float secs = BASS_ChannelBytes2Seconds(stream, bytelength); 
+{
+    QWORD bytelength = BASS_ChannelGetLength(stream, BASS_POS_BYTE);
+    float secs = BASS_ChannelBytes2Seconds(stream, bytelength);
     secs *= 1000; // to ms
     return (int)secs;
 }
@@ -186,7 +186,7 @@ int GetDuration(HSTREAM stream)
 
 int GetTime(HSTREAM stream)
 {
-    QWORD pos = BASS_ChannelGetPosition(stream);
+    QWORD pos = BASS_ChannelGetPosition(stream, BASS_POS_BYTE);
     float secs = BASS_ChannelBytes2Seconds(stream, pos);
     secs *= 1000.0f;
 
@@ -212,9 +212,9 @@ HSTREAM LoadFile(const musikCore::String& filename)
     musikCore::Filename fn(filename);
 
     // standard BASS formats
-    if (fn.GetExtension() == _T("wav") 
-         || fn.GetExtension() == _T("aif") 
-         || fn.GetExtension() == _T("aiff") 
+    if (fn.GetExtension() == _T("wav")
+         || fn.GetExtension() == _T("aif")
+         || fn.GetExtension() == _T("aiff")
         )
     {
         load = BASS_StreamCreateFile(
@@ -226,8 +226,8 @@ HSTREAM LoadFile(const musikCore::String& filename)
     }
 
     if (load)
-        BASS_ChannelPreBuf(load , 500);
-    
+        BASS_ChannelUpdate(load , 500);
+
     return load;
 }
 
@@ -263,8 +263,8 @@ bool ReadTag(const musikCore::String& fn, musikCore::SongInfo& target)
             target.SetBitrate(musikCore::IntToString(bitrate/1000));
         }
         // get the duration
-        QWORD bytelength = BASS_ChannelGetLength(s);
-        float secs = BASS_ChannelBytes2Seconds(s, bytelength); 
+        QWORD bytelength = BASS_ChannelGetLength(s, BASS_POS_BYTE);
+        float secs = BASS_ChannelBytes2Seconds(s, bytelength);
         target.SetDuration(musikCore::IntToString((int)(secs * 1000)));
 
         BASS_StreamFree(s);

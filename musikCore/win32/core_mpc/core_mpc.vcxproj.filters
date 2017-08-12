@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="libmpcdec">
+      <UniqueIdentifier>{297df9a1-6d94-4d97-837f-d45a0ce9b75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libmpcdec\src">
+      <UniqueIdentifier>{d42b843d-c9d1-492b-b85f-4100edb8e836}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libmpcdec\include">
+      <UniqueIdentifier>{e9ddb1dd-1da4-4421-8485-11a9683a8250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libmpcdec\include\mpcdec">
+      <UniqueIdentifier>{14d335eb-1bf1-4041-8004-5df799b42f1e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MpcDecoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPlugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\huffsv46.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\huffsv7.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\idtag.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\mpc_decoder.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\mpc_reader.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\requant.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\streaminfo.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+    <ClCompile Include="libmpcdec-1.2.3\src\synth_filter.c">
+      <Filter>libmpcdec\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MpcDecoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPlugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mainpage.h">
+      <Filter>libmpcdec\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\config_win32.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\decoder.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\huffman.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\internal.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\math.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\mpcdec.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\reader.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\requant.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+    <ClInclude Include="libmpcdec-1.2.3\include\mpcdec\streaminfo.h">
+      <Filter>libmpcdec\include\mpcdec</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -31,7 +31,7 @@ namespace TreePropSheet
 
 #ifdef XPSUPPORT
 #include <uxtheme.h>
-#include <tmschema.h>
+//#include <tmschema.h>
 #endif
 
 #ifdef _DEBUG
@@ -61,7 +61,7 @@ static char THIS_FILE[] = __FILE__;
 
 
 /**
-Helper class for loading the uxtheme DLL and providing their 
+Helper class for loading the uxtheme DLL and providing their
 functions.
 
 One global object of this class exists.
@@ -84,13 +84,13 @@ public:
 
 // call wrappers
 public:
-	BOOL IsThemeActive() 
+	BOOL IsThemeActive()
 	{THEMECALL(IsThemeActive)();}
 
-	HTHEME OpenThemeData(HWND hwnd, LPCWSTR pszClassList) 
+	HTHEME OpenThemeData(HWND hwnd, LPCWSTR pszClassList)
 	{THEMECALL(OpenThemeData)(hwnd, pszClassList);}
 
-	HRESULT CloseThemeData(HTHEME hTheme) 
+	HRESULT CloseThemeData(HTHEME hTheme)
 	{THEMECALL(CloseThemeData)(hTheme);}
 
 	HRESULT GetThemeBackgroundContentRect(HTHEME hTheme, OPTIONAL HDC hdc, int iPartId, int iStateId,  const RECT *pBoundingRect, OUT RECT *pContentRect)
@@ -247,7 +247,7 @@ CRect CPropPageFrameDefault::CalcMsgArea()
 			g_ThemeLib.GetThemeBackgroundContentRect(hTheme, pDc->m_hDC, TABP_PANE, 0, rect, rectContent);
 			ReleaseDC(pDc);
 			g_ThemeLib.CloseThemeData(hTheme);
-			
+
 			if (GetShowCaption())
 				rectContent.top = rect.top+GetCaptionHeight()+1;
 			rect = rectContent;
@@ -255,7 +255,7 @@ CRect CPropPageFrameDefault::CalcMsgArea()
 	}
 	else if (GetShowCaption())
 		rect.top+= GetCaptionHeight()+1;
-	
+
 	return rect;
 }
 
@@ -274,7 +274,7 @@ CRect CPropPageFrameDefault::CalcCaptionArea()
 			g_ThemeLib.GetThemeBackgroundContentRect(hTheme, pDc->m_hDC, TABP_PANE, 0, rect, rectContent);
 			ReleaseDC(pDc);
 			g_ThemeLib.CloseThemeData(hTheme);
-			
+
 			if (GetShowCaption())
 				rectContent.bottom = rect.top+GetCaptionHeight();
 			else
@@ -355,7 +355,7 @@ void CPropPageFrameDefault::FillGradientRectH(CDC *pDc, const RECT &rect, COLORR
 		pDc->MoveTo(x, rect.top);
 		pDc->LineTo(x, rect.bottom);
 		pDc->SelectObject(pPrevPen);
-		
+
 		dR+= dRStep;
 		dG+= dGStep;
 		dB+= dBStep;
@@ -366,14 +366,14 @@ void CPropPageFrameDefault::FillGradientRectH(CDC *pDc, const RECT &rect, COLORR
 /////////////////////////////////////////////////////////////////////
 // message handlers
 
-void CPropPageFrameDefault::OnPaint() 
+void CPropPageFrameDefault::OnPaint()
 {
 	CPaintDC dc(this);
-	Draw(&dc);	
+	Draw(&dc);
 }
 
 
-BOOL CPropPageFrameDefault::OnEraseBkgnd(CDC* pDC) 
+BOOL CPropPageFrameDefault::OnEraseBkgnd(CDC* pDC)
 {
 	if (g_ThemeLib.IsAvailable() && g_ThemeLib.IsThemeActive())
 	{

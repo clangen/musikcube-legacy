@@ -1,89 +1,47 @@
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "musikCube", "musikCube.vcproj", "{99140D9E-2F39-406D-AD74-CA89B8C354CF}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-		{C372ABA2-E90B-459B-B5B2-A9A181DFE807} = {C372ABA2-E90B-459B-B5B2-A9A181DFE807}
-	EndProjectSection
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "musikCube", "musikCube.vcxproj", "{99140D9E-2F39-406D-AD74-CA89B8C354CF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMShellHook", "MMShellHook\MMShellHook.vcproj", "{C372ABA2-E90B-459B-B5B2-A9A181DFE807}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMShellHook", "MMShellHook\MMShellHook.vcxproj", "{C372ABA2-E90B-459B-B5B2-A9A181DFE807}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "musikCore", "..\musikCore\musikCore.vcproj", "{A43DCC0A-9D52-45E3-83BD-67765130F62A}"
-	ProjectSection(ProjectDependencies) = postProject
-		{8F1ECB96-746F-40C1-86CB-6A4AB16369EF} = {8F1ECB96-746F-40C1-86CB-6A4AB16369EF}
-		{07688CCC-54B0-42BA-9562-3852CDA5094A} = {07688CCC-54B0-42BA-9562-3852CDA5094A}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "musikCore", "..\musikCore\musikCore.vcxproj", "{A43DCC0A-9D52-45E3-83BD-67765130F62A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenThreads", "..\musikCore\3rdparty\OpenThreads\win32_src\OpenThreads.vcproj", "{8F1ECB96-746F-40C1-86CB-6A4AB16369EF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenThreads", "..\musikCore\3rdparty\OpenThreads\win32_src\OpenThreads.vcxproj", "{8F1ECB96-746F-40C1-86CB-6A4AB16369EF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite3", "..\musikCore\3rdparty\sqlite3\sqlite3.vcproj", "{07688CCC-54B0-42BA-9562-3852CDA5094A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite3", "..\musikCore\3rdparty\sqlite3\sqlite3.vcxproj", "{07688CCC-54B0-42BA-9562-3852CDA5094A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_ape", "..\musikCore\win32\core_APE\core_APE.vcproj", "{5F9287FE-7CD2-4547-B53F-D7EFE1E4EC7F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-		{ECD80AD2-F98E-4579-B066-9582DC98AAA9} = {ECD80AD2-F98E-4579-B066-9582DC98AAA9}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_ape", "..\musikCore\win32\core_APE\core_APE.vcxproj", "{5F9287FE-7CD2-4547-B53F-D7EFE1E4EC7F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cube_miniPlayer", "contrib\cube_miniPlayer\cube_miniPlayer.vcproj", "{F937462A-9245-4414-A831-5284EDC15D1B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{99140D9E-2F39-406D-AD74-CA89B8C354CF} = {99140D9E-2F39-406D-AD74-CA89B8C354CF}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cube_miniPlayer", "contrib\cube_miniPlayer\cube_miniPlayer.vcxproj", "{F937462A-9245-4414-A831-5284EDC15D1B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "taglib-1.4", "..\musikCore\3rdparty\taglib-1.4\taglib-vc7\taglib-vc7.vcproj", "{ECD80AD2-F98E-4579-B066-9582DC98AAA9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "taglib-1.4", "..\musikCore\3rdparty\taglib-1.4\taglib-vc7\taglib-vc7.vcxproj", "{ECD80AD2-F98E-4579-B066-9582DC98AAA9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_ogg", "..\musikCore\win32\core_OGG\core_OGG.vcproj", "{70FFF75A-0C9C-42C5-A9B6-872DA7BF8597}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-		{ECD80AD2-F98E-4579-B066-9582DC98AAA9} = {ECD80AD2-F98E-4579-B066-9582DC98AAA9}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_ogg", "..\musikCore\win32\core_ogg\core_OGG.vcxproj", "{70FFF75A-0C9C-42C5-A9B6-872DA7BF8597}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_mp3", "..\musikCore\win32\core_MP3\core_MP3.vcproj", "{5C9ABFE0-0F39-4918-BA25-6FFAE1509DD7}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-		{ECD80AD2-F98E-4579-B066-9582DC98AAA9} = {ECD80AD2-F98E-4579-B066-9582DC98AAA9}
-	EndProjectSection
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_mp3", "..\musikCore\win32\core_mp3\core_MP3.vcxproj", "{5C9ABFE0-0F39-4918-BA25-6FFAE1509DD7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_net", "..\musikCore\win32\core_net\core_net.vcproj", "{B4890DB4-6813-4A85-9EB3-608AB24DAD28}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_net", "..\musikCore\win32\core_net\core_net.vcxproj", "{B4890DB4-6813-4A85-9EB3-608AB24DAD28}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_flac", "..\musikCore\win32\core_flac\core_flac.vcxproj", "{A427E3C3-8D46-4BCA-A309-8BB28DC0FA46}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_cdda", "..\musikCore\win32\core_cdda\core_cdda.vcxproj", "{FBEAF682-571D-4B83-A3A9-868E8B6C8E26}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_m4a", "..\musikCore\win32\core_m4a\musikPlugin.vcxproj", "{89DA48E8-246E-4F64-8ABB-9A4FC446C961}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmp4v2", "..\musikCore\win32\core_m4a\mpeg4ip\lib\mp4v2\libmp4v260.vcxproj", "{1569C83A-B5E6-4AA5-BBE1-8A1204818872}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_wma", "..\musikCore\win32\core_wma\core_wma.vcxproj", "{0C7A43B5-0FAC-47FC-A64C-3F59D81E6304}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cube_mcAmp", "contrib\cube_mcAmp\cube_mcAmp.vcxproj", "{802DDC43-CF36-40B4-9E0C-11EB2726BDC6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_mpc", "..\musikCore\win32\core_mpc\core_mpc.vcxproj", "{DD82EE00-4FD1-4913-ADEE-C7C9E82AC25F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_wav", "..\musikCore\win32\core_wav\core_wav.vcxproj", "{FAE57D58-641B-424A-85BC-0F2738812903}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_flac", "..\musikCore\win32\core_flac\core_flac.vcproj", "{A427E3C3-8D46-4BCA-A309-8BB28DC0FA46}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-		{ECD80AD2-F98E-4579-B066-9582DC98AAA9} = {ECD80AD2-F98E-4579-B066-9582DC98AAA9}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_cdda", "..\musikCore\win32\core_cdda\core_cdda.vcproj", "{FBEAF682-571D-4B83-A3A9-868E8B6C8E26}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_m4a", "..\musikCore\win32\core_m4a\musikPlugin.vcproj", "{89DA48E8-246E-4F64-8ABB-9A4FC446C961}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-		{1569C83A-B5E6-4AA5-BBE1-8A1204818872} = {1569C83A-B5E6-4AA5-BBE1-8A1204818872}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmp4v2", "..\musikCore\win32\core_m4a\mpeg4ip\lib\mp4v2\libmp4v260.vcproj", "{1569C83A-B5E6-4AA5-BBE1-8A1204818872}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_wma", "..\musikCore\win32\core_wma\core_wma.vcproj", "{0C7A43B5-0FAC-47FC-A64C-3F59D81E6304}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cube_mcAmp", "contrib\cube_mcAmp\cube_mcAmp.vcproj", "{802DDC43-CF36-40B4-9E0C-11EB2726BDC6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{99140D9E-2F39-406D-AD74-CA89B8C354CF} = {99140D9E-2F39-406D-AD74-CA89B8C354CF}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_mpc", "..\musikCore\win32\core_mpc\core_mpc.vcproj", "{DD82EE00-4FD1-4913-ADEE-C7C9E82AC25F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A43DCC0A-9D52-45E3-83BD-67765130F62A} = {A43DCC0A-9D52-45E3-83BD-67765130F62A}
-		{ECD80AD2-F98E-4579-B066-9582DC98AAA9} = {ECD80AD2-F98E-4579-B066-9582DC98AAA9}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core_wav", "..\musikCore\win32\core_wav\core_wav.vcproj", "{FAE57D58-641B-424A-85BC-0F2738812903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

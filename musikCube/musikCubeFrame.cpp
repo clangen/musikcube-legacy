@@ -8,36 +8,36 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include <shlobj.h>   
+#include <shlobj.h>
 
 #include "musikCube.h"
 #include "musikCubeFrame.h"
@@ -83,7 +83,7 @@ BEGIN_MESSAGE_MAP(CmusikCubeFrame, CFrameWnd)
     ON_MESSAGE(WM_HOTKEY,OnHotKey)
     ON_WM_NCCALCSIZE()
 
-    // menu 
+    // menu
     ON_COMMAND(ID_FILE_PREFERENCES, OnFilePreferences)
     ON_COMMAND(ID_ADD_FILES, OnMenuAddFiles)
     ON_COMMAND(ID_ADD_DIRECTORY, OnMenuAddDirectory)
@@ -235,7 +235,7 @@ void CmusikCubeUpdater::run()
     m_Active = true;
     m_Finished = false;
     bool is_frame_focused = false;
-        
+
     size_t pos = 0;
 
     int task_count = 0, update_count = 0;
@@ -330,7 +330,7 @@ void CmusikCubeFrame::LoadDlgSize()
 {
     CRect rcNormal = CRect(musikCube::g_Prefs->GetDlgPos(), musikCube::g_Prefs->GetDlgSize());
     MoveWindow(rcNormal);
-    
+
     if (musikCube::g_Prefs->IsMaximized())
     {
         WINDOWPLACEMENT max;
@@ -452,7 +452,7 @@ int CmusikCubeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     }
 
     // tray icon
-    
+
     InitTrayIcon();
     if (musikCube::g_Prefs->MinimizeToTray() || musikCube::g_Prefs->GetCloseToSystemTray())
     {
@@ -489,7 +489,7 @@ int CmusikCubeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_NowPlayingView = new CmusikNowPlayingBar(this);
     m_NowPlayingView->Create(_T("musik Now Playing"), this, ID_NOWPLAYING);
     DockControlBar(m_NowPlayingView, AFX_IDW_DOCKBAR_BOTTOM);
-    
+
     // equalizer control
     m_EqualizerView = new CmusikEqualizerBar();
     m_EqualizerView->Create(_T("Equalizer"), this, ID_EQUALIZER);
@@ -517,7 +517,7 @@ int CmusikCubeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
         pMenu->InsertMenu(0, MF_STRING, SYSMENU_RESETDIALOG, _T("Reset Window"));
 
     // load dockbar sizes and positions
-    
+
     ResetDialogPosition();
     LoadDlgSize();
 
@@ -531,7 +531,7 @@ int CmusikCubeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
     m_Updater = new CmusikCubeUpdater;
     m_Updater->m_Parent = this;
     m_Updater->start();
-    
+
     ImportTrans();
     if (musikCube::g_Prefs->IsTransEnabled())
         InitTrans();
@@ -542,12 +542,12 @@ int CmusikCubeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
         CRect rcWnd;
         GetWindowRect(rcWnd);
 
-        ::SetWindowPos(m_hWnd, 
-            HWND_TOPMOST, 
-            rcWnd.TopLeft().x, 
-            rcWnd.TopLeft().y, 
-            rcWnd.Width(), 
-            rcWnd.Height(), 
+        ::SetWindowPos(m_hWnd,
+            HWND_TOPMOST,
+            rcWnd.TopLeft().x,
+            rcWnd.TopLeft().y,
+            rcWnd.Width(),
+            rcWnd.Height(),
             NULL);
     }
 
@@ -663,16 +663,16 @@ BOOL CmusikCubeFrame::PreCreateWindow(CREATESTRUCT& cs)
     HINSTANCE hInst = AfxGetInstanceHandle();
 
     // assure class not already registered
-    if(!(::GetClassInfo(hInst, MUSIKWINDOWCLASSNAME, &wndcls)))   
+    if(!(::GetClassInfo(hInst, MUSIKWINDOWCLASSNAME, &wndcls)))
     {
         // get default MFC class settings
-        if(::GetClassInfo(hInst, cs.lpszClass, &wndcls))        
+        if(::GetClassInfo(hInst, cs.lpszClass, &wndcls))
         {
             wndcls.lpszClassName = MUSIKWINDOWCLASSNAME;
-            wndcls.style |= CS_OWNDC;                               
+            wndcls.style |= CS_OWNDC;
             wndcls.hbrBackground = NULL;
 
-            if (!AfxRegisterClass(&wndcls)) 
+            if (!AfxRegisterClass(&wndcls))
             {
                 AfxThrowResourceException();
             }
@@ -770,7 +770,7 @@ BOOL CmusikCubeFrame::VerifyBarState(LPCTSTR lpszProfileName)
                     return FALSE;
             }
         }
-        
+
         if (!pInfo->m_bFloating) // floating dockbars can be created later
             if (GetControlBar(pInfo->m_nBarID) == NULL)
                 return FALSE; // invalid bar ID
@@ -784,7 +784,7 @@ BOOL CmusikCubeFrame::VerifyBarState(LPCTSTR lpszProfileName)
 void CmusikCubeFrame::OnDestroy()
 {
     CSizingControlBar::GlobalSaveState(this, _T("musikDockBars0.90"));
-    
+
     SaveWindowState();
 
     CFrameWnd::OnDestroy();
@@ -812,7 +812,7 @@ void CmusikCubeFrame::SaveWindowState()
             musikCube::g_Prefs->SetDlgPos(CPoint(rc_dlg.left, rc_dlg.top));
             musikCube::g_Prefs->SetMaximized(false);
         }
-            
+
     }
 }
 
@@ -832,14 +832,14 @@ LRESULT CmusikCubeFrame::OnSelectionCtrlEditCommit(WPARAM wParam, LPARAM lParam)
     // create a new musikCore::SongInfoArray and update all the respective values...
     if (selectedSongs.GetCount())
     {
-        // get songs    
+        // get songs
         musikCore::SongInfoArray* pSongInfoArray = new musikCore::SongInfoArray();
         musikCube::g_Library->GetInfoArrayFromPlaylist(selectedSongs, *pSongInfoArray, nLibType, sNew, true);
 
         // setup params
         musikCore::BatchRetag* params = new musikCore::BatchRetag(
-            musikCube::g_Library, 
-            musikCube::g_Functor, 
+            musikCube::g_Library,
+            musikCube::g_Functor,
             pSongInfoArray);
 
         params->m_WriteToFile = false;
@@ -892,7 +892,7 @@ LRESULT CmusikCubeFrame::OnSelectionCtrlChanged(WPARAM wParam, LPARAM lParam)
 
 ///////////////////////////////////////////////////
 
-// author: Per-Erik Nordlund 
+// author: Per-Erik Nordlund
 // from: http://www.codeproject.com/w2k/win2k_transparent.asp
 // modified by Casey Langen
 
@@ -912,8 +912,8 @@ void CmusikCubeFrame::SetTransparency(int trans)
 void CmusikCubeFrame::ImportTrans()
 {
     HMODULE hUser32 = GetModuleHandle(_T("USER32.DLL"));
-    m_pSetLayeredWindowAttributes = 
-                        (lpfnSetLayeredWindowAttributes)GetProcAddress(hUser32, 
+    m_pSetLayeredWindowAttributes =
+                        (lpfnSetLayeredWindowAttributes)GetProcAddress(hUser32,
                         "SetLayeredWindowAttributes");
 }
 
@@ -939,8 +939,8 @@ void CmusikCubeFrame::InitTrans(bool set_trans)
     {
         SetWindowLong(
             GetSafeHwnd(),
-            GWL_EXSTYLE, 
-            GetWindowLong(GetSafeHwnd(), GWL_EXSTYLE) | WS_EX_LAYERED 
+            GWL_EXSTYLE,
+            GetWindowLong(GetSafeHwnd(), GWL_EXSTYLE) | WS_EX_LAYERED
        );
 
         if (set_trans)
@@ -1065,7 +1065,7 @@ LRESULT CmusikCubeFrame::OnSongChange(WPARAM wParam, LPARAM lParam)
         m_AllFilterViews.at(i)->GetCtrl()->OnNewSong();
         m_AllFilterViews.at(i)->GetCtrl()->RedrawWindow();
     }
-    
+
     // if the player is playing, then we need
     // to do our own updating
     if (musikCube::g_Player->IsPlaying())
@@ -1078,14 +1078,14 @@ LRESULT CmusikCubeFrame::OnSongChange(WPARAM wParam, LPARAM lParam)
     {
         CString tray = ::GetPlaybackStr(PBSTRTYPE_TASKTRAY);
         if (tray.GetLength() > 127)
-            tray = tray.Left(127); 
+            tray = tray.Left(127);
         wcscpy(m_TrayIcon.szTip, tray.GetBuffer());
         Shell_NotifyIcon(NIM_MODIFY, &m_TrayIcon);
 
         if (musikCube::g_Prefs->GetShowBalloonTips())
         {
             ShowBalloonTip(
-                ::GetPlaybackStr(PBSTRTYPE_BALLOONTITLE), 
+                ::GetPlaybackStr(PBSTRTYPE_BALLOONTITLE),
                 ::GetPlaybackStr(PBSTRTYPE_BALLOONARTISTALBUM));
         }
     }
@@ -1103,7 +1103,7 @@ LRESULT CmusikCubeFrame::OnSongChange(WPARAM wParam, LPARAM lParam)
     }
 
     return 0L;
-}   
+}
 
 ///////////////////////////////////////////////////
 
@@ -1258,7 +1258,7 @@ void CmusikCubeFrame::UpdateFilters(enum UpdateAction selectionUpdateAction, enu
     case CmusikCubeFrame::UpdateAction::Query:
         this->QueryPlaylistCtrl();
         break;
- 
+
     case CmusikCubeFrame::UpdateAction::Reset:
         this->ResetPlaylistCtrl();
         break;
@@ -1281,8 +1281,8 @@ void CmusikCubeFrame::UpdateTitle()
 
     if (musikCube::g_Player->IsPlaying())
     {
-        s.Format(_T("[%s - %s] "), 
-            musikCube::g_Player->GetPlaying()->GetTitle().c_str(), 
+        s.Format(_T("[%s - %s] "),
+            musikCube::g_Player->GetPlaying()->GetTitle().c_str(),
             musikCube::g_Player->GetPlaying()->GetArtist().c_str());
 
         if (musikCube::g_Player->GetFormat() == MUSIK_LIBRARY_FORMAT_NET)
@@ -1294,7 +1294,7 @@ void CmusikCubeFrame::UpdateTitle()
 
     size_t task_count = musikCube::g_Library->GetTaskCount();
     if (task_count)
-    {      
+    {
         int type = musikCube::g_Library->GetTaskType();
         switch (type)
         {
@@ -1449,7 +1449,7 @@ void CmusikCubeFrame::OnFilePreferences()
     wndPageAutoCapitalize.m_psp.dwFlags&=       ~PSP_HASHELP;
     wndFileAssociations.m_psp.dwFlags&=          ~PSP_HASHELP;
 
-    // initialize the CTreePropSheet class 
+    // initialize the CTreePropSheet class
     // and remove help icon from gripper
     CmusikPropertySheet PrefSheet(_T("Preferences - musikCube"));
     PrefSheet.m_psh.dwFlags&= ~PSH_HASHELP;
@@ -1508,7 +1508,7 @@ void CmusikCubeFrame::OnFilePreferences()
 
     // hack! requery the playlist view if UTC has changed.
     this->UpdateFilters(UpdateAction::None, UpdateAction::Requery);
-} 
+}
 
 ///////////////////////////////////////////////////
 
@@ -1551,9 +1551,9 @@ void CmusikCubeFrame::OnMenuAddFiles()
 
     // create the open dialog object
     CmusikFileDialog opendlg(
-        TRUE, 
-        _T("mp3"), 
-        NULL, OFN_ALLOWMULTISELECT | OFN_EXPLORER, 
+        TRUE,
+        _T("mp3"),
+        NULL, OFN_ALLOWMULTISELECT | OFN_EXPLORER,
         str_types);
 
     if (opendlg.DoModal() == IDOK)
@@ -1568,14 +1568,14 @@ void CmusikCubeFrame::OnMenuAddFiles()
         {
             // setup params
             musikCore::BatchAdd* params = new musikCore::BatchAdd(
-                files, 
+                files,
                 "",
-                NULL, 
-                musikCube::g_MainLibrary, 
-                NULL, 
-                musikCube::g_Functor, 
-                0, 
-                0, 
+                NULL,
+                musikCube::g_MainLibrary,
+                NULL,
+                musikCube::g_Functor,
+                0,
+                0,
                 1);
 
             // spawn task
@@ -1642,16 +1642,16 @@ void CmusikCubeFrame::OnMenuAddDirectory()
 
         // setup params
         musikCore::BatchAdd* params = new musikCore::BatchAdd(
-            files, 
+            files,
             sPath,
-            NULL, 
-            musikCube::g_MainLibrary, 
-            NULL, 
-            musikCube::g_Functor, 
-            0, 
-            0, 
+            NULL,
+            musikCube::g_MainLibrary,
+            NULL,
+            musikCube::g_Functor,
+            0,
+            0,
             1);
-        
+
         // start it up
         musikCore::BatchAddTask* task = new musikCore::BatchAddTask;
         task->m_Params = params;
@@ -1666,7 +1666,7 @@ LRESULT CmusikCubeFrame::OnPlayerPlaySel(WPARAM wParam, LPARAM lParam)
     // player is paused, so resume...
     if (musikCube::g_Player->IsPlaying() && musikCube::g_Player->IsPaused())
         musikCube::g_Player->Resume();
-    
+
     else
     {
         if (musikCube::g_Player->GetPlaymode() & musikCore::MUSIK_PLAYER_PLAYMODE_RANDOM)
@@ -1822,16 +1822,16 @@ void CmusikCubeFrame::OnViewPlaylistinformation()
     if (musikCube::g_Prefs->PlaylistInfoVisible())
     {
         musikCube::g_Prefs->SetPlaylistInfoVisible(false);
-    
+
         if (!musikCube::g_Prefs->GetPlaylistInfoVizStyle())
         {
-            m_PlaylistView->SetUsePlaylistInfo(false); 
+            m_PlaylistView->SetUsePlaylistInfo(false);
             m_PlaylistView->DeinitPlaylistInfo();
         }
     }
     else
     {
-        m_PlaylistView->SetUsePlaylistInfo(true);    
+        m_PlaylistView->SetUsePlaylistInfo(true);
         musikCube::g_Prefs->SetPlaylistInfoVisible(true);
     }
     // send a "dummy" size event to the
@@ -1842,7 +1842,7 @@ void CmusikCubeFrame::OnViewPlaylistinformation()
     m_PlaylistView->OnSize(NULL, lpRect.Width(), lpRect.Height());
     RedrawWindow();
     m_PlaylistView->UpdatePlaylistInfo();
-    
+
 }
 
 ///////////////////////////////////////////////////
@@ -1951,7 +1951,7 @@ void CmusikCubeFrame::OnUnsynchronizedtagsWritetofile()
 
         // setup params
         musikCore::BatchRetag* params = new musikCore::BatchRetag(
-            musikCube::g_Library, 
+            musikCube::g_Library,
             musikCube::g_Functor,
             pSongInfoArray);
         params->m_WriteToFile = true;
@@ -2068,12 +2068,12 @@ void CmusikCubeFrame::InitTrayIcon()
 {
     ZeroMemory(&m_TrayIcon, sizeof(NOTIFYICONDATA));
 
-    m_TrayIcon.cbSize = sizeof(NOTIFYICONDATA); 
-    m_TrayIcon.hWnd   = GetSafeHwnd(); 
+    m_TrayIcon.cbSize = sizeof(NOTIFYICONDATA);
+    m_TrayIcon.hWnd   = GetSafeHwnd();
     m_TrayIcon.uID    = ID_NOTIFY_ICON;
-    m_TrayIcon.hIcon  = m_hIcon16; 
-    m_TrayIcon.uCallbackMessage = TRAY_NOTIFY_EVT; 
-    m_TrayIcon.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP | NIF_INFO; 
+    m_TrayIcon.hIcon  = m_hIcon16;
+    m_TrayIcon.uCallbackMessage = TRAY_NOTIFY_EVT;
+    m_TrayIcon.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP | NIF_INFO;
     m_TrayIcon.dwInfoFlags = NIIF_INFO;
     m_TrayIcon.uTimeout = 5000;
 
@@ -2088,7 +2088,7 @@ void CmusikCubeFrame::ShowTrayIcon()
 {
     if (!m_TrayIconVisible)
     {
-        Shell_NotifyIcon(NIM_ADD, &m_TrayIcon);   
+        Shell_NotifyIcon(NIM_ADD, &m_TrayIcon);
         m_TrayIconVisible = true;
     }
 }
@@ -2175,13 +2175,13 @@ LRESULT CmusikCubeFrame::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
                 main_menu.LoadMenu(IDR_TRAY_MENU);
                 popup_menu = main_menu.GetSubMenu(0);
-                
+
                 // check the correct rating
                 if (musikCube::g_Player->IsPlaying())
                 {
                     int rating = StoI(musikCube::g_Player->GetPlaying()->GetRating());
                     switch(rating)
-                    {   
+                    {
                     case -1:
                         popup_menu->CheckMenuItem(ID_RATECURRENT_N1, MF_CHECKED);
                         break;
@@ -2323,7 +2323,7 @@ void CmusikCubeFrame::OnUpdateNotificationtrayPause(CCmdUI *pCmdUI)
     if (musikCube::g_Player->IsPlaying() && !musikCube::g_Player->IsPaused())
         pCmdUI->SetText(_T("Pause"));
     else
-        pCmdUI->SetText(_T("Resume"));  
+        pCmdUI->SetText(_T("Resume"));
 
     if (musikCube::g_Player->IsPlaying())
         pCmdUI->Enable(true);
@@ -2476,8 +2476,8 @@ void CmusikCubeFrame::KillTasks(bool updater, bool helpers)
 void CmusikCubeFrame::OnMenuEraseLibrary()
 {
     int prompt = MessageBox(
-        _T("Are you sure you want to erase your music library?"), 
-        _T(MUSIK_VERSION_STR), 
+        _T("Are you sure you want to erase your music library?"),
+        _T(MUSIK_VERSION_STR),
         MB_ICONWARNING | MB_YESNO);
 
     if (prompt != IDYES)
@@ -2685,8 +2685,8 @@ LRESULT CmusikCubeFrame::OnSelectionCtrlDeleteSelected(WPARAM wParam, LPARAM lPa
         for (size_t i = 0; i < playlist.GetCount(); i++)
         {
             musikCube::g_Library->GetFieldFromID(
-                playlist.GetSong(i).GetID(), 
-                musikCore::MUSIK_LIBRARY_TYPE_FILENAME, 
+                playlist.GetSong(i).GetID(),
+                musikCore::MUSIK_LIBRARY_TYPE_FILENAME,
                 filename);
             //
             if (musikCore::Filename::FileExists(filename))
@@ -2705,7 +2705,7 @@ LRESULT CmusikCubeFrame::OnSelectionCtrlDeleteSelected(WPARAM wParam, LPARAM lPa
             }
         }
     }
-    
+
     // delete from library
     if (fromLibrary)
     {
@@ -2776,12 +2776,12 @@ void CmusikCubeFrame::OnViewAlwaysontop()
 
     if (musikCube::g_Prefs->IsAlwaysOnTop())
     {
-        ::SetWindowPos(m_hWnd, 
-            HWND_NOTOPMOST, 
-            rcWnd.TopLeft().x, 
-            rcWnd.TopLeft().y, 
-            rcWnd.Width(), 
-            rcWnd.Height(), 
+        ::SetWindowPos(m_hWnd,
+            HWND_NOTOPMOST,
+            rcWnd.TopLeft().x,
+            rcWnd.TopLeft().y,
+            rcWnd.Width(),
+            rcWnd.Height(),
             NULL);
         m_EqualizerView->GetCtrl()->OnAlwaysOnTop();
         musikCube::g_Prefs->SetAlwaysOnTop(false);
@@ -2789,12 +2789,12 @@ void CmusikCubeFrame::OnViewAlwaysontop()
 
     else
     {
-        ::SetWindowPos(m_hWnd, 
-            HWND_TOPMOST, 
-            rcWnd.TopLeft().x, 
-            rcWnd.TopLeft().y, 
-            rcWnd.Width(), 
-            rcWnd.Height(), 
+        ::SetWindowPos(m_hWnd,
+            HWND_TOPMOST,
+            rcWnd.TopLeft().x,
+            rcWnd.TopLeft().y,
+            rcWnd.Width(),
+            rcWnd.Height(),
             NULL);
 
         musikCube::g_Prefs->SetAlwaysOnTop(true);
@@ -2835,27 +2835,27 @@ void CmusikCubeFrame::GoFullScreen()
     GetWindowRect(rcWnd);
 
     // grab desktop size
-    int cx, cy; 
-    HDC dc = ::GetDC(NULL); 
-    cx = GetDeviceCaps(dc,HORZRES) + 
-        GetSystemMetrics(SM_CXBORDER); 
+    int cx, cy;
+    HDC dc = ::GetDC(NULL);
+    cx = GetDeviceCaps(dc,HORZRES) +
+        GetSystemMetrics(SM_CXBORDER);
     cy = GetDeviceCaps(dc,VERTRES) +
-        GetSystemMetrics(SM_CYBORDER); 
-    ::ReleaseDC(0, dc); 
+        GetSystemMetrics(SM_CYBORDER);
+    ::ReleaseDC(0, dc);
 
     // remove caption and border
-    SetWindowLong(m_hWnd, 
-        GWL_STYLE, 
-        GetWindowLong(m_hWnd, GWL_STYLE) & (~(WS_CAPTION | WS_BORDER))); 
+    SetWindowLong(m_hWnd,
+        GWL_STYLE,
+        GetWindowLong(m_hWnd, GWL_STYLE) & (~(WS_CAPTION | WS_BORDER)));
 
     // Put window on top and expand it to fill screen
-    ::SetWindowPos(m_hWnd, 
-        HWND_TOPMOST, 
-        rcWnd.TopLeft().x + GetSystemMetrics(SM_CXBORDER) + 1, 
+    ::SetWindowPos(m_hWnd,
+        HWND_TOPMOST,
+        rcWnd.TopLeft().x + GetSystemMetrics(SM_CXBORDER) + 1,
         rcWnd.TopLeft().y + GetSystemMetrics(SM_CYBORDER) + 1,
         cx + 1,
-        cy + 1, 
-        NULL); 
+        cy + 1,
+        NULL);
 
     m_FullScreen = true;
     m_GoingFullScreen = false;
@@ -2871,17 +2871,17 @@ void CmusikCubeFrame::KillFullScreen()
     SetWindowPlacement(&max);
 
     // add caption bar and border
-    SetWindowLong(m_hWnd, GWL_STYLE, 
+    SetWindowLong(m_hWnd, GWL_STYLE,
         GetWindowLong(m_hWnd, GWL_STYLE) | (WS_CAPTION | WS_BORDER));
 
     // restore window "always on top" status...
-    ::SetWindowPos(m_hWnd, 
-        musikCube::g_Prefs->IsAlwaysOnTop() ? HWND_TOPMOST : HWND_NOTOPMOST, 
-        musikCube::g_Prefs->GetDlgPos().x, 
-        musikCube::g_Prefs->GetDlgPos().y, 
+    ::SetWindowPos(m_hWnd,
+        musikCube::g_Prefs->IsAlwaysOnTop() ? HWND_TOPMOST : HWND_NOTOPMOST,
+        musikCube::g_Prefs->GetDlgPos().x,
+        musikCube::g_Prefs->GetDlgPos().y,
         musikCube::g_Prefs->GetDlgSize().cx,
-        musikCube::g_Prefs->GetDlgSize().cy, 
-        NULL); 
+        musikCube::g_Prefs->GetDlgSize().cy,
+        NULL);
 
     // set position
     MoveWindow(CRect(musikCube::g_Prefs->GetDlgPos(), musikCube::g_Prefs->GetDlgSize()));
@@ -3051,7 +3051,7 @@ LRESULT CmusikCubeFrame::OnSourcesCDAudio(WPARAM wParam, LPARAM lParam)
 
         CmusikPlaylistView* view = (CmusikPlaylistView*)m_CDView;
         CmusikPlaylistCDCtrl* ctrl = (CmusikPlaylistCDCtrl*)view->GetCtrl();
-        ctrl->SetSongInfoArray(new musikCore::SongInfoArray());      
+        ctrl->SetSongInfoArray(new musikCore::SongInfoArray());
     }
 
     ShowSelectionBoxes(false);
@@ -3088,7 +3088,7 @@ CView* CmusikCubeFrame::SwitchMainView(CView* pNewView)
     oldview->ShowWindow(SW_HIDE);
 
     m_MainView = pNewView;
-        
+
     RecalcLayout();
 
     return m_MainView;
@@ -3124,10 +3124,10 @@ void CmusikCubeFrame::OnMenuExportLibrary()
 {
     // create the open dialog object
     CmusikFileDialog savedlg(
-        FALSE, 
-        _T("db"), 
-        _T("musik_u.db"),  
-        OFN_ALLOWMULTISELECT | OFN_EXPLORER, 
+        FALSE,
+        _T("db"),
+        _T("musik_u.db"),
+        OFN_ALLOWMULTISELECT | OFN_EXPLORER,
         _T("musikCube database files |*.db||")
    );
 
@@ -3148,7 +3148,7 @@ void CmusikCubeFrame::OnFileAttempttosanitisetags()
 {
     musikCore::Playlist pl;
     musikCube::g_Library->GetAllSongs(pl);
-    
+
     musikCore::SongInfoArray* all = new musikCore::SongInfoArray();
 
     musikCube::g_Library->BeginTransaction();
@@ -3167,9 +3167,9 @@ void CmusikCubeFrame::OnFileAttempttosanitisetags()
         musikCore::BatchChgCase* params;
 
         params = new musikCore::BatchChgCase(
-            musikCube::g_Library, 
+            musikCube::g_Library,
             musikCube::g_Functor,
-            all, 
+            all,
             musikCore::MUSIK_CHGCASE_CLEAN);
 
         params->m_DeleteUpdatedTags = true;
@@ -3179,7 +3179,7 @@ void CmusikCubeFrame::OnFileAttempttosanitisetags()
         musikCube::g_Library->QueueTask(task);
     }
     else
-        delete all; 
+        delete all;
 }
 
 ///////////////////////////////////////////////////
@@ -3286,9 +3286,9 @@ void CmusikCubeFrame::OnTagsRemoveextrawhitespace()
         musikCore::BatchChgCase* params;
 
         params = new musikCore::BatchChgCase(
-            musikCube::g_Library, 
+            musikCube::g_Library,
             musikCube::g_Functor,
-            all, 
+            all,
             musikCore::MUSIK_CHGCASE_REMOVEWHITESPACE);
 
         params->m_DeleteUpdatedTags = true;
@@ -3298,7 +3298,7 @@ void CmusikCubeFrame::OnTagsRemoveextrawhitespace()
         musikCube::g_Library->QueueTask(task);
     }
     else
-        delete all; 
+        delete all;
 }
 
 ///////////////////////////////////////////////////
@@ -3326,9 +3326,9 @@ void CmusikCubeFrame::OnTagsAuto()
         musikCore::BatchChgCase* params;
 
         params = new musikCore::BatchChgCase(
-            musikCube::g_Library, 
+            musikCube::g_Library,
             musikCube::g_Functor,
-            all, 
+            all,
             musikCore::MUSIK_CHGCASE_CAPITALIZE);
 
         params->m_DeleteUpdatedTags = true;
@@ -3338,7 +3338,7 @@ void CmusikCubeFrame::OnTagsAuto()
         musikCube::g_Library->QueueTask(task);
     }
     else
-        delete all; 
+        delete all;
 }
 
 ///////////////////////////////////////////////////
@@ -3416,7 +3416,7 @@ LRESULT CmusikCubeFrame::OnHideCube(WPARAM wParam, LPARAM lParam)
     if (!m_IsMinimized)
     {
         if (musikCube::g_Prefs->MinimizeToTray() || musikCube::g_Prefs->GetCloseToSystemTray())
-        {       
+        {
             SendToTray();
             ShowWindow(SW_HIDE);
         }
@@ -3672,7 +3672,7 @@ musikCore::String CmusikCubeFrame::GetSelectionCtrlFilter(CmusikSelectionCtrl* s
     if (end - start > 0)
     {
         CmusikSelectionCtrl* currentControl;
-		int lasti;
+		int lasti = 0;
         for (int i = start; i < end - 1; i++)
         {
             currentControl = this->m_ActiveFilterViews[i];
@@ -3792,9 +3792,9 @@ void CmusikCubeFrame::OnMenuChangeLibrary()
 {
     // create the open dialog object
     CmusikFileDialog opendlg(
-        TRUE, 
-        _T("db"), 
-        NULL, OFN_ALLOWMULTISELECT | OFN_EXPLORER, 
+        TRUE,
+        _T("db"),
+        NULL, OFN_ALLOWMULTISELECT | OFN_EXPLORER,
         _T("musikCore database files |*.db||"));
 
     if (opendlg.DoModal() == IDOK)

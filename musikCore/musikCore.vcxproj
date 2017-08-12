@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A43DCC0A-9D52-45E3-83BD-67765130F62A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.26430.15</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <TargetName>musikCore_uD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>Release\</OutDir>
+    <IntDir>Release\</IntDir>
+    <TargetName>musikCore_u</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/D ID3LIB_LINKOPTION=1 /J %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>3rdparty/OpenThreads/include/;3rdparty/OpenThreads/include/OpenThreads/;3rdparty/sqlite3/;3rdparty/bass/include;include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NO_TCL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>bass.lib;OpenThreads_uD.lib;sqlite3_uD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../musikCube/bin/$(ProjectName)_uD.dll</OutputFile>
+      <AdditionalLibraryDirectories>lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ImportLibrary>lib/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>3rdparty/OpenThreads/include/;3rdparty/OpenThreads/include/OpenThreads/;3rdparty/sqlite3/;3rdparty/bass/include;include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NO_TCL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>bass.lib;OpenThreads_u.lib;sqlite3_u.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>../musikCube/bin/$(ProjectName)_u.dll</OutputFile>
+      <AdditionalLibraryDirectories>lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>lib/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Equ.cpp" />
+    <ClCompile Include="src\Fftsg_fl.cpp" />
+    <ClCompile Include="src\musikBASSPlugin.cpp" />
+    <ClCompile Include="src\musikBASSStream.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\musikBatchAdd.cpp" />
+    <ClCompile Include="src\musikBatchChgCase.cpp" />
+    <ClCompile Include="src\musikBatchRetag.cpp" />
+    <ClCompile Include="src\musikCrossfader.cpp" />
+    <ClCompile Include="src\musikDir.cpp" />
+    <ClCompile Include="src\musikEQSettings.cpp" />
+    <ClCompile Include="src\musikFilename.cpp" />
+    <ClCompile Include="src\musikFunctor.cpp" />
+    <ClCompile Include="src\musikLibrary.cpp" />
+    <ClCompile Include="src\musikLibraryCallbacks.cpp" />
+    <ClCompile Include="src\musikLibraryPatches.cpp" />
+    <ClCompile Include="src\musikPlayer.cpp" />
+    <ClCompile Include="src\musikPlayerBASS.cpp" />
+    <ClCompile Include="src\musikPlaylist.cpp" />
+    <ClCompile Include="src\musikReloadTags.cpp" />
+    <ClCompile Include="src\musikRemoveOld.cpp" />
+    <ClCompile Include="src\musikTagFromFn.cpp" />
+    <ClCompile Include="src\musikTagToFn.cpp" />
+    <ClCompile Include="src\musikTask.cpp" />
+    <ClCompile Include="src\musikTaskQueue.cpp" />
+    <ClCompile Include="src\unicode.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\musikBASSPlugin.h" />
+    <ClInclude Include="include\musikBASSStream.h" />
+    <ClInclude Include="include\musikBatchAdd.h" />
+    <ClInclude Include="include\musikBatchChgCase.h" />
+    <ClInclude Include="include\musikBatchRetag.h" />
+    <ClInclude Include="include\musikConfig.h" />
+    <ClInclude Include="include\musikCore.h" />
+    <ClInclude Include="include\musikCrossfader.h" />
+    <ClInclude Include="include\musikDir.h" />
+    <ClInclude Include="include\musikEQSettings.h" />
+    <ClInclude Include="include\musikFilename.h" />
+    <ClInclude Include="include\musikFunctor.h" />
+    <ClInclude Include="include\musikLibrary.h" />
+    <ClInclude Include="include\musikLibraryCallbacks.h" />
+    <ClInclude Include="include\musikPlayer.h" />
+    <ClInclude Include="include\musikPlayerBASS.h" />
+    <ClInclude Include="include\musikPlaylist.h" />
+    <ClInclude Include="include\musikReloadTags.h" />
+    <ClInclude Include="include\musikRemoveOld.h" />
+    <ClInclude Include="include\musikTagFromFn.h" />
+    <ClInclude Include="include\musikTagToFn.h" />
+    <ClInclude Include="include\musikTask.h" />
+    <ClInclude Include="include\musikTaskQueue.h" />
+    <ClInclude Include="include\paramlist.hpp" />
+    <ClInclude Include="include\StdString.h" />
+    <ClInclude Include="src\unicode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="3rdparty\OpenThreads\win32_src\OpenThreads.vcxproj">
+      <Project>{8f1ecb96-746f-40c1-86cb-6a4ab16369ef}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="3rdparty\sqlite3\sqlite3.vcxproj">
+      <Project>{07688ccc-54b0-42ba-9562-3852cda5094a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="musikTask">
+      <UniqueIdentifier>{f2154670-9948-4255-bbf0-bc1565c49d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikFunctor">
+      <UniqueIdentifier>{6076ac17-1390-4c01-81fa-f7b463b08deb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikPlaylist">
+      <UniqueIdentifier>{35ddf586-b7da-4e68-97a3-583010dc837e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikPlayer">
+      <UniqueIdentifier>{a97b864b-fb99-40b0-ab35-55a7cc6d516c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikPlayer\musikPlayerBASS">
+      <UniqueIdentifier>{ded51e89-bd0f-47f6-abdb-fa75745f1f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikLibrary">
+      <UniqueIdentifier>{b6ac0231-3aab-4cfc-8b53-d80b92905a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikEqualizer">
+      <UniqueIdentifier>{d45dd8dc-e6c5-433f-91d2-338c892bda2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikBatchRetag">
+      <UniqueIdentifier>{a4d5b951-5399-4526-aeff-070a2e8b2bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikBatchAdd">
+      <UniqueIdentifier>{ace586c1-6b8a-44af-9600-d83ea58bd5a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikTaskQueue">
+      <UniqueIdentifier>{50fd6914-634c-420b-b5fd-864d52546504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikBatchChgCase">
+      <UniqueIdentifier>{bf628589-0a70-464e-8937-ae97743aa9fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikTagToFn">
+      <UniqueIdentifier>{043ada36-e35d-47ce-8a55-9c1538703cca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikTagFromFn">
+      <UniqueIdentifier>{1fe9db56-006c-4c4a-a55a-bc8e953c2a3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikRemoveOld">
+      <UniqueIdentifier>{3d8e8e26-cb86-4d1c-a5d1-caad33fbafbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikDir">
+      <UniqueIdentifier>{335b1d2b-1968-44ff-8880-931a9d72edfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikFilename">
+      <UniqueIdentifier>{525e6e93-7d9e-4ba1-a0a7-1f51980db9ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikReloadTags">
+      <UniqueIdentifier>{0714f473-6c81-4f87-b876-2515ea4a6091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikCrossfader">
+      <UniqueIdentifier>{f2bbf44a-fd43-4760-a549-79a28c7955dd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\musikTask.cpp">
+      <Filter>musikTask</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikFunctor.cpp">
+      <Filter>musikFunctor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikPlaylist.cpp">
+      <Filter>musikPlaylist</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikPlayer.cpp">
+      <Filter>musikPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikBASSPlugin.cpp">
+      <Filter>musikPlayer\musikPlayerBASS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikBASSStream.cpp">
+      <Filter>musikPlayer\musikPlayerBASS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikPlayerBASS.cpp">
+      <Filter>musikPlayer\musikPlayerBASS</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikLibrary.cpp">
+      <Filter>musikLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikLibraryCallbacks.cpp">
+      <Filter>musikLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikLibraryPatches.cpp">
+      <Filter>musikLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Equ.cpp">
+      <Filter>musikEqualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fftsg_fl.cpp">
+      <Filter>musikEqualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikEQSettings.cpp">
+      <Filter>musikEqualizer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikBatchRetag.cpp">
+      <Filter>musikBatchRetag</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikBatchAdd.cpp">
+      <Filter>musikBatchAdd</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikTaskQueue.cpp">
+      <Filter>musikTaskQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikBatchChgCase.cpp">
+      <Filter>musikBatchChgCase</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikTagToFn.cpp">
+      <Filter>musikTagToFn</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikTagFromFn.cpp">
+      <Filter>musikTagFromFn</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikRemoveOld.cpp">
+      <Filter>musikRemoveOld</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikDir.cpp">
+      <Filter>musikDir</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikFilename.cpp">
+      <Filter>musikFilename</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikReloadTags.cpp">
+      <Filter>musikReloadTags</Filter>
+    </ClCompile>
+    <ClCompile Include="src\musikCrossfader.cpp">
+      <Filter>musikCrossfader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\unicode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\musikTask.h">
+      <Filter>musikTask</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikFunctor.h">
+      <Filter>musikFunctor</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikPlaylist.h">
+      <Filter>musikPlaylist</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikPlayer.h">
+      <Filter>musikPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikBASSPlugin.h">
+      <Filter>musikPlayer\musikPlayerBASS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikBASSStream.h">
+      <Filter>musikPlayer\musikPlayerBASS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikPlayerBASS.h">
+      <Filter>musikPlayer\musikPlayerBASS</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikLibrary.h">
+      <Filter>musikLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikLibraryCallbacks.h">
+      <Filter>musikLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikEQSettings.h">
+      <Filter>musikEqualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\paramlist.hpp">
+      <Filter>musikEqualizer</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikBatchRetag.h">
+      <Filter>musikBatchRetag</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikBatchAdd.h">
+      <Filter>musikBatchAdd</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikTaskQueue.h">
+      <Filter>musikTaskQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikBatchChgCase.h">
+      <Filter>musikBatchChgCase</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikTagToFn.h">
+      <Filter>musikTagToFn</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikTagFromFn.h">
+      <Filter>musikTagFromFn</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikRemoveOld.h">
+      <Filter>musikRemoveOld</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikDir.h">
+      <Filter>musikDir</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikFilename.h">
+      <Filter>musikFilename</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikReloadTags.h">
+      <Filter>musikReloadTags</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikCrossfader.h">
+      <Filter>musikCrossfader</Filter>
+    </ClInclude>
+    <ClInclude Include="include\musikConfig.h" />
+    <ClInclude Include="include\musikCore.h" />
+    <ClInclude Include="include\StdString.h" />
+    <ClInclude Include="src\unicode.h" />
+  </ItemGroup>
+</Project>

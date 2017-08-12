@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 //
@@ -47,7 +47,7 @@
 //   allocates memory for us so we don't have to worry about it.
 //
 //   Much thanks to the original author, P.J Arends.
-// 
+//
 ///////////////////////////////////////////////////
 
 #include "stdafx.h"
@@ -118,7 +118,7 @@ CString CmusikFileDialog::GetNextPathName(POSITION &pos) const
     if (!m_pstrFiles)
         return CFileDialog::GetNextPathName(pos);
 
-    ASSERT(pos);    
+    ASSERT(pos);
     TCHAR *ptrStr = (TCHAR *)pos;
 
     CString sRet = m_pstrFolder;
@@ -147,9 +147,9 @@ POSITION CmusikFileDialog::GetStartPosition()
         temp.Replace(_T("\" \""), _T("\""));
         temp.Delete(0, 1);                      // remove leading quote mark
         temp.Delete(temp.GetLength() - 1, 1);   // remove trailing space
-    
+
         _tcscpy(m_pstrFiles, temp);
-    
+
         TCHAR *ptrStr = m_pstrFiles;
         while (*ptrStr)
         {
@@ -161,7 +161,7 @@ POSITION CmusikFileDialog::GetStartPosition()
 
         m_bParsed = TRUE;
     }
-    
+
     return (POSITION)m_pstrFiles;
 }
 
@@ -170,12 +170,12 @@ POSITION CmusikFileDialog::GetStartPosition()
 void CmusikFileDialog::OnFileNameChange()
 {
     TCHAR dummy_buffer;
-    
+
     // Get the required size for the 'files' buffer
-    UINT nfiles = CommDlg_OpenSave_GetSpec(GetParent()->m_hWnd, &dummy_buffer, 1);
+    UINT nfiles = CommDlg_OpenSave_GetSpec(this->m_hWnd, &dummy_buffer, 1);
 
     // Get the required size for the 'folder' buffer
-    UINT nfolder = CommDlg_OpenSave_GetFolderPath(GetParent()->m_hWnd, &dummy_buffer, 1);
+    UINT nfolder = CommDlg_OpenSave_GetFolderPath(this->m_hWnd, &dummy_buffer, 1);
 
     // Check if lpstrFile and nMaxFile are large enough
     if (nfiles + nfolder > m_ofn.nMaxFile)
@@ -187,14 +187,14 @@ void CmusikFileDialog::OnFileNameChange()
             delete[] m_pstrFiles;
 
         m_pstrFiles = new TCHAR[nfiles + 1];
-        CommDlg_OpenSave_GetSpec(GetParent()->m_hWnd, m_pstrFiles, nfiles);
+        CommDlg_OpenSave_GetSpec(this->m_hWnd, m_pstrFiles, nfiles);
 
         // folder
         if (m_pstrFolder)
             delete[] m_pstrFolder;
 
         m_pstrFolder = new TCHAR[nfolder + 1];
-        CommDlg_OpenSave_GetFolderPath(GetParent()->m_hWnd, m_pstrFolder, nfolder);
+        CommDlg_OpenSave_GetFolderPath(this->m_hWnd, m_pstrFolder, nfolder);
     }
     else if (m_pstrFiles)
         CleanStrings();

@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
@@ -43,6 +43,10 @@
 
 #include <OpenThreads/Thread>
 using namespace OpenThreads;
+
+#pragma comment(linker,"\"/manifestdependency:type='win32' \
+name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
+processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
 ///////////////////////////////////////////////////
 
@@ -69,7 +73,7 @@ END_MESSAGE_MAP()
 
 MiniDumper* minidump = new MiniDumper();
 
-namespace musikCube 
+namespace musikCube
 {
     musikCore::Player*          g_Player = NULL;
     musikCore::Library*         g_Library = NULL;
@@ -148,25 +152,25 @@ void musikCube::SynchronizeDirs(musikCore::Library* library)
 
         // setup params
         musikCore::BatchAdd* params = new musikCore::BatchAdd(
-            files, 
+            files,
             synchs.at(i) + _T("*.*"),
-            NULL, 
-            library, 
-            NULL, 
-            musikCube::g_Functor, 
-            0, 
-            0, 
+            NULL,
+            library,
+            NULL,
+            musikCube::g_Functor,
+            0,
+            0,
             1);
 
         // setup and start task
         musikCore::BatchAddTask* task = new musikCore::BatchAddTask;
         task->m_Params = params;
         library->QueueTask(task);
-    }    
+    }
 
     // task to remove obselete entries
     musikCore::RemoveOld* params = new musikCore::RemoveOld(
-        library, 
+        library,
         musikCube::g_Functor);
 
     // spawn it
@@ -192,7 +196,7 @@ void musikCube::LoadPlugins()
     for (size_t i = 0; i < dllfiles.size(); i++)
     {
         HMODULE mod = LoadLibrary(dllfiles.at(i));
-        
+
         CmusikPlugin plugin;
 
         plugin.m_Revision = 0;
@@ -220,7 +224,7 @@ void musikCube::LoadPlugins()
         plugin.GetPluginRevision = (CmusikPlugin::GETPLUGINREVISION)GetProcAddress(mod, "GetPluginRevision");
 
         if (plugin.Configure && plugin.SetPluginLibrary && plugin.Initialize && plugin.Unload &&
-             plugin.Execute && plugin.About && plugin.SetPluginInstance && plugin.Stop && 
+             plugin.Execute && plugin.About && plugin.SetPluginInstance && plugin.Stop &&
              plugin.GetPluginInstance && plugin.GetPluginName && plugin.GetPluginDescription && plugin.GetPluginFunctor &&
              plugin.CanConfigure && plugin.CanAbout && plugin.CanExecute && plugin.CanStop &&
              plugin.SetVisiblePlaylist && plugin.OnSources && plugin.InSources && plugin.WantsPrefs && plugin.SetPrefs)
@@ -259,7 +263,7 @@ void musikCube::UnloadPlugins()
     for (size_t i = 0; i < musikCube::g_Plugins.size(); i++)
     {
         musikCube::g_Plugins.at(i).Stop();
-        musikCube::g_Plugins.at(i).Unload();    
+        musikCube::g_Plugins.at(i).Unload();
         FreeLibrary(musikCube::g_Plugins.at(i).GetPluginInstance());
     }
 
@@ -293,7 +297,7 @@ CmusikCubeApp::CmusikCubeApp()
 void CmusikCubeApp::reloadLibrary()
 {
     musikCore::String path = musikCube::g_Prefs->GetLibraryPath();
-    CString realpath = RelToAbs(CString(path)); 
+    CString realpath = RelToAbs(CString(path));
     musikCube::g_MainLibrary->SetFilename(musikCore::String(realpath));
 }
 
@@ -339,12 +343,12 @@ void CmusikCubeApp::initCore()
 
 #if defined (USE_FMOD)
     musikCube::g_Player    = new musikCore::PlayerFMOD(
-        musikCube::g_Functor, 
+        musikCube::g_Functor,
         musikCube::g_MainLibrary);
-#else 
+#else
 #if defined (USE_BASS)
     musikCube::g_Player    = new musikCore::PlayerBASS(
-        musikCube::g_Functor, 
+        musikCube::g_Functor,
         musikCube::g_MainLibrary);
 #endif
 
@@ -433,7 +437,7 @@ void CmusikCubeApp::deinitCore()
         musikCube::g_Player = NULL;
     }
 
-    if (musikCube::g_Prefs)        
+    if (musikCube::g_Prefs)
     {
         musikCube::g_Prefs->SetDlgLastPlayed(lastplayed);
         delete musikCube::g_Prefs;
@@ -443,7 +447,7 @@ void CmusikCubeApp::deinitCore()
     if (musikCube::g_MainLibrary)
         delete musikCube::g_MainLibrary;
 
-    if (musikCube::g_Functor)    
+    if (musikCube::g_Functor)
     {
         delete musikCube::g_Functor;
         musikCube::g_Functor = NULL;
@@ -667,7 +671,7 @@ CString CmusikCubeApp::RelToAbs(CString& path)
 CString CmusikCubeApp::AbsToRel(CString& path)
 {
     CString rel = path;
-    path.Replace(CmusikCubeApp::GetUserDir(), _T("~/"));  
+    path.Replace(CmusikCubeApp::GetUserDir(), _T("~/"));
 
     return path;
 }
@@ -678,7 +682,7 @@ int CmusikCubeApp::ExitInstance()
 {
     if (musikCube::g_DrawGraphics)
         Gdiplus::GdiplusShutdown(m_gdiplusToken);
-    
+
     return CWinApp::ExitInstance();
 }
 
@@ -705,14 +709,14 @@ BOOL CAboutDlg::OnInitDialog()
     CWnd* ptrWnd = GetDlgItem(IDC_EDITBOX);
 
     CString wndTxt =
-        
+
         _T("-- Project Manager, Lead Programmer --\r\n\r\n")
         _T("Casey Langen\r\n")
         _T("casey\100musikcube\056com\r\n\r\n")
 
         _T("-- Webmaster --\r\n\r\n")
         _T("Rajiv Makhijani\r\n")
-        _T("rajiv\100musikcube\056com\r\n\r\n")        
+        _T("rajiv\100musikcube\056com\r\n\r\n")
 
         _T("-- Documentation --\r\n\r\n")
         _T("Erik Carpenter (Urban)\r\n\r\n")
@@ -767,7 +771,7 @@ BOOL CAboutDlg::OnInitDialog()
     CString version;
 
     ptrWnd = GetDlgItem(IDC_CUBEVER);
-    version.Format(_T("musikCube: %s"), MUSIKCUBE_VER);    
+    version.Format(_T("musikCube: %s"), MUSIKCUBE_VER);
     ptrWnd->SetWindowText(version);
 
     ptrWnd = GetDlgItem(IDC_SQLITEVER);
@@ -803,7 +807,7 @@ CString GetPlaybackStr(int type)
             set_str += _T("%c not playing");
             goto finish;
         }
-            
+
         if (title_empty)
             set_str += _T("%c unknown artist");    // no title
         else
@@ -853,7 +857,7 @@ CString GetPlaybackStr(int type)
     else if (type == PBSTRTYPE_TASKTRAY)
     {
         set_str += _T("[ ");
-        
+
         if (!title_empty)
             set_str += info->GetTitle();
 

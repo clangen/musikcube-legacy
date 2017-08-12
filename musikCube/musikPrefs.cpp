@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
@@ -132,7 +132,7 @@ void CmusikPrefs::LoadPrefs()
     m_Sources_DevicesVisible        = StringToBool(config->GetValue("Sources", "Show Devices", "0"));
     m_Sources_DynPlaylistsVisible   = StringToBool(config->GetValue("Sources", "Show Dynamic Playlists", "1"));
     m_Sources_PluginsVisible        = StringToBool(config->GetValue("Sources", "Show Plugins", "0"));
-    
+
     musikCore::String hidden        = musikCore::utf8to16(config->GetValue("Sources", "Hidden Devices", "A:\\"));
     musikCore::Filename::DelimitStr(hidden, _T(","), m_Sources_Hidden_Devices, false, true, true);
 
@@ -143,12 +143,12 @@ void CmusikPrefs::LoadPrefs()
 
     // now playing
     m_NowPlaying_CaptionFont = StringToInt(config->GetValue("Now Playing", "Caption Font Size", "12"));
-    
+
     // player
-    m_Player_Driver         = StringToInt(config->GetValue("Player", "Driver", "0"));
+    m_Player_Driver         = StringToInt(config->GetValue("Player", "Driver", "-1"));
     m_Player_Rate           = StringToInt(config->GetValue("Player", "Rate", "44100"));
     m_Player_Volume         = StringToInt(config->GetValue("Player", "Volume", "200"));
-    m_Player_Playmode       = StringToULong(config->GetValue("Player", "Playmode", "0"));    
+    m_Player_Playmode       = StringToULong(config->GetValue("Player", "Playmode", "0"));
     m_Player_Buffer         = StringToInt(config->GetValue("Player", "Buffer", "500"));
 
     // crossfader
@@ -280,13 +280,13 @@ void CmusikPrefs::SavePrefs()
     // player
     config->SetValue("Player", "Driver", IntToString(m_Player_Driver));
     config->SetValue("Player", "Rate", IntToString(m_Player_Rate));
-    config->SetValue("Player", "Volume", IntToString(m_Player_Volume));    
+    config->SetValue("Player", "Volume", IntToString(m_Player_Volume));
     config->SetValue("Player", "Playmode", ULongToString(m_Player_Playmode));
     config->SetValue("Player", "Buffer", IntToString(m_Player_Buffer));
 
     // crossfader
     config->SetValue("Crossfader", "Enabled", BoolToString(m_Crossfader_Enabled));
-    config->SetValue("Crossfader", "Set Name", IntToString(m_Crossfader_Current));    
+    config->SetValue("Crossfader", "Set Name", IntToString(m_Crossfader_Current));
 
     // equalizer
     config->SetValue("Equalizer", "Enabled", BoolToString(m_Equalizer_Enabled));
@@ -344,11 +344,11 @@ string CmusikPrefs::GetDefPlaylistOrder()
 {
 	stringstream sstr;
     sstr << musikCore::MUSIK_LIBRARY_TYPE_TRACKNUM << "," <<
-            musikCore::MUSIK_LIBRARY_TYPE_TITLE << "," << 
-            musikCore::MUSIK_LIBRARY_TYPE_ARTIST << "," << 
-            musikCore::MUSIK_LIBRARY_TYPE_ALBUM << "," << 
-            musikCore::MUSIK_LIBRARY_TYPE_GENRE << "," << 
-            musikCore::MUSIK_LIBRARY_TYPE_DURATION << "," << 
+            musikCore::MUSIK_LIBRARY_TYPE_TITLE << "," <<
+            musikCore::MUSIK_LIBRARY_TYPE_ARTIST << "," <<
+            musikCore::MUSIK_LIBRARY_TYPE_ALBUM << "," <<
+            musikCore::MUSIK_LIBRARY_TYPE_GENRE << "," <<
+            musikCore::MUSIK_LIBRARY_TYPE_DURATION << "," <<
             musikCore::MUSIK_LIBRARY_TYPE_RATING << ",";
 
     return sstr.str();

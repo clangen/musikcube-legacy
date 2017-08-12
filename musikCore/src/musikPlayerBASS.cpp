@@ -8,31 +8,31 @@
 //
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //    * Redistributions of source code must retain the above copyright notice,
 //      this list of conditions and the following disclaimer.
 //
-//    * Redistributions in binary form must reproduce the above copyright 
-//      notice, this list of conditions and the following disclaimer in the 
+//    * Redistributions in binary form must reproduce the above copyright
+//      notice, this list of conditions and the following disclaimer in the
 //      documentation and/or other materials provided with the distribution.
 //
-//    * Neither the name of the author nor the names of other contributors may 
-//      be used to endorse or promote products derived from this software 
-//      without specific prior written permission. 
+//    * Neither the name of the author nor the names of other contributors may
+//      be used to endorse or promote products derived from this software
+//      without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
-// POSSIBILITY OF SUCH DAMAGE. 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
 //
 ///////////////////////////////////////////////////
 
@@ -49,7 +49,7 @@ std::vector<Plugin*> PlayerBASS::s_Plugins = std::vector<Plugin*>();
 
 ///////////////////////////////////////////////////
 
-namespace musikCore 
+namespace musikCore
 {
     static void CALLBACK BASS_EQ_Callback(HDSP handle, DWORD channel, void *buffer, DWORD length, DWORD user)
     {
@@ -60,7 +60,7 @@ namespace musikCore
             BASS_ChannelGetInfo(channel, &info);
             float seconds = BASS_ChannelBytes2Seconds(channel, length);    // number of seconds this buffer is
             float total_samples = seconds * (float)info.freq;
-            
+
             char*buf = (char*)buffer;
             stream->m_Shibatch.equ_modifySamples((char*)buffer, (int)total_samples, info.chans, 16);
         }
@@ -86,7 +86,7 @@ bool GetMetaData(const char* meta_tags, PlayerBASS* player, HSTREAM channel)
     if (tags)
     {
         bool artist = false, album = false, title = false;
-        while (*tags) 
+        while (*tags)
         {
             musikCore::String tag = tags;
             if (tag.Left(7).ToLower() == _T("artist="))
@@ -118,7 +118,7 @@ bool GetMetaData(const char* meta_tags, PlayerBASS* player, HSTREAM channel)
     else if (meta_tags)
     {
         bool title = false, artist = false;
-        while (*meta_tags) 
+        while (*meta_tags)
         {
             musikCore::String tag = meta_tags;
             if (tag.Left(13).ToLower() == _T("streamtitle='"))
@@ -144,7 +144,7 @@ bool GetMetaData(const char* meta_tags, PlayerBASS* player, HSTREAM channel)
             }
 
             meta_tags += strlen(meta_tags) + 1; // move on to next tag
-        }    
+        }
 
         player->GetPlaying()->SetAlbum(_T(""));
         if (!artist)
@@ -173,7 +173,7 @@ void CALLBACK BASS_NetStream_Tag(HSYNC handle, DWORD channel, DWORD data, DWORD 
     if (!user)
         return;
 
-    if (GetMetaData((char*)data, player, channel)) 
+    if (GetMetaData((char*)data, player, channel))
         player->MetaDataChanged();
 }
 
@@ -249,7 +249,7 @@ Stream* PlayerBASS::LoadNetStream()
 
                 GetMetaData(
                     BASS_ChannelGetTags(
-                        stream->GetStreamID(), 
+                        stream->GetStreamID(),
                         BASS_SYNC_META),
                     this,
                     streamID);
@@ -259,7 +259,7 @@ Stream* PlayerBASS::LoadNetStream()
                     BASS_SYNC_META,
                     0,
                     (SYNCPROC*)&BASS_NetStream_Tag,
-                    (DWORD)this);
+                    (void *)this);
 
                 return stream;
             }
@@ -304,7 +304,7 @@ Stream* PlayerBASS::LoadStream(const String& filename)
                     stream->m_DSP = BASS_ChannelSetDSP(
                         stream->GetStreamID(),
                         (DSPPROC*)musikCore::BASS_EQ_Callback,
-                        (DWORD)stream,
+                        (void*)stream,
                         0);
                 }
 
@@ -350,8 +350,8 @@ void PlayerBASS::OnEQEnable()
         GetCurrStream()->m_DSP = BASS_ChannelSetDSP(
             GetCurrStream()->GetStreamID(),
             (DSPPROC*)musikCore::BASS_EQ_Callback,
-            (DWORD)GetCurrStream(), 0);
-
+            (void*)GetCurrStream(),
+            0);
     }
 }
 
@@ -401,27 +401,25 @@ int PlayerBASS::GetStreamDuration(Stream* ptrStream)
 
 bool PlayerBASS::SetStreamVolume(Stream* ptrStream, int volume)
 {
-    BASS_ChannelSetAttributes(
+    BASS_ChannelSetAttribute(
         ptrStream->GetStreamID(),
-        -1,
-        (int)((float)volume / 2.5f),
-        -101);
+        BASS_ATTRIB_VOL,
+        (float)volume / 255.0f);
 
     return true;
 }
- 
+
 ///////////////////////////////////////////////////
 
 int PlayerBASS::GetStreamVolume(Stream* ptrStream)
 {
-    DWORD volume;
-    BASS_ChannelGetAttributes(
+    float volume;
+    BASS_ChannelGetAttribute(
         ptrStream->GetStreamID(),
         NULL,
-        &volume,
-        NULL);
+        &volume);
 
-    return (int)((float)volume * 2.5f);
+    return (int)((float)volume * 255.0f);
 }
 
 ///////////////////////////////////////////////////
@@ -502,8 +500,7 @@ void PlayerBASS::OnDeleteStream(Stream* ptrStream)
 
 int PlayerBASS::InitSoundSystem(int device, int driver, int rate)
 {
-    driver += 1;
-
+    BASS_SetConfig(BASS_CONFIG_DEV_DEFAULT, 1);
     if (BASS_Init(driver, rate, 0, NULL, NULL))
     {
         return MUSIK_PLAYER_INIT_SUCCESS;
@@ -537,14 +534,14 @@ void PlayerBASS::GetSoundDevices(StringArray& target)
 void PlayerBASS::GetSoundDrivers(StringArray& target)
 {
     int count = 1;
-    const char* ptrDevice = BASS_GetDeviceDescription(0);
-    
-    while (ptrDevice)
+
+    BASS_DEVICEINFO info;
+    BOOL result = BASS_GetDeviceInfo(0, &info);
+
+    while (result)
     {
-        ptrDevice = BASS_GetDeviceDescription(count);
-        if (ptrDevice)
-            target.push_back(ptrDevice);
-        count++;
+        target.push_back(info.name);
+        result = BASS_GetDeviceInfo(count++, &info);
     }
 }
 
@@ -707,7 +704,7 @@ void PlayerBASS::FindPlugins(String dir, StringArray* target)
 
 void PlayerBASS::MetaDataChanged()
 {
-    m_Functor->OnNewSong();    
+    m_Functor->OnNewSong();
 }
 
 ///////////////////////////////////////////////////

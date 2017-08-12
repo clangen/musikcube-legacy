@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{99140D9E-2F39-406D-AD74-CA89B8C354CF}</ProjectGuid>
+    <RootNamespace>musikCube</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.26430.15</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>bin\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>bin\</OutDir>
+    <IntDir>Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../musikCore/3rdparty/OpenThreads/include/;../musikCore/3rdparty/OpenThreads/include/OpenThreads/;../musikCore/3rdparty/sqlite3/;../musikCore/3rdparty/bass/include;../musikCore/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>bass.lib;bassenc.lib;basscd.lib;musikCore_uD.lib;OpenThreads_uD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>bin\$(TargetName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../musikCore/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary />
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProfileGuidedDatabase>$(OutDir)$(TargetName).pgd</ProfileGuidedDatabase>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
+      <AdditionalIncludeDirectories>../musikCore/3rdparty/OpenThreads/include/;../musikCore/3rdparty/OpenThreads/include/OpenThreads/;../musikCore/3rdparty/sqlite3/;../musikCore/3rdparty/bass/include;../musikCore/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat />
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>bass.lib;bassenc.lib;basscd.lib;musikCore_u.lib;OpenThreads_u.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>bin/$(TargetName).exe</OutputFile>
+      <AdditionalLibraryDirectories>../musikCore/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="3rdparty\BtnST.cpp" />
+    <ClCompile Include="3rdparty\ColourPicker.cpp" />
+    <ClCompile Include="3rdparty\ColourPopup.cpp" />
+    <ClCompile Include="3rdparty\CShellFileOp.cpp" />
+    <ClCompile Include="3rdparty\iniFile.cpp" />
+    <ClCompile Include="3rdparty\mdump.cpp" />
+    <ClCompile Include="3rdparty\Mfccddb.cpp" />
+    <ClCompile Include="3rdparty\musikPropTree.cpp" />
+    <ClCompile Include="3rdparty\musikPropTreeItem.cpp" />
+    <ClCompile Include="3rdparty\PropPageFrame.cpp" />
+    <ClCompile Include="3rdparty\PropPageFrameDefault.cpp" />
+    <ClCompile Include="3rdparty\sizecbar.cpp" />
+    <ClCompile Include="3rdparty\TreePropSheet.cpp" />
+    <ClCompile Include="GlobalHotkeys.cpp" />
+    <ClCompile Include="musikAddNetstreamDlg.cpp" />
+    <ClCompile Include="musikBatchTagDlg.cpp" />
+    <ClCompile Include="musikCube.cpp" />
+    <ClCompile Include="musikCubeFrame.cpp" />
+    <ClCompile Include="musikCubeFunctor.cpp" />
+    <ClCompile Include="musikCubeMessages.cpp" />
+    <ClCompile Include="musikDirSync.cpp" />
+    <ClCompile Include="musikDockBar.cpp" />
+    <ClCompile Include="musikDynamicText.cpp" />
+    <ClCompile Include="musikDynDspInfo.cpp" />
+    <ClCompile Include="musikDynPlaylistDlg.cpp" />
+    <ClCompile Include="musikEditInPlace.cpp" />
+    <ClCompile Include="musikEqualizerCtrl.cpp" />
+    <ClCompile Include="musikEqualizerSets.cpp" />
+    <ClCompile Include="musikFileDialog.cpp" />
+    <ClCompile Include="musikFileDrop.cpp" />
+    <ClCompile Include="musikGlobalHotkeysDlg.cpp" />
+    <ClCompile Include="musikListCtrl.cpp" />
+    <ClCompile Include="musikMaskDlg.cpp" />
+    <ClCompile Include="musikNameEntry.cpp" />
+    <ClCompile Include="musikNowPlayingCtrl.cpp" />
+    <ClCompile Include="musikNowPlayingInfo.cpp" />
+    <ClCompile Include="musikPlaylistCtrl.cpp" />
+    <ClCompile Include="musikPlaylistDropTarget.cpp" />
+    <ClCompile Include="musikPlaylistInfoCtrl.cpp" />
+    <ClCompile Include="musikPlaylistView.cpp" />
+    <ClCompile Include="musikPluginManagerDlg.cpp" />
+    <ClCompile Include="musikPrefs.cpp" />
+    <ClCompile Include="musikPrefsDlg.cpp" />
+    <ClCompile Include="musikPrefsFileAssociations.cpp" />
+    <ClCompile Include="musikPropertyPage.cpp" />
+    <ClCompile Include="musikRip.cpp" />
+    <ClCompile Include="musikRipDlg.cpp" />
+    <ClCompile Include="musikSelectionCtrl.cpp" />
+    <ClCompile Include="musikSourcesCtrl.cpp" />
+    <ClCompile Include="musikSourcesDropTarget.cpp" />
+    <ClCompile Include="musikTagDlg.cpp" />
+    <ClCompile Include="musikThemeEditorDlg.cpp" />
+    <ClCompile Include="musikTimeCtrl.cpp" />
+    <ClCompile Include="musikToggleBtn.cpp" />
+    <ClCompile Include="musikTrackCtrl.cpp" />
+    <ClCompile Include="musikTunage.cpp" />
+    <ClCompile Include="musikVolumeCtrl.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="3rdparty\BtnST.h" />
+    <ClInclude Include="3rdparty\ColourPicker.h" />
+    <ClInclude Include="3rdparty\ColourPopup.h" />
+    <ClInclude Include="3rdparty\CShellFileOp.h" />
+    <ClInclude Include="3rdparty\iniFile.h" />
+    <ClInclude Include="3rdparty\mdump.h" />
+    <ClInclude Include="3rdparty\Mfccddb.h" />
+    <ClInclude Include="3rdparty\musikPropTree.h" />
+    <ClInclude Include="3rdparty\musikPropTreeItem.h" />
+    <ClInclude Include="3rdparty\PropPageFrame.h" />
+    <ClInclude Include="3rdparty\PropPageFrameDefault.h" />
+    <ClInclude Include="3rdparty\sizecbar.h" />
+    <ClInclude Include="3rdparty\TreePropSheet.h" />
+    <ClInclude Include="GlobalHotkeys.h" />
+    <ClInclude Include="MainMenuController.h" />
+    <ClInclude Include="Memdc.h" />
+    <ClInclude Include="musikAddNetstreamDlg.h" />
+    <ClInclude Include="musikBatchTagDlg.h" />
+    <ClInclude Include="musikCube.h" />
+    <ClInclude Include="musikCubeFrame.h" />
+    <ClInclude Include="musikCubeFunctor.h" />
+    <ClInclude Include="musikCubeMessages.h" />
+    <ClInclude Include="musikCubeVersion.h" />
+    <ClInclude Include="musikDirSync.h" />
+    <ClInclude Include="musikDockBar.h" />
+    <ClInclude Include="musikDynamicText.h" />
+    <ClInclude Include="musikDynDspInfo.h" />
+    <ClInclude Include="musikDynPlaylistDlg.h" />
+    <ClInclude Include="musikEditInPlace.h" />
+    <ClInclude Include="musikEqualizerCtrl.h" />
+    <ClInclude Include="musikEqualizerSets.h" />
+    <ClInclude Include="musikFileDialog.h" />
+    <ClInclude Include="musikFileDrop.h" />
+    <ClInclude Include="musikGenres.h" />
+    <ClInclude Include="musikGlobalHotkeysDlg.h" />
+    <ClInclude Include="musikListCtrl.h" />
+    <ClInclude Include="musikMaskDlg.h" />
+    <ClInclude Include="musikNameEntry.h" />
+    <ClInclude Include="musikNowPlayingCtrl.h" />
+    <ClInclude Include="musikNowPlayingInfo.h" />
+    <ClInclude Include="musikPlaylistCtrl.h" />
+    <ClInclude Include="musikPlaylistDropTarget.h" />
+    <ClInclude Include="musikPlaylistInfoCtrl.h" />
+    <ClInclude Include="musikPlaylistView.h" />
+    <ClInclude Include="musikPluginManagerDlg.h" />
+    <ClInclude Include="musikPrefs.h" />
+    <ClInclude Include="musikPrefsDlg.h" />
+    <ClInclude Include="musikPrefsFileAssociations.h" />
+    <ClInclude Include="musikPropertyPage.h" />
+    <ClInclude Include="musikRip.h" />
+    <ClInclude Include="musikRipDlg.h" />
+    <ClInclude Include="musikSelectionCtrl.h" />
+    <ClInclude Include="musikSourcesCtrl.h" />
+    <ClInclude Include="musikSourcesDropTarget.h" />
+    <ClInclude Include="musikTagDlg.h" />
+    <ClInclude Include="musikThemeEditorDlg.h" />
+    <ClInclude Include="musikTimeCtrl.h" />
+    <ClInclude Include="musikToggleBtn.h" />
+    <ClInclude Include="musikTrackCtrl.h" />
+    <ClInclude Include="musikTunage.h" />
+    <ClInclude Include="musikVolumeCtrl.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="idb_down.bmp" />
+    <Image Include="idb_up.bmp" />
+    <Image Include="res\FileAssociation.ico" />
+    <Image Include="res\m3icon.ico" />
+    <Image Include="res\m3tray.ico" />
+    <Image Include="res\musikCube.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="musikCube.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\musikCube.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="changelog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\musikCore\musikCore.vcxproj">
+      <Project>{a43dcc0a-9d52-45e3-83bd-67765130f62a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="MMShellHook\MMShellHook.vcxproj">
+      <Project>{c372aba2-e90b-459b-b5b2-a9a181dfe807}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="musikCube.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

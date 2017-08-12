@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main Frame">
+      <UniqueIdentifier>{53a66164-e3e6-4033-b4a5-69ae9123322b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls">
+      <UniqueIdentifier>{b3097420-fc0e-4703-9dbd-c489c49f0cbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikListCtrl">
+      <UniqueIdentifier>{b3a08dce-a6c9-424c-85c9-290a83b3dbde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikDockBar">
+      <UniqueIdentifier>{f2f156ec-f537-41f9-a42c-35215c183f35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikEditInPlace">
+      <UniqueIdentifier>{121c0132-bbb5-48d7-9c8e-f4e00c333345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikPlaylistCtrl">
+      <UniqueIdentifier>{b05ec84e-90b2-4503-8436-65171ecaa397}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikSourcesCtrl">
+      <UniqueIdentifier>{16992602-83c0-4db6-aa5b-a191c866c343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikSourcesCtrl\musikPropTree">
+      <UniqueIdentifier>{d3860443-0b2d-4096-8c9c-e6779ec5735f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikNowPlayingCtrl">
+      <UniqueIdentifier>{45a4df3b-5418-4407-bd5e-4f39458d3edf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikNowPlayingCtrl\musikNowPlayingInfo">
+      <UniqueIdentifier>{9f5e951d-d023-4d0c-be50-3abf5ae2fde4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikNowPlayingCtrl\musikVolumeCtrl">
+      <UniqueIdentifier>{6d72847f-baab-4e8d-8c4f-a8daf8573d53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikNowPlayingCtrl\musikTimeCtrl">
+      <UniqueIdentifier>{cce3c8c7-47dc-4fb8-afe2-5a32b3fccccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikSelectionCtrl">
+      <UniqueIdentifier>{6d9c4555-134d-4a18-bfd0-d34aa613f2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikEqualizerCtrl">
+      <UniqueIdentifier>{e4554e04-fb20-47d3-b17a-9d1d3be3f19e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Controls\musikTrackCtrl">
+      <UniqueIdentifier>{7185a53d-42a8-48b9-95c1-5c620ac7c6f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Dialogs">
+      <UniqueIdentifier>{440b8f9b-fee8-45d9-9d9e-d491603b04a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Dialogs\musikPrefsDlg">
+      <UniqueIdentifier>{f43a3f0a-1ef2-45a6-a001-0ea3f733fd95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Dialogs\musikPrefsDlg\PropPage">
+      <UniqueIdentifier>{0112c351-1c7f-4222-9e24-128fbddadd55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Functor">
+      <UniqueIdentifier>{8985d152-2303-4e37-aec9-5d5d35590c53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Rip">
+      <UniqueIdentifier>{a56d58cf-93cb-45e7-a403-370a8c24e2d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main Frame\Tunage">
+      <UniqueIdentifier>{7c5a687c-03c8-466f-aa4d-67c69777eb40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikCubeApp">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="musikCubeApp\3rdparty">
+      <UniqueIdentifier>{9ec6acd5-e8b0-49dc-baf3-14e05421aad3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikCubeApp\Prefs">
+      <UniqueIdentifier>{10502ebc-90c3-487e-bca5-ec4f036cdfc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="musikCubeApp\Prefs\CIniEx">
+      <UniqueIdentifier>{06ca30f8-f6c2-4406-85ef-86a6d39842eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GlobalHotkeys.cpp">
+      <Filter>Main Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="musikCubeFrame.cpp">
+      <Filter>Main Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="musikCubeMessages.cpp">
+      <Filter>Main Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="musikListCtrl.cpp">
+      <Filter>Main Frame\Controls\musikListCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikDockBar.cpp">
+      <Filter>Main Frame\Controls\musikDockBar</Filter>
+    </ClCompile>
+    <ClCompile Include="musikEditInPlace.cpp">
+      <Filter>Main Frame\Controls\musikEditInPlace</Filter>
+    </ClCompile>
+    <ClCompile Include="musikDynDspInfo.cpp">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPlaylistCtrl.cpp">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPlaylistDropTarget.cpp">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPlaylistInfoCtrl.cpp">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPlaylistView.cpp">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikSourcesCtrl.cpp">
+      <Filter>Main Frame\Controls\musikSourcesCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikSourcesDropTarget.cpp">
+      <Filter>Main Frame\Controls\musikSourcesCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\musikPropTree.cpp">
+      <Filter>Main Frame\Controls\musikSourcesCtrl\musikPropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\musikPropTreeItem.cpp">
+      <Filter>Main Frame\Controls\musikSourcesCtrl\musikPropTree</Filter>
+    </ClCompile>
+    <ClCompile Include="musikNowPlayingCtrl.cpp">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikToggleBtn.cpp">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikDynamicText.cpp">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikNowPlayingInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="musikNowPlayingInfo.cpp">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikNowPlayingInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="musikVolumeCtrl.cpp">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikVolumeCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikTimeCtrl.cpp">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikTimeCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikSelectionCtrl.cpp">
+      <Filter>Main Frame\Controls\musikSelectionCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikEqualizerCtrl.cpp">
+      <Filter>Main Frame\Controls\musikEqualizerCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikTrackCtrl.cpp">
+      <Filter>Main Frame\Controls\musikTrackCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="musikAddNetstreamDlg.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikBatchTagDlg.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikDirSync.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikDynPlaylistDlg.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikEqualizerSets.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikFileDialog.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikFileDrop.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikMaskDlg.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikNameEntry.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPluginManagerDlg.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikTagDlg.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikThemeEditorDlg.cpp">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="musikGlobalHotkeysDlg.cpp">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPrefsDlg.cpp">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPrefsFileAssociations.cpp">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPropertyPage.cpp">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\PropPageFrame.cpp">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg\PropPage</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\PropPageFrameDefault.cpp">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg\PropPage</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\TreePropSheet.cpp">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg\PropPage</Filter>
+    </ClCompile>
+    <ClCompile Include="musikCubeFunctor.cpp">
+      <Filter>Main Frame\Functor</Filter>
+    </ClCompile>
+    <ClCompile Include="musikRip.cpp">
+      <Filter>Main Frame\Rip</Filter>
+    </ClCompile>
+    <ClCompile Include="musikRipDlg.cpp">
+      <Filter>Main Frame\Rip</Filter>
+    </ClCompile>
+    <ClCompile Include="musikTunage.cpp">
+      <Filter>Main Frame\Tunage</Filter>
+    </ClCompile>
+    <ClCompile Include="musikCube.cpp">
+      <Filter>musikCubeApp</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>musikCubeApp</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\BtnST.cpp">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\ColourPicker.cpp">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\ColourPopup.cpp">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\CShellFileOp.cpp">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\mdump.cpp">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\Mfccddb.cpp">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\sizecbar.cpp">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClCompile>
+    <ClCompile Include="musikPrefs.cpp">
+      <Filter>musikCubeApp\Prefs</Filter>
+    </ClCompile>
+    <ClCompile Include="3rdparty\iniFile.cpp">
+      <Filter>musikCubeApp\Prefs\CIniEx</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GlobalHotkeys.h">
+      <Filter>Main Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuController.h">
+      <Filter>Main Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="musikCubeFrame.h">
+      <Filter>Main Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="musikCubeMessages.h">
+      <Filter>Main Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="musikGenres.h">
+      <Filter>Main Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="musikListCtrl.h">
+      <Filter>Main Frame\Controls\musikListCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikDockBar.h">
+      <Filter>Main Frame\Controls\musikDockBar</Filter>
+    </ClInclude>
+    <ClInclude Include="musikEditInPlace.h">
+      <Filter>Main Frame\Controls\musikEditInPlace</Filter>
+    </ClInclude>
+    <ClInclude Include="musikDynDspInfo.h">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPlaylistCtrl.h">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPlaylistDropTarget.h">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPlaylistInfoCtrl.h">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPlaylistView.h">
+      <Filter>Main Frame\Controls\musikPlaylistCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikSourcesCtrl.h">
+      <Filter>Main Frame\Controls\musikSourcesCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikSourcesDropTarget.h">
+      <Filter>Main Frame\Controls\musikSourcesCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\musikPropTree.h">
+      <Filter>Main Frame\Controls\musikSourcesCtrl\musikPropTree</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\musikPropTreeItem.h">
+      <Filter>Main Frame\Controls\musikSourcesCtrl\musikPropTree</Filter>
+    </ClInclude>
+    <ClInclude Include="musikNowPlayingCtrl.h">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikToggleBtn.h">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikDynamicText.h">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikNowPlayingInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="musikNowPlayingInfo.h">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikNowPlayingInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="musikVolumeCtrl.h">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikVolumeCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikTimeCtrl.h">
+      <Filter>Main Frame\Controls\musikNowPlayingCtrl\musikTimeCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikSelectionCtrl.h">
+      <Filter>Main Frame\Controls\musikSelectionCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikEqualizerCtrl.h">
+      <Filter>Main Frame\Controls\musikEqualizerCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikTrackCtrl.h">
+      <Filter>Main Frame\Controls\musikTrackCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="musikAddNetstreamDlg.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikBatchTagDlg.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikDirSync.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikDynPlaylistDlg.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikEqualizerSets.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikFileDialog.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikFileDrop.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikMaskDlg.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikNameEntry.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPluginManagerDlg.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikTagDlg.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikThemeEditorDlg.h">
+      <Filter>Main Frame\Dialogs</Filter>
+    </ClInclude>
+    <ClInclude Include="musikGlobalHotkeysDlg.h">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPrefsDlg.h">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPrefsFileAssociations.h">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPropertyPage.h">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\PropPageFrame.h">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg\PropPage</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\PropPageFrameDefault.h">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg\PropPage</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\TreePropSheet.h">
+      <Filter>Main Frame\Dialogs\musikPrefsDlg\PropPage</Filter>
+    </ClInclude>
+    <ClInclude Include="musikCubeFunctor.h">
+      <Filter>Main Frame\Functor</Filter>
+    </ClInclude>
+    <ClInclude Include="musikRip.h">
+      <Filter>Main Frame\Rip</Filter>
+    </ClInclude>
+    <ClInclude Include="musikRipDlg.h">
+      <Filter>Main Frame\Rip</Filter>
+    </ClInclude>
+    <ClInclude Include="musikTunage.h">
+      <Filter>Main Frame\Tunage</Filter>
+    </ClInclude>
+    <ClInclude Include="musikCube.h">
+      <Filter>musikCubeApp</Filter>
+    </ClInclude>
+    <ClInclude Include="musikCubeVersion.h">
+      <Filter>musikCubeApp</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>musikCubeApp</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>musikCubeApp</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\BtnST.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\ColourPicker.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\ColourPopup.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\CShellFileOp.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\mdump.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="Memdc.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\Mfccddb.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\sizecbar.h">
+      <Filter>musikCubeApp\3rdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="musikPrefs.h">
+      <Filter>musikCubeApp\Prefs</Filter>
+    </ClInclude>
+    <ClInclude Include="3rdparty\iniFile.h">
+      <Filter>musikCubeApp\Prefs\CIniEx</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\m3icon.ico">
+      <Filter>Main Frame</Filter>
+    </Image>
+    <Image Include="res\m3tray.ico">
+      <Filter>Main Frame</Filter>
+    </Image>
+    <Image Include="res\FileAssociation.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="idb_down.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="idb_up.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\musikCube.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="musikCube.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\musikCube.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="changelog.txt" />
+  </ItemGroup>
+</Project>
