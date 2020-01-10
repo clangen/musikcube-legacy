@@ -14,6 +14,7 @@
     <ProjectName>taglib-1.4</ProjectName>
     <ProjectGuid>{ECD80AD2-F98E-4579-B066-9582DC98AAA9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
